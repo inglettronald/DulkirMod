@@ -2,10 +2,10 @@
 
 **For a 1.12.2 template, checkout [`1.12`](https://github.com/romangraef/Forge1.8.9Template/tree/1.12/)**
 
-To get started, clone this repository and replace all references to `examplemod` or `com.example` with your own names.
+To get started, clone this repository and replace all references to `examplemod` or `com.dulkirmod` with your own names.
 
 If you don't want mixins (which allow for modifying vanilla code), then you can remove the references to mixins from
-the `build.gradle.kts`, delete the `mixins.examplemod.json` and the `com.example.mixin` package.
+the `build.gradle.kts`, delete the `mixins.examplemod.json` and the `com.dulkirmod.mixin` package.
 
 This project uses [DevAuth](https://github.com/DJtheRedstoner/DevAuth) per default, so you can log in using your real
 minecraft account. If you don't need that, you can remove it from the buildscript.

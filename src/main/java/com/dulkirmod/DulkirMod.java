@@ -1,13 +1,13 @@
-package com.example;
+package com.dulkirmod;
 
-import com.example.commands.Commands;
+import com.dulkirmod.commands.Commands;
 import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "examplemod", version = "1.0.0")
-public class ExampleMod {
+@Mod(modid = "dulkirclient", version = "1.0.0")
+public class DulkirMod {
     public Commands commands;
 
     @Mod.EventHandler

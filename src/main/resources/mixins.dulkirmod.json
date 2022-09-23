@@ -1,13 +1,12 @@
 {
-  "package": "com.example.mixin",
-  "refmap": "mixins.examplemod.refmap.json",
+  "package": "com.dulkirmod.mixin",
+  "refmap": "mixins.dulkirmod.refmap.json",
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "MixinWorld"
   ],
   "client": [
-    "Mixinaa",
     "MixinRendererManager"
   ]
 }
