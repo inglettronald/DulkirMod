@@ -4,6 +4,7 @@ plugins {
     id("gg.essential.loom") version "0.10.0.+"
     id("dev.architectury.architectury-pack200") version "0.1.3"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("jvm") version "1.7.10"
 }
 
 group = "com.example.archloomtemplate"
@@ -13,6 +14,8 @@ version = "1.0.0"
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 }
+
+
 
 // Minecraft configuration:
 loom {

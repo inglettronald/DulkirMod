@@ -6,7 +6,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "dulkirclient", version = "1.0.0")
+import javax.swing.text.JTextComponent;
+
+@Mod(modid = "dulkirmod", version = "1.0.0")
 public class DulkirMod {
     public Commands commands;
 
@@ -19,4 +21,6 @@ public class DulkirMod {
     public void preinit(FMLPreInitializationEvent event) {
         this.commands = new Commands();
     }
+
+
 }
