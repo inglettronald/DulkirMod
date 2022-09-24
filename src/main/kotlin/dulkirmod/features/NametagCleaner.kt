@@ -18,7 +18,6 @@ object NametagCleaner {
         if (event.entity is EntityArmorStand && event.entity.hasCustomName()) {
            if (config.hideTags) {
                 val name = stripColorCodes(event.entity.customNameTag)
-                println(name)
                 if (name.contains("ABILITY DAMAGE") || name.contains("DEFENSE") || name.contains("DAMAGE")
                     || name.contains("Superboom TNT") || name.contains ("Blessing")) {
                    mc.theWorld.removeEntity(event.entity)
