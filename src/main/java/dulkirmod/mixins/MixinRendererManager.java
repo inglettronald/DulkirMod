@@ -36,9 +36,9 @@ public class MixinRendererManager {
                         NBTTagCompound properties = skullOwner.getCompoundTag("Properties");
                         if (properties.hasKey("textures")) {
                             //if (properties.getTagList("textures", 10).tagCount() >= 1) {
-                                if ("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTZjM2UzMWNmYzY2NzMzMjc1YzQyZmNmYjVkOWE0NDM0MmQ2NDNiNTVjZDE0YzljNzdkMjczYTIzNTIifX19"
-                                        .equals(properties.getTagList("textures", 10).getCompoundTagAt(0).getString("Value")))
-                                    cir.cancel();
+                            if ("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTZjM2UzMWNmYzY2NzMzMjc1YzQyZmNmYjVkOWE0NDM0MmQ2NDNiNTVjZDE0YzljNzdkMjczYTIzNTIifX19"
+                                    .equals(properties.getTagList("textures", 10).getCompoundTagAt(0).getString("Value")))
+                                cir.cancel();
                             //}
                         }
 

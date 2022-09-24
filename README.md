@@ -7,6 +7,7 @@ Features:
 - Hide Healer Fairy.
 - Throttle Notifier
   - custom message
-- FULLY FEATURED SETTINGS MENU.
+- Custom Animations (courtesy of Aton)
+- Nametag cleaner for misc. dungeon stuff that is non-starred.
 
 This is epic.

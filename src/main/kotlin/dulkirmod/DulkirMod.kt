@@ -6,6 +6,7 @@ import dulkirmod.command.HelpCommand
 import dulkirmod.command.SettingsCommand
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
+import dulkirmod.features.NametagCleaner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,6 +58,7 @@ class DulkirMod {
         // REGISTER EVENTS HERE
         MinecraftForge.EVENT_BUS.register(this)
         MinecraftForge.EVENT_BUS.register(ChatEvent())
+        MinecraftForge.EVENT_BUS.register(NametagCleaner)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }

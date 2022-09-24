@@ -4,9 +4,12 @@
   "package": "dulkirmod.mixins",
   "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
+    "ItemRendererMixin",
     "MixinRendererManager"
   ],
   "mixins": [
+    "MixinEntity",
+    "MixinEntityLivingBase",
     "MixinWorld"
   ]
 }
