@@ -12,7 +12,7 @@ class ChatEvent {
             return
         }
         val unformatted = stripColorCodes(event.message.unformattedText)
-        if (unformatted == "Warping you to your SkyBlock island..." && DulkirMod.config.throttleNotifier) {
+        if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier) {
             event.isCanceled = true;
             DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
         }
