@@ -2,7 +2,7 @@
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
   "package": "dulkirmod.mixins",
-  "refmap": "mixins.skyblockclient.refmap.json",
+  "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
     "MixinRendererManager"
   ],

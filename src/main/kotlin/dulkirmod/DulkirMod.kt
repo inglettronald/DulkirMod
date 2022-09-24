@@ -1,25 +1,31 @@
 package dulkirmod
 
-import dulkirmod.command.*
+import dulkirmod.command.EnchantRuneCommand
+import dulkirmod.command.FairyCommand
+import dulkirmod.command.HelpCommand
+import dulkirmod.command.SettingsCommand
+import dulkirmod.config.Config
+import dulkirmod.events.ChatEvent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.settings.KeyBinding
+import net.minecraftforge.client.ClientCommandHandler
+import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent
 import org.lwjgl.input.Keyboard
-import dulkirmod.config.Config
-import net.minecraftforge.client.ClientCommandHandler
 import java.io.File
 import kotlin.coroutines.EmptyCoroutineContext
 
@@ -48,11 +54,9 @@ class DulkirMod {
     @Mod.EventHandler
     fun onInit(event: FMLInitializationEvent) {
         config.init()
-
-
-        listOf(
-            this,
-        ).forEach(MinecraftForge.EVENT_BUS::register)
+        // REGISTER EVENTS HERE
+        MinecraftForge.EVENT_BUS.register(this)
+        MinecraftForge.EVENT_BUS.register(ChatEvent())
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -89,4 +93,9 @@ class DulkirMod {
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
         )
     }
+
+
+    // terminal throttle code
+
+
 }

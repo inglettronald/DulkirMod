@@ -126,4 +126,6 @@ tasks.shadowJar {
     fun relocate(name: String) = relocate(name, "com.dulkirmod.deps.$name")
 }
 
+tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
+
 tasks.assemble.get().dependsOn(tasks.remapJar)

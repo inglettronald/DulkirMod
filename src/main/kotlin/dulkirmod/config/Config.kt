@@ -36,8 +36,26 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
     )
     var hideHeartParticles = false
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Throttle Notifier",
+        description = "Making features out of bugs wow",
+        category = "General"
+    )
+    var throttleNotifier = false
+
+    @Property(
+        type = PropertyType.TEXT,
+        name = "Throttle Notifier String",
+        description = "How do you want to tell people you are throttled?",
+        category = "General",
+        placeholder = "i am being throttled zzz",
+        protectedText = false
+    )
+    var customMessage: String = "i am being throttled zzz"
     fun init() {
         initialize()
+        addDependency("customMessage", "throttleNotifier")
     }
 
 }
