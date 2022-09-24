@@ -1,12 +1,12 @@
 {
-  "package": "com.dulkirmod.mixin",
-  "refmap": "mixins.dulkirmod.refmap.json",
-  "minVersion": "0.7",
+  "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "MixinWorld"
-  ],
+  "package": "dulkirmod.mixins",
+  "refmap": "mixins.skyblockclient.refmap.json",
   "client": [
     "MixinRendererManager"
+  ],
+  "mixins": [
+    "MixinWorld"
   ]
 }

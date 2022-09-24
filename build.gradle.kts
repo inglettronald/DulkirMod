@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     idea
     java
@@ -44,6 +46,10 @@ sourceSets.main {
     output.setResourcesDir(file("$buildDir/classes/java/main"))
 }
 
+val packageLib by configurations.creating {
+    configurations.implementation.get().extendsFrom(this)
+}
+
 // Dependencies:
 
 repositories {
@@ -51,6 +57,7 @@ repositories {
     maven("https://repo.spongepowered.org/maven/")
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://repo.sk1er.club/repository/maven-public")
 }
 
 val shadowImpl: Configuration by configurations.creating {
@@ -71,12 +78,20 @@ dependencies {
     // If you don't want to log in with your real minecraft account, remove this line
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
+    shadowImpl("gg.essential:loader-launchwrapper:1.1.3")
+    implementation("gg.essential:essential-1.8.9-forge:3662")
+
 }
 
 // Tasks:
 
 tasks.withType(JavaCompile::class) {
     options.encoding = "UTF-8"
+}
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 tasks.withType(Jar::class) {
@@ -112,4 +127,3 @@ tasks.shadowJar {
 }
 
 tasks.assemble.get().dependsOn(tasks.remapJar)
-

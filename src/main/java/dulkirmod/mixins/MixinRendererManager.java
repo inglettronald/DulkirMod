@@ -1,6 +1,5 @@
-package com.dulkirmod.mixin;
+package dulkirmod.mixins;
 
-import com.dulkirmod.Settings;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityArmorStand;
@@ -11,6 +10,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import dulkirmod.DulkirMod;
 
 @Mixin(RenderManager.class)
 public class MixinRendererManager {
@@ -26,7 +26,7 @@ public class MixinRendererManager {
             boolean p_147939_10_,
             CallbackInfoReturnable<Boolean> cir
     ) {
-        if(!Settings.HealerFairy) return;
+        if(!DulkirMod.Companion.getConfig().getHideHealerFairy()) return;
         if (entity instanceof EntityArmorStand) {
             if (((EntityArmorStand) entity).getHeldItem() != null && ((EntityArmorStand) entity).getHeldItem().getItem() == Items.skull) {
                 ItemStack stack = ((EntityArmorStand) entity).getHeldItem();

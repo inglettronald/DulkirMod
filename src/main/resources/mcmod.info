@@ -1,18 +1,12 @@
 [
   {
-	"modid": "dulkirmod",
-	"name": "Dulkir Mod",
-	"description": "I steal nopo's code",
-	"version": "1.0.0",
-	"mcversion": "1.8.9",
-	"url": "https://github.com/romangraef/Forge1.8.9Template/",
-	"updateUrl": "",
-	"authorList": [
-	  "Dulkir", "Nopo"
-	],
-	"credits": "",
-	"logoFile": "",
-	"screenshots": [],
-	"dependencies": []
+    "modid": "dulkirmod",
+    "name": "Dulkir Mod",
+    "description": "The worst skyblock mod.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "authorList": [
+      "Dulkir", "Nopo"
+    ]
   }
 ]
