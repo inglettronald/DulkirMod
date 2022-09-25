@@ -1,6 +1,7 @@
 package dulkirmod.mixins;
 
 import dulkirmod.features.ItemAnimations;
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,5 +19,10 @@ public class ItemRendererMixin {
     @Inject(method = {"doItemUsedTransformations"}, at = @At("HEAD"), cancellable = true)
     public void useTransform(float swingProgress, CallbackInfo ci){
         if (ItemAnimations.INSTANCE.scaledSwing(swingProgress)) ci.cancel();
+    }
+
+    @Inject(method ={"performDrinking"}, at = @At("HEAD"), cancellable = true)
+    public void drinkTransform(AbstractClientPlayer clientPlayer, float partialTicks, CallbackInfo ci) {
+        if (ItemAnimations.INSTANCE.rotationlessDrink(clientPlayer, partialTicks)) ci.cancel();
     }
 }

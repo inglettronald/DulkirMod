@@ -176,6 +176,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
     var ignoreHaste = true
 
     @Property(
+        type = PropertyType.CHECKBOX,
+        name = "Rotationless Drink",
+        description = "Stops you from breaking your arm every time you get thirsty",
+        category = "Animations"
+    )
+    var rotationlessdrink = true
+
+    @Property(
         type = PropertyType.BUTTON,
         name = "Reset Item Values",
         description = "Will not visually update gui, but reopening settings menu will show default values",

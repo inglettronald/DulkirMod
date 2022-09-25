@@ -1,9 +1,12 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.config
+import dulkirmod.DulkirMod.Companion.mc
+import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.util.MathHelper
 import kotlin.math.exp
+import kotlin.math.pow
 
 /**
  * Module to change the appearance of held items.
@@ -55,6 +58,18 @@ object ItemAnimations {
         val f1 = 0.2f * MathHelper.sin(MathHelper.sqrt_float(swingProgress) * Math.PI.toFloat() * 2.0f) * scale
         val f2 = -0.2f * MathHelper.sin(swingProgress * Math.PI.toFloat()) * scale
         GlStateManager.translate(f, f1, f2)
+        return true
+    }
+
+    fun rotationlessDrink(clientPlayer : AbstractClientPlayer, partialTicks : Float): Boolean {
+        if (!config.rotationlessdrink) return false
+        val f: Float = clientPlayer.itemInUseCount.toFloat() - partialTicks + 1.0f
+        val f1: Float = f / mc.thePlayer.heldItem.maxItemUseDuration.toFloat()
+        var f2 = MathHelper.abs(MathHelper.cos(f / 4.0f * 3.1415927f) * 0.1f)
+        if (f1 >= 0.8f) {
+            f2 = 0.0f
+        }
+        GlStateManager.translate(0.0f, f2, 0.0f)
         return true
     }
 }
