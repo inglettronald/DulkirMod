@@ -176,12 +176,13 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
     var ignoreHaste = true
 
     @Property(
-        type = PropertyType.CHECKBOX,
-        name = "Rotationless Drink",
-        description = "Stops you from breaking your arm every time you get thirsty",
-        category = "Animations"
+        type = PropertyType.SELECTOR,
+        name = "Drinking Fix",
+        description = "Pick how to handle drinking animations.",
+        category = "Animations",
+        options = ["No fix", "Rotationless", "Fixed"]
     )
-    var rotationlessdrink = true
+    var drinkingSelector = 2
 
     @Property(
         type = PropertyType.BUTTON,
@@ -206,6 +207,11 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
+
+        setCategoryDescription(
+            "Custom Animations",
+            "All settings that are related to custom animations. Mostly help from Aton."
+        )
     }
 
 }

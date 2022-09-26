@@ -4,6 +4,7 @@ import dulkirmod.DulkirMod.Companion.config
 import dulkirmod.DulkirMod.Companion.mc
 import net.minecraft.client.entity.AbstractClientPlayer
 import net.minecraft.client.renderer.GlStateManager
+import net.minecraft.item.ItemStack
 import net.minecraft.util.MathHelper
 import kotlin.math.exp
 import kotlin.math.pow
@@ -61,8 +62,12 @@ object ItemAnimations {
         return true
     }
 
+    /**
+     * Directly referenced by the ItemRendereMixin. If enabled will scale the potion drink animation.
+     * Returns whether custom animation was performed.
+     */
     fun rotationlessDrink(clientPlayer : AbstractClientPlayer, partialTicks : Float): Boolean {
-        if (!config.rotationlessdrink) return false
+        if (!config.customAnimations || config.drinkingSelector != 1) return false
         val f: Float = clientPlayer.itemInUseCount.toFloat() - partialTicks + 1.0f
         val f1: Float = f / mc.thePlayer.heldItem.maxItemUseDuration.toFloat()
         var f2 = MathHelper.abs(MathHelper.cos(f / 4.0f * 3.1415927f) * 0.1f)
@@ -70,6 +75,40 @@ object ItemAnimations {
             f2 = 0.0f
         }
         GlStateManager.translate(0.0f, f2, 0.0f)
+        return true
+    }
+
+    /**
+     * Directly referenced by the ItemRendereMixin. If enabled will scale the potion drink animation.
+     * Returns whether custom animation was performed.
+     */
+    fun scaledDrinking(clientPlayer: AbstractClientPlayer, partialTicks: Float, itemToRender: ItemStack): Boolean {
+        if (!config.customAnimations || config.drinkingSelector != 2) return false
+        val f: Float = clientPlayer.itemInUseCount.toFloat() - partialTicks + 1.0f
+        val f1: Float = f / itemToRender.maxItemUseDuration.toFloat()
+        var f2 = MathHelper.abs(MathHelper.cos(f / 4.0f * Math.PI.toFloat()) * 0.1f)
+
+        if (f1 >= 0.8f) {
+            f2 = 0.0f
+        }
+
+        // Transform to correct rotation center
+        val newX = (0.56f * (1 + config.customX)).toFloat()
+        val newY = (-0.52f * (1 - config.customY)).toFloat()
+        val newZ = (-0.71999997f * (1 + config.customZ)).toFloat()
+        GlStateManager.translate(-0.56f, 0.52f, 0.71999997f)
+        GlStateManager.translate(newX, newY, newZ)
+
+        GlStateManager.translate(0.0f, f2, 0.0f)
+        val f3 = 1.0f - f1.toDouble().pow(27.0).toFloat()
+        GlStateManager.translate(f3 * 0.6f, f3 * -0.5f, f3 * 0.0f)
+        GlStateManager.rotate(f3 * 90.0f, 0.0f, 1.0f, 0.0f)
+        GlStateManager.rotate(f3 * 10.0f, 1.0f, 0.0f, 0.0f)
+        GlStateManager.rotate(f3 * 30.0f, 0.0f, 0.0f, 1.0f)
+
+        // Transform back
+        GlStateManager.translate(0.56f, -0.52f, -0.71999997f)
+        GlStateManager.translate(-newX, -newY, -newZ)
         return true
     }
 }
