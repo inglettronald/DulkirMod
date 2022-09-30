@@ -1,5 +1,5 @@
 # This is Dulkir Mod!
-## I do not think it is a rat. 
+## THIS CONFLICTS with other animation mods, and I don't really intend on fixing it. Don't even know if that's possible
 
 Features:
 - Hide Enchant Rune Particles.
