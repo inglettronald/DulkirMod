@@ -8,6 +8,10 @@ Features:
 - Throttle Notifier
   - custom message
 - Custom Animations (courtesy of Aton)
+  - String Export/Imports to share configs!
 - Nametag cleaner for misc. dungeon stuff that is non-starred.
+- Bridge Bot Formatter
+- Join Dungeon Command Chat Notification
+- No Front-Cam
 
 This is epic.
