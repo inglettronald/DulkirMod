@@ -1,16 +1,13 @@
 package dulkirmod.config
 
 import dulkirmod.DulkirMod
+import dulkirmod.utils.Utils
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Category
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
 import gg.essential.vigilance.data.SortingBehavior
-import dulkirmod.DulkirMod.Companion.display
-import dulkirmod.utils.Utils
-import java.awt.Color
 import java.io.File
-import java.util.function.Consumer
 
 object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", sortingBehavior = ConfigSorting) {
 
@@ -242,6 +239,50 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var noReverse3rdPerson = false
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Bridge Bot Formatter",
+        description = "Global Toggle",
+        category = "Bridge"
+    )
+    var bridgeBot = false
+
+    @Property(
+        type = PropertyType.TEXT,
+        name = "Bridge Bot Name",
+        description = "Not case-sensitive",
+        category = "Bridge",
+        placeholder = "Bweefing",
+        protectedText = false
+    )
+    var botName: String = "Bweefing"
+
+    @Property(
+        type = PropertyType.SELECTOR,
+        name = "Bridge Chatter Name Color",
+        description = "Pick how the player name looks.",
+        category = "Bridge",
+        options = ["§0Black",
+            "§1Dark Blue",
+            "§2Dark Green",
+            "§3Dark Aqua",
+            "§4Dark Red",
+            "§5Dark Purple",
+            "§6Gold",
+            "§7Gray",
+            "§8Dark Gray",
+            "§9Blue",
+            "§aGreen",
+            "§bAqua",
+            "§cRed",
+            "§dLight Purple",
+            "§eYellow",
+            "§fWhite",
+            "§zSBA Chroma"
+        ]
+    )
+    var bridgeColor = 6
+
 
     fun init() {
         initialize()
@@ -250,6 +291,10 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         setCategoryDescription(
             "Custom Animations",
             "All settings that are related to custom animations. Mostly help from Aton."
+        )
+        setCategoryDescription(
+            "Bridge",
+            "Expected format: (bridge bot user) > (sent message) - without any parenthesis."
         )
     }
     private object ConfigSorting : SortingBehavior() {
