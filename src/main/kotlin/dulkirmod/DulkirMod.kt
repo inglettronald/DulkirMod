@@ -68,6 +68,9 @@ class DulkirMod {
 
     @SubscribeEvent
     fun onTick(event: ClientTickEvent) {
+        if (Config.noReverse3rdPerson && mc.gameSettings.thirdPersonView == 2)
+            mc.gameSettings.thirdPersonView = 0
+
         if (event.phase != TickEvent.Phase.START || display == null) return
         mc.displayGuiScreen(display)
         display = null

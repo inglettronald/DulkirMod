@@ -1,7 +1,57 @@
 package dulkirmod.utils
 
+import com.google.gson.Gson
+import dulkirmod.DulkirMod.Companion.mc
+import dulkirmod.config.Config
+import net.minecraft.util.ChatComponentText
+import net.minecraft.util.EnumChatFormatting
+import java.awt.Toolkit
+import java.awt.datatransfer.Clipboard
+import java.awt.datatransfer.DataFlavor
+import java.awt.datatransfer.StringSelection
+import java.lang.IllegalArgumentException
+import java.util.*
+
 object Utils {
     fun stripColorCodes(string: String): String {
         return string.replace("§.".toRegex(), "")
+    }
+
+    fun animationConfigToString() {
+        var s = ""
+        var gson = Gson()
+        var jsonString = gson.toJson(ConfigData())
+        s = Base64.getEncoder().encodeToString(jsonString.toByteArray())
+        // set clipboard
+        val selection = StringSelection(s)
+        val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
+        clipboard.setContents(selection, selection)
+    }
+
+    fun animationStringtoConfig() {
+        val gson = Gson()
+        val clipboard: Clipboard = Toolkit.getDefaultToolkit().systemClipboard
+        val base64 = clipboard.getData(DataFlavor.stringFlavor) as String
+        try {
+            val jsonString = String(Base64.getDecoder().decode(base64))
+            val import = gson.fromJson(jsonString, ConfigData::class.java)
+            Config.customSize = import.size
+            Config.customSpeed = import.speed
+            Config.doesScaleSwing = import.scaleSwing
+            Config.customX = import.x
+            Config.customY = import.y
+            Config.customZ = import.z
+            Config.customYaw = import.yaw
+            Config.customPitch = import.pitch
+            Config.customRoll = import.roll
+            Config.drinkingSelector = import.drinkingFix
+            Config.ignoreHaste = import.ignoreHaste } catch (e : Exception) {
+            mc.thePlayer.addChatMessage(
+                ChatComponentText(
+                    EnumChatFormatting.GOLD.toString() + "" + EnumChatFormatting.BOLD + "Current clipboard is not a recognizable Custom Animation Preset."
+                )
+            )
+        }
+        mc.displayGuiScreen(null)
     }
 }

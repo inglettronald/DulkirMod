@@ -1,11 +1,13 @@
 package dulkirmod.config
 
+import dulkirmod.DulkirMod
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Category
 import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
 import gg.essential.vigilance.data.SortingBehavior
 import dulkirmod.DulkirMod.Companion.display
+import dulkirmod.utils.Utils
 import java.awt.Color
 import java.io.File
 import java.util.function.Consumer
@@ -187,7 +189,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.BUTTON,
         name = "Reset Item Values",
-        description = "Will not visually update gui, but reopening settings menu will show default values",
+        description = "Vanilla Look! Closes Settings GUI.",
         category = "Animations"
     )
     fun demoButton() {
@@ -201,9 +203,29 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         doesScaleSwing = true
         ignoreHaste = true
         customSpeed = 0f
+        DulkirMod.mc.displayGuiScreen(null)
     }
 
-    // CUSTOM ANIMATIONS
+    @Property(
+        type = PropertyType.BUTTON,
+        name = "Export Preset as String",
+        description = "Base64 representation of your current config - will copy to clipboard when pressed.",
+        category = "Animations"
+    )
+    fun presetString() {
+        Utils.animationConfigToString()
+    }
+
+    @Property(
+        type = PropertyType.BUTTON,
+        name = "Import Preset from Clipboard",
+        description = "Base64 representation of your config accepted from clipboard. Closes gui.",
+        category = "Animations"
+    )
+    fun stringToConfig() {
+        Utils.animationStringtoConfig()
+    }
+
     @Property(
         type = PropertyType.SWITCH,
         name = "JoinDungeon Command Confirmation",
@@ -211,6 +233,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         category = "General"
     )
     var dungeonCommandConfirm = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Remove Selfie Camera",
+        description = "Get rid of pesky reverse third person!",
+        category = "General"
+    )
+    var noReverse3rdPerson = false
 
 
     fun init() {
