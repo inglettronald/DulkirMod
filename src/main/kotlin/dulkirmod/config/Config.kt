@@ -10,7 +10,7 @@ import java.awt.Color
 import java.io.File
 import java.util.function.Consumer
 
-object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
+object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", sortingBehavior = ConfigSorting) {
 
     @Property(
         type = PropertyType.SWITCH,
@@ -203,6 +203,15 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
         customSpeed = 0f
     }
 
+    // CUSTOM ANIMATIONS
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "JoinDungeon Command Confirmation",
+        description = "Chat notification when you push the button. Useful if you suck at navigating a numpad.",
+        category = "General"
+    )
+    var dungeonCommandConfirm = false
+
 
     fun init() {
         initialize()
@@ -213,5 +222,13 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod") {
             "All settings that are related to custom animations. Mostly help from Aton."
         )
     }
-
+    private object ConfigSorting : SortingBehavior() {
+        override fun getCategoryComparator(): Comparator<in Category> = Comparator { o1, o2 ->
+            if (o1.name == "General") return@Comparator -1
+            if (o2.name == "General") return@Comparator 1
+            else compareValuesBy(o1, o2) {
+                it.name
+            }
+        }
+    }
 }

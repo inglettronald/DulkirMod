@@ -9,8 +9,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 /**
  * Code inspired heavily by Skytils.
- *
- * TODO: fix
  */
 object NametagCleaner {
     @SubscribeEvent

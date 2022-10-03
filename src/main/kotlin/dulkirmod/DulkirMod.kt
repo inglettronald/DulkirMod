@@ -1,9 +1,6 @@
 package dulkirmod
 
-import dulkirmod.command.EnchantRuneCommand
-import dulkirmod.command.FairyCommand
-import dulkirmod.command.HelpCommand
-import dulkirmod.command.SettingsCommand
+import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.NametagCleaner
@@ -50,6 +47,7 @@ class DulkirMod {
         ClientCommandHandler.instance.registerCommand(EnchantRuneCommand())
         ClientCommandHandler.instance.registerCommand(FairyCommand())
         ClientCommandHandler.instance.registerCommand(SettingsCommand())
+        ClientCommandHandler.instance.registerCommand(JoinDungeonCommand())
     }
 
     @Mod.EventHandler
