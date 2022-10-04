@@ -4,6 +4,8 @@ import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.NametagCleaner
+import dulkirmod.features.alarmClock
+import dulkirmod.utils.TitleUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +35,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 )
 class DulkirMod {
 
+    var lastLongUpdate : Long = 0
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         val directory = File(event.modConfigurationDirectory, "dulkirmod")
@@ -55,6 +58,7 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(this)
         MinecraftForge.EVENT_BUS.register(ChatEvent())
         MinecraftForge.EVENT_BUS.register(NametagCleaner)
+        MinecraftForge.EVENT_BUS.register(DulkirMod.titleUtils)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -69,9 +73,22 @@ class DulkirMod {
         if (Config.noReverse3rdPerson && mc.gameSettings.thirdPersonView == 2)
             mc.gameSettings.thirdPersonView = 0
 
-        if (event.phase != TickEvent.Phase.START || display == null) return
-        mc.displayGuiScreen(display)
-        display = null
+        if (event.phase == TickEvent.Phase.START && display != null) {
+            mc.displayGuiScreen(display)
+            display = null
+        }
+
+        var longupdate = false
+        val currTime : Long = System.currentTimeMillis()
+        if (currTime - lastLongUpdate > 1000) {
+            longupdate = true
+            lastLongUpdate = currTime
+        }
+        if (longupdate) {
+            // EXECUTE STUFF HERE THAT DOESN'T REALLY NEED TO BE RUN EVERY TICK
+            alarmClock()
+            longupdate = false
+        }
     }
 
     @SubscribeEvent
@@ -89,14 +106,11 @@ class DulkirMod {
         var config = Config
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
+        val titleUtils = TitleUtils()
 
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
         )
     }
-
-
-    // terminal throttle code
-
 
 }

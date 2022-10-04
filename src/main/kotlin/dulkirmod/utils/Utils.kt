@@ -9,7 +9,6 @@ import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
 import java.awt.datatransfer.DataFlavor
 import java.awt.datatransfer.StringSelection
-import java.lang.IllegalArgumentException
 import java.util.*
 
 object Utils {
@@ -53,5 +52,18 @@ object Utils {
             )
         }
         mc.displayGuiScreen(null)
+    }
+
+    fun isInSkyblock() : Boolean{
+        if ((mc.theWorld != null) && (mc.thePlayer != null)) {
+            if (mc.isSingleplayer || mc.thePlayer.clientBrand == null ||
+                !mc.thePlayer.clientBrand.lowercase(Locale.getDefault()).contains("hypixel")) {
+                return false
+            }
+            if (mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1) == null)
+                return false;
+            return stripColorCodes(mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1).displayName).contains("SKYBLOCK")
+        }
+        return false
     }
 }

@@ -283,7 +283,95 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var bridgeColor = 6
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Ghast Notification",
+        description = "Shows a title at 9:00pm for bestiary",
+        category = "Bestiary"
+    )
+    var notifyGhast = false
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Zombie Villager Notification",
+        description = "Shows a title at 8:00pm for bestiary",
+        category = "Bestiary"
+    )
+    var notifyZombieVillager = false
+
+    @Property(
+        type = PropertyType.SELECTOR,
+        name = "Bestiary Notification Color",
+        description = "Changes color of title notification",
+        category = "Bestiary",
+        options = ["§0Black",
+            "§1Dark Blue",
+            "§2Dark Green",
+            "§3Dark Aqua",
+            "§4Dark Red",
+            "§5Dark Purple",
+            "§6Gold",
+            "§7Gray",
+            "§8Dark Gray",
+            "§9Blue",
+            "§aGreen",
+            "§bAqua",
+            "§cRed",
+            "§dLight Purple",
+            "§eYellow",
+            "§fWhite",
+            "§zSBA Chroma"
+        ]
+    )
+    var bestiaryNotifColor = 15
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Text Shadow",
+        description = "Shows text shadow for notification",
+        category = "Bestiary"
+    )
+    var bestiaryTextShadow = false
+
+    @Property(
+        type = PropertyType.DECIMAL_SLIDER,
+        name = "Scale",
+        description = "Size of notification!",
+        category = "Bestiary",
+        minF = 0f,
+        maxF = 1f,
+        decimalPlaces = 1
+    )
+    var bestiaryNotifSize = .7f
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Alert Noises",
+        description = "Uses relevant mob sounds, doesn't override audio/patcher settings",
+        category = "Bestiary"
+    )
+    var bestiaryAlertSounds = false
+
+    @Property(
+        type = PropertyType.DECIMAL_SLIDER,
+        name = "Alert Volume",
+        description = "Volume of notification!",
+        category = "Bestiary",
+        minF = 0f,
+        maxF = 1f,
+        decimalPlaces = 1
+    )
+    var bestiaryNotifVol = .7f
+
+    @Property(
+        type = PropertyType.BUTTON,
+        name = "Demo Volume Selection",
+        description = "Plays the Ghast Noise as Reference, Might add individual sliders later but this seems like enough",
+        category = "Bestiary"
+    )
+    fun demoVolume() {
+        DulkirMod.mc.thePlayer.playSound("mob.ghast.scream", 1f * Config.bestiaryNotifVol, 1f)
+    }
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
@@ -294,7 +382,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         )
         setCategoryDescription(
             "Bridge",
-            "Expected format: (bridge bot user) > (sent message) - without any parenthesis."
+            "If your bridge format does not work, message me on discord and I can probably add it."
         )
     }
     private object ConfigSorting : SortingBehavior() {
