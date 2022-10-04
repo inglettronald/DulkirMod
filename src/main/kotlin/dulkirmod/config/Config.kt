@@ -294,7 +294,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         )
         setCategoryDescription(
             "Bridge",
-            "Expected format: (bridge bot user) > (sent message) - without any parenthesis."
+            "If your bridge format does not work, message me on discord and I can probably add it."
         )
     }
     private object ConfigSorting : SortingBehavior() {

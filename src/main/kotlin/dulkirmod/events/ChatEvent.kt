@@ -10,7 +10,8 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 class ChatEvent {
-    private val guildFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z]\\[[A-Z]+])?§f: (\\w+) > .+".toRegex()
+    private val guildFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+) > .+".toRegex()
+    private val alternateFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+): .+".toRegex()
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
         if (event.type == 2.toByte()) {
@@ -37,6 +38,22 @@ class ChatEvent {
                 )
                 event.message.siblings[1] = ChatComponentText(
                     event.message.siblings[1].unformattedText.replace("$playerName > ", "")
+                ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
+            }
+        }
+
+        // OTHER FORMAT
+        else if (alternateFormat matches message && Config.bridgeBot) {
+            val matchResult = alternateFormat.find(message)
+            val (prefix, name, playerName) = matchResult!!.destructured
+            if (stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
+                val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
+                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
+                event.message.siblings[0] = ChatComponentText(
+                    "$newPrefix > $color$playerName§f: "
+                )
+                event.message.siblings[1] = ChatComponentText(
+                    event.message.siblings[1].unformattedText.replace("$playerName: ", "")
                 ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
             }
         }
