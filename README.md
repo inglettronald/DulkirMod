@@ -13,5 +13,6 @@ Features:
 - Bridge Bot Formatter
 - Join Dungeon Command Chat Notification
 - No Front-Cam
+- Bestiary Notifications for Ghasts/Zombie Villagers
 
 This is epic.
