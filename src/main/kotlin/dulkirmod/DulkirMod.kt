@@ -5,6 +5,7 @@ import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.NametagCleaner
 import dulkirmod.features.alarmClock
+import dulkirmod.features.brokenHypeNotif
 import dulkirmod.utils.TitleUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -87,6 +88,7 @@ class DulkirMod {
         if (longupdate) {
             // EXECUTE STUFF HERE THAT DOESN'T REALLY NEED TO BE RUN EVERY TICK
             alarmClock()
+            brokenHypeNotif()
             longupdate = false
         }
     }
@@ -99,7 +101,7 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.0.4"
+        const val MOD_VERSION = "1.0.5"
         const val CHAT_PREFIX = "<DulkirMod>"
 
         val mc: Minecraft = Minecraft.getMinecraft()

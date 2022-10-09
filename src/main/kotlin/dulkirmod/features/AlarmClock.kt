@@ -6,7 +6,6 @@ import dulkirmod.config.Config
 import dulkirmod.utils.Utils
 import net.minecraft.scoreboard.Score
 import net.minecraft.scoreboard.ScorePlayerTeam
-import net.minecraft.util.EnumChatFormatting
 
 var lastUpdate : Long = 0
 
@@ -29,7 +28,7 @@ fun alarmClock() {
         // ZOMBIE VILLAGER
         if (Config.notifyZombieVillager && l.contains("8:00pm") && (currTime - lastUpdate) > 15000) {
             lastUpdate = currTime
-            val color = if (Config.bestiaryNotifColor == 16) "§z" else EnumChatFormatting.values()[Config.bestiaryNotifColor]
+            val color = Utils.getColorString(Config.bestiaryNotifColor)
             DulkirMod.titleUtils.drawStringForTime("${color}Zombie Villager", 5000)
             if (Config.bestiaryAlertSounds)
                 mc.thePlayer.playSound("mob.villager.yes", 1f * Config.bestiaryNotifVol, 0f)
@@ -37,7 +36,7 @@ fun alarmClock() {
         // GHASTS
         else if (Config.notifyGhast && l.contains("9:00pm") && (currTime - lastUpdate) > 15000) {
             lastUpdate = currTime
-            val color = if (Config.bestiaryNotifColor == 16) "§z" else EnumChatFormatting.values()[Config.bestiaryNotifColor]
+            val color = Utils.getColorString(Config.bestiaryNotifColor)
             DulkirMod.titleUtils.drawStringForTime("${color}Ghast", 5000)
             if (Config.bestiaryAlertSounds)
                 mc.thePlayer.playSound("mob.ghast.scream", 1f * Config.bestiaryNotifVol, 1f)

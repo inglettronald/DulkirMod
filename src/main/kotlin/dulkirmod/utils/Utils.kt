@@ -66,4 +66,8 @@ object Utils {
         }
         return false
     }
+
+    fun getColorString(int : Int) : String {
+        return if (int == 16) "§z" else EnumChatFormatting.values()[int].toString()
+    }
 }

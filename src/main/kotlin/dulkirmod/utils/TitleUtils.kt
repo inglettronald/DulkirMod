@@ -32,5 +32,4 @@ class TitleUtils {
         this.endTime = time.toLong() + System.currentTimeMillis()
     }
 
-
 }

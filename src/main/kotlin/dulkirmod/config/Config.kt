@@ -300,6 +300,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     var notifyZombieVillager = false
 
     @Property(
+        type = PropertyType.SWITCH,
+        name = "Broken Hype Notification",
+        description = "Tells you if you are no longer getting bestiary! Requires champion and book of stats on your item. LEAVE OFF IF FISHING.",
+        category = "Bestiary"
+    )
+    var notifyHype = false
+
+    @Property(
         type = PropertyType.SELECTOR,
         name = "Bestiary Notification Color",
         description = "Changes color of title notification",

@@ -20,7 +20,7 @@ object NametagCleaner {
                     || name.contains("Superboom TNT") || name.contains ("Blessing")) {
                    mc.theWorld.removeEntity(event.entity)
                 }
-            }
+           }
         }
     }
 }
