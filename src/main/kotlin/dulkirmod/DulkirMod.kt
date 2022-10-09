@@ -96,22 +96,27 @@ class DulkirMod {
     @SubscribeEvent
     fun onKey(event: KeyInputEvent) {
         if (keyBinds[0].isPressed) display = config.gui()
+        if (keyBinds[1].isPressed) Config.noReverse3rdPerson = !Config.noReverse3rdPerson
+        if (keyBinds[2].isPressed) skytilsWaterSolver = !skytilsWaterSolver
     }
 
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.0.5"
+        const val MOD_VERSION = "1.0.6"
         const val CHAT_PREFIX = "<DulkirMod>"
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config = Config
         var display: GuiScreen? = null
+        var skytilsWaterSolver = false
         val scope = CoroutineScope(EmptyCoroutineContext)
         val titleUtils = TitleUtils()
 
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
+            KeyBinding("Toggle Selfie Setting", Keyboard.KEY_NONE, "Dulkir Mod"),
+            KeyBinding("Toggle Skytils WaterSolver", Keyboard.KEY_NONE, "Dulkir Mod"),
         )
     }
 

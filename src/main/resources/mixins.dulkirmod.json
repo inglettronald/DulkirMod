@@ -10,6 +10,7 @@
   "mixins": [
     "MixinEntity",
     "MixinEntityLivingBase",
+    "MixinSkytils",
     "MixinWorld"
   ]
 }
