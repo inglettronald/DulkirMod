@@ -3,6 +3,7 @@ package dulkirmod
 import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
+import dulkirmod.features.ArachneTimer
 import dulkirmod.features.NametagCleaner
 import dulkirmod.features.alarmClock
 import dulkirmod.features.brokenHypeNotif
@@ -60,6 +61,7 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(ChatEvent())
         MinecraftForge.EVENT_BUS.register(NametagCleaner)
         MinecraftForge.EVENT_BUS.register(DulkirMod.titleUtils)
+        MinecraftForge.EVENT_BUS.register(ArachneTimer())
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -102,8 +104,8 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.0.6"
-        const val CHAT_PREFIX = "<DulkirMod>"
+        const val MOD_VERSION = "1.0.7"
+        const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config = Config

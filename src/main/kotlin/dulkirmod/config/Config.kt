@@ -388,6 +388,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         category = "Bestiary"
     )
     var hideArachneTags = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Arachne kill timer",
+        description = "Shows in chat.",
+        category = "Bestiary"
+    )
+    var arachneKillTimer = false
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")

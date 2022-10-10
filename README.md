@@ -16,5 +16,6 @@ Features:
 - Bestiary Notifications for Ghasts/Zombie Villagers
 - Notification when hype breaks and stops giving combat xp
 - Hide arachne loot nametags
+- Arachne Boss Kill timer
 
 This is epic.
