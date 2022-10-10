@@ -380,6 +380,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     fun demoVolume() {
         DulkirMod.mc.thePlayer.playSound("mob.ghast.scream", 1f * Config.bestiaryNotifVol, 1f)
     }
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Hide Arachne Loot Nametags",
+        description = "Useful when killing a lot of them",
+        category = "Bestiary"
+    )
+    var hideArachneTags = false
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")

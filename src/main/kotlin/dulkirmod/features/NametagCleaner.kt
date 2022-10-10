@@ -21,6 +21,13 @@ object NametagCleaner {
                    mc.theWorld.removeEntity(event.entity)
                 }
            }
+
+            if (config.hideArachneTags) {
+                val name = stripColorCodes(event.entity.customNameTag)
+                if (name.contains("Luxurious Spool") || name.contains("String") || name.contains("Arachne Fragment")){
+                    mc.theWorld.removeEntity(event.entity)
+                }
+            }
         }
     }
 }
