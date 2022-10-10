@@ -15,5 +15,6 @@ Features:
 - No Front-Cam
 - Bestiary Notifications for Ghasts/Zombie Villagers
 - Notification when hype breaks and stops giving combat xp
+- Hide arachne loot nametags
 
 This is epic.
