@@ -8,14 +8,14 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 
 var oldKill = -1
-var oldChampionXp = -1
+var oldChampionXp = -1.0
 var oldID = ""
 
 fun brokenHypeNotif() {
     if (!Config.notifyHype) return;
 
     var kill = -1
-    var championXp = -1
+    var championXp = -1.0
     var id = ""
 
     if (mc.thePlayer == null) return
@@ -34,7 +34,7 @@ fun brokenHypeNotif() {
                 kill = ea.getInteger("stats_book")
             }
             if (ea.hasKey("champion_combat_xp", 99)) {
-                championXp = ea.getDouble("champion_combat_xp").toInt()
+                championXp = ea.getDouble("champion_combat_xp")
             }
         }
     }
@@ -46,7 +46,7 @@ fun brokenHypeNotif() {
         // Check if this is a valid item for testing whether bestiary is broken.
         // That is, to be specific, check that it has champion and book of stats.
         // If it doesn't, don't reset because it can't be used anyway.
-        if (kill == -1 || championXp == -1) {
+        if (kill == -1 || championXp == -1.0) {
             return;
         }
         // If we get here this is a new item that is legitimate for testing bugged xp, in theory.

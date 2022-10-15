@@ -1,11 +1,11 @@
 package dulkirmod.command
 
+import dulkirmod.DulkirMod
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
 import net.minecraft.command.CommandException
 import net.minecraft.command.ICommandSender
 import net.minecraft.util.ChatComponentText
-import net.minecraft.util.EnumChatFormatting
 
 class JoinDungeonCommand : ClientCommandBase("joindungeon") {
     @Throws(CommandException::class)
@@ -29,9 +29,7 @@ class JoinDungeonCommand : ClientCommandBase("joindungeon") {
 
         if(Config.dungeonCommandConfirm) {
             mc.thePlayer.addChatMessage(
-                ChatComponentText(
-                    EnumChatFormatting.GOLD.toString() + "" + EnumChatFormatting.BOLD + "Running command: $type$num"
-                )
+                ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Running command: $type$num")
             )
         }
         mc.thePlayer.sendChatMessage("/joindungeon $arguments")

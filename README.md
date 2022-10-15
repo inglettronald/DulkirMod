@@ -1,5 +1,5 @@
 # This is Dulkir Mod!
-## THIS CONFLICTS with other animation mods, and I don't really intend on fixing it. Don't even know if that's possible
+## THIS CONFLICTS with other animation mods, and I don't really intend on fixing it yet. Don't even know if that's possible
 
 Features:
 - Hide Enchant Rune Particles.
@@ -17,5 +17,7 @@ Features:
 - Notification when hype breaks and stops giving combat xp
 - Hide arachne loot nametags
 - Arachne Boss Kill timer
+- Arachne Boss Spawn countdown
+- Matcho Alerts!
 
 This is epic.

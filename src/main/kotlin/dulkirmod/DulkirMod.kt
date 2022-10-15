@@ -3,10 +3,7 @@ package dulkirmod
 import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
-import dulkirmod.features.ArachneTimer
-import dulkirmod.features.NametagCleaner
-import dulkirmod.features.alarmClock
-import dulkirmod.features.brokenHypeNotif
+import dulkirmod.features.*
 import dulkirmod.utils.TitleUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +11,7 @@ import kotlinx.coroutines.launch
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.settings.KeyBinding
+import net.minecraft.util.ChatComponentText
 import net.minecraftforge.client.ClientCommandHandler
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
@@ -62,6 +60,7 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(NametagCleaner)
         MinecraftForge.EVENT_BUS.register(DulkirMod.titleUtils)
         MinecraftForge.EVENT_BUS.register(ArachneTimer())
+        MinecraftForge.EVENT_BUS.register(MatchoAlert())
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -91,6 +90,7 @@ class DulkirMod {
             // EXECUTE STUFF HERE THAT DOESN'T REALLY NEED TO BE RUN EVERY TICK
             alarmClock()
             brokenHypeNotif()
+            matchoAlert.alert()
             longupdate = false
         }
     }
@@ -98,13 +98,16 @@ class DulkirMod {
     @SubscribeEvent
     fun onKey(event: KeyInputEvent) {
         if (keyBinds[0].isPressed) display = config.gui()
-        if (keyBinds[1].isPressed) Config.noReverse3rdPerson = !Config.noReverse3rdPerson
+        if (keyBinds[1].isPressed) {
+            Config.noReverse3rdPerson = !Config.noReverse3rdPerson
+            mc.thePlayer.addChatMessage(ChatComponentText("§7Toggling No Selfie Camera Setting... now: §6${Config.noReverse3rdPerson}"))
+        }
     }
 
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.0.7"
+        const val MOD_VERSION = "1.0.8"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
 
         val mc: Minecraft = Minecraft.getMinecraft()
@@ -112,6 +115,7 @@ class DulkirMod {
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
         val titleUtils = TitleUtils()
+        val matchoAlert = MatchoAlert()
 
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),

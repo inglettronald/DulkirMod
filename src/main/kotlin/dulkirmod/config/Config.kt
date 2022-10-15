@@ -23,31 +23,31 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Hide Healer fairy",
         description = "Probably disable when not in dungeons for now. Will fix later.",
-        category = "General"
+        category = "Dungeons"
     )
-    var hideHealerFairy = false
+    var hideHealerFairy = true
 
     @Property(
         type = PropertyType.SWITCH,
         name = "Hide Heart Particles",
         description = "Useful for hyperion and healer bullshit",
-        category = "General"
+        category = "Dungeons"
     )
-    var hideHeartParticles = false
+    var hideHeartParticles = true
 
     @Property(
         type = PropertyType.SWITCH,
         name = "Throttle Notifier",
         description = "Making features out of bugs wow",
-        category = "General"
+        category = "Dungeons"
     )
-    var throttleNotifier = false
+    var throttleNotifier = true
 
     @Property(
         type = PropertyType.TEXT,
         name = "Throttle Notifier String",
         description = "How do you want to tell people you are throttled?",
-        category = "General",
+        category = "Dungeons",
         placeholder = "i am being throttled zzz",
         protectedText = false
     )
@@ -59,12 +59,12 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         description = "Prevents some nametags not covered by skytils \"Hide non-starred nametags\" from rendering.",
         category = "General"
     )
-    var hideTags = false
+    var hideTags = true
 
     // CUSTOM ANIMATIONS
     @Property(
         type = PropertyType.SWITCH,
-        name = "Custom Animations",
+        name = "Global Toggle",
         description = "Change the look of your held item",
         category = "Animations"
     )
@@ -207,7 +207,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.BUTTON,
         name = "Export Preset as String",
         description = "Base64 representation of your current config - will copy to clipboard when pressed.",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Presets"
     )
     fun presetString() {
         Utils.animationConfigToString()
@@ -217,7 +218,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.BUTTON,
         name = "Import Preset from Clipboard",
         description = "Base64 representation of your config accepted from clipboard. Closes gui.",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Presets"
     )
     fun stringToConfig() {
         Utils.animationStringtoConfig()
@@ -227,9 +229,9 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "JoinDungeon Command Confirmation",
         description = "Chat notification when you push the button. Useful if you suck at navigating a numpad.",
-        category = "General"
+        category = "Dungeon"
     )
-    var dungeonCommandConfirm = false
+    var dungeonCommandConfirm = true
 
     @Property(
         type = PropertyType.SWITCH,
@@ -287,7 +289,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Ghast Notification",
         description = "Shows a title at 9:00pm for bestiary",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Notifications"
     )
     var notifyGhast = false
 
@@ -295,7 +298,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Zombie Villager Notification",
         description = "Shows a title at 8:00pm for bestiary",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Notifications"
     )
     var notifyZombieVillager = false
 
@@ -303,15 +307,26 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Broken Hype Notification",
         description = "Tells you if you are no longer getting bestiary! Requires champion and book of stats on your item. LEAVE OFF IF FISHING.",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Notifications"
     )
     var notifyHype = false
 
     @Property(
+        type = PropertyType.SWITCH,
+        name = "Matcho Spawn Alert!",
+        description = "Alerts you if your lobby becomes EXPLOSIVE!",
+        category = "Bestiary",
+        subcategory = "Notifications"
+    )
+    var notifyMatcho = false
+
+    @Property(
         type = PropertyType.SELECTOR,
         name = "Bestiary Notification Color",
-        description = "Changes color of title notification",
+        description = "Changes color some bestiary features.",
         category = "Bestiary",
+        subcategory = "Notifications",
         options = ["§0Black",
             "§1Dark Blue",
             "§2Dark Green",
@@ -337,7 +352,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Text Shadow",
         description = "Shows text shadow for notification",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Notifications"
     )
     var bestiaryTextShadow = false
 
@@ -346,17 +362,20 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Scale",
         description = "Size of notification!",
         category = "Bestiary",
+        subcategory = "Notifications",
         minF = 0f,
         maxF = 1f,
         decimalPlaces = 1
     )
     var bestiaryNotifSize = .7f
 
+
     @Property(
         type = PropertyType.SWITCH,
         name = "Alert Noises",
         description = "Uses relevant mob sounds, doesn't override audio/patcher settings",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Audio"
     )
     var bestiaryAlertSounds = false
 
@@ -365,6 +384,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Alert Volume",
         description = "Volume of notification!",
         category = "Bestiary",
+        subcategory = "Audio",
         minF = 0f,
         maxF = 1f,
         decimalPlaces = 1
@@ -375,7 +395,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.BUTTON,
         name = "Demo Volume Selection",
         description = "Plays the Ghast Noise as Reference, Might add individual sliders later but this seems like enough",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Audio"
     )
     fun demoVolume() {
         DulkirMod.mc.thePlayer.playSound("mob.ghast.scream", 1f * Config.bestiaryNotifVol, 1f)
@@ -385,7 +406,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Hide Arachne Loot Nametags",
         description = "Useful when killing a lot of them",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Arachne"
     )
     var hideArachneTags = false
 
@@ -393,12 +415,24 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Arachne kill timer",
         description = "Shows in chat.",
-        category = "Bestiary"
+        category = "Bestiary",
+        subcategory = "Arachne"
     )
     var arachneKillTimer = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Arachne spawn countdown",
+        description = "Shows how long it takes for the arachne to spawn (in world).",
+        category = "Bestiary",
+        subcategory = "Arachne"
+    )
+    var arachneSpawnTimer = false
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
+        addDependency("bestiaryNotifVol", "bestiaryAlertSounds")
+        addDependency("demoVolume", "bestiaryAlertSounds")
 
         setCategoryDescription(
             "Custom Animations",
