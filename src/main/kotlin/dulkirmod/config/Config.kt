@@ -55,6 +55,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "Throttle Notifier Spam",
+        description = "LET EM KNOW!",
+        category = "Dungeons"
+    )
+    var throttleNotifierSpam = true
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Hide Extra Nametags",
         description = "Prevents some nametags not covered by skytils \"Hide non-starred nametags\" from rendering.",
         category = "General"
@@ -229,9 +237,27 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "JoinDungeon Command Confirmation",
         description = "Chat notification when you push the button. Useful if you suck at navigating a numpad.",
-        category = "Dungeon"
+        category = "Dungeons"
     )
     var dungeonCommandConfirm = true
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Hide Chests that are already opened at Croesus",
+        description = "Just doesn't render the item if it has the chest opened string",
+        category = "Dungeons"
+    )
+    var hideOpenedChests = false
+
+    @Property(
+        type = PropertyType.TEXT,
+        name = "Highlighted player name",
+        description = "Not case-sensitive",
+        category = "Dungeons",
+        placeholder = "Dilkur",
+        protectedText = false
+    )
+    var highlightLeapName: String = "Dilkur"
 
     @Property(
         type = PropertyType.SWITCH,
@@ -431,6 +457,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
+        addDependency("throttleNotifierSpam", "throttleNotifier")
         addDependency("bestiaryNotifVol", "bestiaryAlertSounds")
         addDependency("demoVolume", "bestiaryAlertSounds")
 

@@ -2,6 +2,7 @@ package dulkirmod.events
 
 import dulkirmod.DulkirMod
 import dulkirmod.config.Config
+import dulkirmod.utils.Utils
 import dulkirmod.utils.Utils.stripColorCodes
 import net.minecraft.util.ChatComponentText
 import net.minecraft.util.EnumChatFormatting
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 class ChatEvent {
     private val guildFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+) > .+".toRegex()
     private val alternateFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+): .+".toRegex()
+    private var lastThrottle : Long = 0;
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
         if (event.type == 2.toByte()) {
@@ -20,9 +22,16 @@ class ChatEvent {
 
         // THROTTLE NOTIFIER
         val unformatted = stripColorCodes(event.message.unformattedText)
-        if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier) {
+        if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier
+            && Utils.isInDungeons()) {
             event.isCanceled = true;
-            DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
+            if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 5000) {
+                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
+            }
+            else {
+                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
+            }
+            lastThrottle = System.currentTimeMillis()
         }
 
         // BRIDGE BOT STUFF - CLICKABLE LINKS!

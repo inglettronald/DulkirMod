@@ -58,10 +58,10 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(this)
         MinecraftForge.EVENT_BUS.register(ChatEvent())
         MinecraftForge.EVENT_BUS.register(NametagCleaner)
-        MinecraftForge.EVENT_BUS.register(DulkirMod.titleUtils)
+        MinecraftForge.EVENT_BUS.register(titleUtils)
         MinecraftForge.EVENT_BUS.register(ArachneTimer())
         MinecraftForge.EVENT_BUS.register(MatchoAlert())
-
+        MinecraftForge.EVENT_BUS.register(Croesus())
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
 

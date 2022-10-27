@@ -67,6 +67,15 @@ object Utils {
         return false
     }
 
+    fun isInDungeons() : Boolean {
+        val lines = ScoreBoardUtils.getLines()
+        for (l in lines) {
+            if (l.contains("Catac\uD83C\uDF6D§combs"))
+                return true
+        }
+        return false
+    }
+
     fun getColorString(int : Int) : String {
         return if (int == 16) "§z" else EnumChatFormatting.values()[int].toString()
     }
