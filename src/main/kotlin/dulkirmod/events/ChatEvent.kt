@@ -13,7 +13,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 class ChatEvent {
     private val guildFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+) > .+".toRegex()
     private val alternateFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+): .+".toRegex()
-    private var lastThrottle : Long = 0;
+    private var lastThrottle : Long = 0
+    private var lastRing : Long = 0
+
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
         if (event.type == 2.toByte()) {
@@ -66,5 +68,16 @@ class ChatEvent {
                 ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
             }
         }
+
+        // DO NOT DISTURB FOR ABIPHONE
+        if (unformatted.equals("✆ \\w+ ✆".toRegex())) {
+            DulkirMod.mc.thePlayer.addChatMessage(
+                ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Call blocked!")
+            )
+            event.isCanceled = true;
+            lastRing = System.currentTimeMillis()
+        }
+        if (unformatted.startsWith("✆ Ring...") && unformatted.endsWith("[PICK UP]") && System.currentTimeMillis() - lastRing < 4000)
+            event.isCanceled = true;
     }
 }

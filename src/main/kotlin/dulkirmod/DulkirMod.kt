@@ -4,6 +4,7 @@ import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
+import dulkirmod.utils.ContainerNameUtil
 import dulkirmod.utils.TitleUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +50,7 @@ class DulkirMod {
         ClientCommandHandler.instance.registerCommand(FairyCommand())
         ClientCommandHandler.instance.registerCommand(SettingsCommand())
         ClientCommandHandler.instance.registerCommand(JoinDungeonCommand())
+        ClientCommandHandler.instance.registerCommand(LeapNameCommand())
     }
 
     @Mod.EventHandler
@@ -62,6 +64,8 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(ArachneTimer())
         MinecraftForge.EVENT_BUS.register(MatchoAlert())
         MinecraftForge.EVENT_BUS.register(Croesus())
+        MinecraftForge.EVENT_BUS.register(ContainerNameUtil())
+        MinecraftForge.EVENT_BUS.register(DungeonLeap())
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
 

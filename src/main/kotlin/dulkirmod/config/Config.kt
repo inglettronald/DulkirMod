@@ -250,9 +250,17 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     var hideOpenedChests = false
 
     @Property(
+        type = PropertyType.SWITCH,
+        name = "Highlight custom player for leap in menu",
+        description = "changes texture to green wool!",
+        category = "Dungeons"
+    )
+    var highlightLeap = false
+
+    @Property(
         type = PropertyType.TEXT,
         name = "Highlighted player name",
-        description = "Not case-sensitive",
+        description = "case-sensitive",
         category = "Dungeons",
         placeholder = "Dilkur",
         protectedText = false
@@ -460,6 +468,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("throttleNotifierSpam", "throttleNotifier")
         addDependency("bestiaryNotifVol", "bestiaryAlertSounds")
         addDependency("demoVolume", "bestiaryAlertSounds")
+        addDependency("highlightLeapName", "highlightLeap")
 
         setCategoryDescription(
             "Custom Animations",
