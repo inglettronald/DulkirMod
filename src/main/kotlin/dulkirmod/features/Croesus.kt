@@ -53,6 +53,7 @@ class Croesus {
 
         fun isChestOpened(slotIn: Slot): Boolean {
             if (!inCroesusBool) return false
+            if(slotIn.inventory == mc.thePlayer.inventory) return false
             val slotindex = slotIn.slotIndex
             if (slotindex !in 9..44) return false
             return boolArray[slotindex - 9]
