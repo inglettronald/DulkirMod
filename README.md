@@ -1,5 +1,5 @@
 # This is Dulkir Mod!
-## THIS CONFLICTS with other animation mods, and I don't really intend on fixing it yet. Don't even know if that's possible
+## Custom animations does not work when you have oldanimations installed.
 
 Features: - MOST ARE OFF BY DEFUALT
 - Hide Enchant Rune Particles.
