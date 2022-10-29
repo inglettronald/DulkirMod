@@ -30,7 +30,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Abiphone Caller ID",
-        description = "If DND is on, Still give the player a 1 liner to tell them who is calling",
+        description = "If DND is on, still give the player a quick 1 liner to tell them who is calling.",
         category = "General"
     )
     var abiCallerID = false
@@ -41,15 +41,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         description = "Probably disable when not in dungeons for now. Will fix later.",
         category = "Dungeons"
     )
-    var hideHealerFairy = true
-
+    var hideHealerFairy = false
     @Property(
         type = PropertyType.SWITCH,
         name = "Hide Heart Particles",
         description = "Useful for hyperion and healer bullshit",
         category = "Dungeons"
     )
-    var hideHeartParticles = true
+    var hideHeartParticles = false
 
     @Property(
         type = PropertyType.SWITCH,

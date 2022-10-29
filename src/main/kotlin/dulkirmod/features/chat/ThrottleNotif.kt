@@ -11,7 +11,7 @@ object ThrottleNotif {
         if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier
             && Utils.isInDungeons()) {
             event.isCanceled = true;
-            if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 3000) {
+            if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {
                 DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
             }
             else {
