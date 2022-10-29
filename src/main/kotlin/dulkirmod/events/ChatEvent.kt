@@ -1,83 +1,37 @@
 package dulkirmod.events
 
-import dulkirmod.DulkirMod
-import dulkirmod.config.Config
-import dulkirmod.utils.Utils
+import dulkirmod.features.chat.AbiphoneDND
+import dulkirmod.features.chat.Bridge
+import dulkirmod.features.chat.FakeMsg
+import dulkirmod.features.chat.ThrottleNotif
 import dulkirmod.utils.Utils.stripColorCodes
-import net.minecraft.util.ChatComponentText
-import net.minecraft.util.EnumChatFormatting
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 class ChatEvent {
-    private val guildFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+) > .+".toRegex()
-    private val alternateFormat = "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: (\\w+): .+".toRegex()
-    private var lastThrottle : Long = 0
-    private var lastRing : Long = 0
 
+    /**
+     * This is mostly the way it is to avoid having to run strip color codes a bunch of times
+     * for each message. Not sure if it even matters but whatever
+     */
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
         if (event.type == 2.toByte()) {
             return
         }
+        val unformatted = stripColorCodes(event.message.unformattedText)
 
         // THROTTLE NOTIFIER
-        val unformatted = stripColorCodes(event.message.unformattedText)
-        if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier
-            && Utils.isInDungeons()) {
-            event.isCanceled = true;
-            if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 5000) {
-                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
-            }
-            else {
-                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
-            }
-            lastThrottle = System.currentTimeMillis()
-        }
+        ThrottleNotif.handle(event, unformatted)
 
         // BRIDGE BOT STUFF - CLICKABLE LINKS!
-        val message = event.message.unformattedText
-        if (guildFormat matches message && Config.bridgeBot) {
-            val matchResult = guildFormat.find(message)
-            val (prefix, name, playerName) = matchResult!!.destructured
-            if (stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
-                val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
-                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
-                event.message.siblings[0] = ChatComponentText(
-                    "$newPrefix > $color$playerName§f: "
-                )
-                event.message.siblings[1] = ChatComponentText(
-                    event.message.siblings[1].unformattedText.replace("$playerName > ", "")
-                ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
-            }
-        }
-
-        // OTHER FORMAT
-        else if (alternateFormat matches message && Config.bridgeBot) {
-            val matchResult = alternateFormat.find(message)
-            val (prefix, name, playerName) = matchResult!!.destructured
-            if (stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
-                val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
-                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
-                event.message.siblings[0] = ChatComponentText(
-                    "$newPrefix > $color$playerName§f: "
-                )
-                event.message.siblings[1] = ChatComponentText(
-                    event.message.siblings[1].unformattedText.replace("$playerName: ", "")
-                ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
-            }
-        }
+        Bridge.handle(event)
 
         // DO NOT DISTURB FOR ABIPHONE
-        if (unformatted.equals("✆ \\w+ ✆".toRegex())) {
-            DulkirMod.mc.thePlayer.addChatMessage(
-                ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Call blocked!")
-            )
-            event.isCanceled = true;
-            lastRing = System.currentTimeMillis()
-        }
-        if (unformatted.startsWith("✆ Ring...") && unformatted.endsWith("[PICK UP]") && System.currentTimeMillis() - lastRing < 4000)
-            event.isCanceled = true;
+        AbiphoneDND.handle(event, unformatted)
+
+        // FAKE MESSAGE SENDER (DULKIR ONLY)
+        FakeMsg.handle(event,unformatted)
     }
 }

@@ -4,6 +4,7 @@ import dulkirmod.command.*
 import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
+import dulkirmod.features.chat.AbiphoneDND
 import dulkirmod.utils.ContainerNameUtil
 import dulkirmod.utils.TitleUtils
 import kotlinx.coroutines.CoroutineScope
@@ -56,7 +57,7 @@ class DulkirMod {
     @Mod.EventHandler
     fun onInit(event: FMLInitializationEvent) {
         config.init()
-        // REGISTER EVENTS HERE
+        // REGISTER Classes and such HERE
         MinecraftForge.EVENT_BUS.register(this)
         MinecraftForge.EVENT_BUS.register(ChatEvent())
         MinecraftForge.EVENT_BUS.register(NametagCleaner)
@@ -66,6 +67,7 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(Croesus())
         MinecraftForge.EVENT_BUS.register(ContainerNameUtil())
         MinecraftForge.EVENT_BUS.register(DungeonLeap())
+        MinecraftForge.EVENT_BUS.register(AbiphoneDND())
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
 

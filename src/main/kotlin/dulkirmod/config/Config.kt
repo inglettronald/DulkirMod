@@ -14,10 +14,26 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Hide Enchant Rune Particles",
-        description = "ugly ass",
+        description = "ugly go bye-bye",
         category = "General"
     )
     var hideEnchantRune = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Abiphone Do-Not-Disturb",
+        description = "Detects incoming calls and mutes ring audio for like 5 seconds. \nWorks as long as u don't lag particularly hard at the same time you're being called.",
+        category = "General"
+    )
+    var abiDND = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Abiphone Caller ID",
+        description = "If DND is on, Still give the player a 1 liner to tell them who is calling",
+        category = "General"
+    )
+    var abiCallerID = false
 
     @Property(
         type = PropertyType.SWITCH,
@@ -469,6 +485,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("bestiaryNotifVol", "bestiaryAlertSounds")
         addDependency("demoVolume", "bestiaryAlertSounds")
         addDependency("highlightLeapName", "highlightLeap")
+        addDependency("abiCallerID", "abiDND")
 
         setCategoryDescription(
             "Custom Animations",
