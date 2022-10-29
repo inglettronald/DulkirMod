@@ -1,7 +1,7 @@
 # This is Dulkir Mod!
 ## THIS CONFLICTS with other animation mods, and I don't really intend on fixing it yet. Don't even know if that's possible
 
-Features:
+Features: - MOST ARE OFF BY DEFUALT
 - Hide Enchant Rune Particles.
 - Hide Heart Particles.
 - Hide Healer Fairy.
@@ -19,5 +19,8 @@ Features:
 - Arachne Boss Kill timer
 - Arachne Boss Spawn countdown
 - Matcho Alerts!
+- Abiphone Do Not Disturb mode
+- Highlight specific ign in leap menu (/hl <user> or use settings menu)
+- Do not render opened chests at Croesus
 
 This is epic.
