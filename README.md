@@ -1,7 +1,7 @@
 # This is Dulkir Mod!
 ## Custom animations does not work when you have oldanimations installed.
 
-Features: - MOST ARE OFF BY DEFUALT
+Features: - MOST ARE OFF BY DEFAULT
 - Hide Enchant Rune Particles.
 - Hide Heart Particles.
 - Hide Healer Fairy.
