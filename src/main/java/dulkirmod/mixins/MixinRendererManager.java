@@ -26,7 +26,7 @@ public class MixinRendererManager {
             boolean p_147939_10_,
             CallbackInfoReturnable<Boolean> cir
     ) {
-        if(!DulkirMod.Companion.getConfig().getHideHealerFairy()) return;
+        if (!DulkirMod.Companion.getConfig().getHideHealerFairy()) return;
         if (entity instanceof EntityArmorStand) {
             if (((EntityArmorStand) entity).getHeldItem() != null && ((EntityArmorStand) entity).getHeldItem().getItem() == Items.skull) {
                 ItemStack stack = ((EntityArmorStand) entity).getHeldItem();

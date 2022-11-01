@@ -15,8 +15,7 @@ public class MixinWorld {
                           double xOffset, double yOffset, double zOffset, int[] p_175720_15_, CallbackInfo ci) {
         if (particleID == 25 && DulkirMod.Companion.getConfig().getHideEnchantRune()) {
             ci.cancel();
-        }
-        else if (particleID == 34 && DulkirMod.Companion.getConfig().getHideHeartParticles()) {
+        } else if (particleID == 34 && DulkirMod.Companion.getConfig().getHideHeartParticles()) {
             ci.cancel();
         }
     }
