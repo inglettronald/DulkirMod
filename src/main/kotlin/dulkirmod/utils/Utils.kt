@@ -44,7 +44,8 @@ object Utils {
             Config.customPitch = import.pitch
             Config.customRoll = import.roll
             Config.drinkingSelector = import.drinkingFix
-            Config.ignoreHaste = import.ignoreHaste } catch (e : Exception) {
+            Config.ignoreHaste = import.ignoreHaste
+        } catch (e: Exception) {
             mc.thePlayer.addChatMessage(
                 ChatComponentText(
                     EnumChatFormatting.GOLD.toString() + "" + EnumChatFormatting.BOLD + "Current clipboard is not a recognizable Custom Animation Preset."
@@ -54,10 +55,11 @@ object Utils {
         mc.displayGuiScreen(null)
     }
 
-    fun isInSkyblock() : Boolean{
+    fun isInSkyblock(): Boolean {
         if ((mc.theWorld != null) && (mc.thePlayer != null)) {
             if (mc.isSingleplayer || mc.thePlayer.clientBrand == null ||
-                !mc.thePlayer.clientBrand.lowercase(Locale.getDefault()).contains("hypixel")) {
+                !mc.thePlayer.clientBrand.lowercase(Locale.getDefault()).contains("hypixel")
+            ) {
                 return false
             }
             if (mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1) == null)
@@ -67,7 +69,7 @@ object Utils {
         return false
     }
 
-    fun isInDungeons() : Boolean {
+    fun isInDungeons(): Boolean {
         val lines = ScoreBoardUtils.getLines()
         for (l in lines) {
             if (l.contains("Catac\uD83C\uDF6D§combs"))
@@ -76,7 +78,7 @@ object Utils {
         return false
     }
 
-    fun getColorString(int : Int) : String {
+    fun getColorString(int: Int): String {
         return if (int == 16) "§z" else EnumChatFormatting.values()[int].toString()
     }
 }

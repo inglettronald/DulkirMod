@@ -5,7 +5,7 @@ import net.minecraft.scoreboard.Score
 import net.minecraft.scoreboard.ScorePlayerTeam
 
 object ScoreBoardUtils {
-    fun getLines() : MutableList<String> {
+    fun getLines(): MutableList<String> {
         val scoreboard = DulkirMod.mc.thePlayer.worldScoreboard
         val sidebarObjective = scoreboard.getObjectiveInDisplaySlot(1)
         val scores: List<Score> = ArrayList(scoreboard.getSortedScores(sidebarObjective))

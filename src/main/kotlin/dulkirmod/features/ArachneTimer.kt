@@ -13,15 +13,15 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 class ArachneTimer {
-    private var startmillis : Long = -1
-    private var endmillis : Long = -1
-    private var spawnmillis : Long = -1
+    private var startmillis: Long = -1
+    private var endmillis: Long = -1
+    private var spawnmillis: Long = -1
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
         if (!Config.arachneKillTimer) return
 
-        var killtime : Float = -1f;
+        var killtime: Float = -1f;
 
         if (event.type == 2.toByte()) {
             return
@@ -30,8 +30,7 @@ class ArachneTimer {
         val unformatted = Utils.stripColorCodes(event.message.unformattedText)
         if (unformatted == "[BOSS] Arachne: You dare to call me, the queen of the dark, to you. I'll accept no excuses, you shall die!") {
             startmillis = System.currentTimeMillis()
-        }
-        else if (unformatted.startsWith('☄') && unformatted.contains("Something is awakening!")) {
+        } else if (unformatted.startsWith('☄') && unformatted.contains("Something is awakening!")) {
             spawnmillis = System.currentTimeMillis()
         }
 
@@ -46,13 +45,14 @@ class ArachneTimer {
             }
         }
     }
+
     @SubscribeEvent
     fun onWorldRenderLast(event: RenderWorldLastEvent) {
         if (!Config.arachneSpawnTimer) return
 
         if (spawnmillis > startmillis) {
             val color = Utils.getColorString(Config.bestiaryNotifColor)
-            var time = 18 - (System.currentTimeMillis() - spawnmillis)/1000
+            var time = 18 - (System.currentTimeMillis() - spawnmillis) / 1000
             if (time < 0) time = 0
             WorldRenderUtils.render(Vec3(-282.5, 50.8, -178.5), "${color}${time}")
         }

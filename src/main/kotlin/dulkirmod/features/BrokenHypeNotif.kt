@@ -20,7 +20,7 @@ fun brokenHypeNotif() {
 
     if (mc.thePlayer == null) return
 
-    val stack: ItemStack = mc.thePlayer.heldItem?: return
+    val stack: ItemStack = mc.thePlayer.heldItem ?: return
 
     // get info about held item
     if (stack.hasTagCompound()) {
@@ -58,7 +58,7 @@ fun brokenHypeNotif() {
 
     // If this section of the code is reached, then we have the same item, and we can check for updated stats
     if (oldKill != kill && oldChampionXp == championXp) {
-        mc.thePlayer.playSound("random.anvil_land",1f * Config.bestiaryNotifVol,0f)
+        mc.thePlayer.playSound("random.anvil_land", 1f * Config.bestiaryNotifVol, 0f)
         val color = Utils.getColorString(Config.bestiaryNotifColor)
         DulkirMod.titleUtils.drawStringForTime("${color}Hype Broken", 5000)
     }

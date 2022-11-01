@@ -13,7 +13,14 @@ import org.lwjgl.opengl.GL11
 class WorldRenderUtils {
 
     companion object {
-        fun render(location: Vec3, text: String, depthTest: Boolean = true, scale: Float = 1f, shadow: Boolean = false, renderBlackBox: Boolean = true) {
+        fun render(
+            location: Vec3,
+            text: String,
+            depthTest: Boolean = true,
+            scale: Float = 1f,
+            shadow: Boolean = false,
+            renderBlackBox: Boolean = true,
+        ) {
             if (!depthTest) {
                 GL11.glDisable(GL11.GL_DEPTH_TEST)
                 GL11.glDepthMask(false)

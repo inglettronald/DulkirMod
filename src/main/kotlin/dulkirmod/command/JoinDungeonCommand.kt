@@ -10,13 +10,12 @@ import net.minecraft.util.ChatComponentText
 class JoinDungeonCommand : ClientCommandBase("joindungeon") {
     @Throws(CommandException::class)
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
-        var arguments = args.contentToString().replace("[", "").replace("]", "").replace(",","")
+        var arguments = args.contentToString().replace("[", "").replace("]", "").replace(",", "")
         var type = ""
         var num = ""
         if (args[0] == "master_catacombs") {
             type = "M"
-        }
-        else if (args[0] == "catacombs") {
+        } else if (args[0] == "catacombs") {
             type = "F"
         }
 
@@ -25,9 +24,10 @@ class JoinDungeonCommand : ClientCommandBase("joindungeon") {
             if (args[1].toInt() in 1..7) {
                 num = args[1]
             }
-        } catch (e: NumberFormatException) { }
+        } catch (e: NumberFormatException) {
+        }
 
-        if(Config.dungeonCommandConfirm) {
+        if (Config.dungeonCommandConfirm) {
             mc.thePlayer.addChatMessage(
                 ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Running command: $type$num")
             )

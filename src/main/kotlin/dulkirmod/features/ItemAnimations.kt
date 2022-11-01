@@ -66,7 +66,7 @@ object ItemAnimations {
      * Directly referenced by the ItemRendereMixin. If enabled will scale the potion drink animation.
      * Returns whether custom animation was performed.
      */
-    fun rotationlessDrink(clientPlayer : AbstractClientPlayer, partialTicks : Float): Boolean {
+    fun rotationlessDrink(clientPlayer: AbstractClientPlayer, partialTicks: Float): Boolean {
         if (!config.customAnimations || config.drinkingSelector != 1) return false
         val f: Float = clientPlayer.itemInUseCount.toFloat() - partialTicks + 1.0f
         val f1: Float = f / mc.thePlayer.heldItem.maxItemUseDuration.toFloat()

@@ -37,7 +37,8 @@ import kotlin.coroutines.EmptyCoroutineContext
 )
 class DulkirMod {
 
-    var lastLongUpdate : Long = 0
+    var lastLongUpdate: Long = 0
+
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         val directory = File(event.modConfigurationDirectory, "dulkirmod")
@@ -46,7 +47,7 @@ class DulkirMod {
         // REGISTER COMMANDS HERE        // Help Commands
         ClientCommandHandler.instance.registerCommand(HelpCommand())
 
-                // General
+        // General
         ClientCommandHandler.instance.registerCommand(EnchantRuneCommand())
         ClientCommandHandler.instance.registerCommand(FairyCommand())
         ClientCommandHandler.instance.registerCommand(SettingsCommand())
@@ -87,7 +88,7 @@ class DulkirMod {
         }
 
         var longupdate = false
-        val currTime : Long = System.currentTimeMillis()
+        val currTime: Long = System.currentTimeMillis()
         if (currTime - lastLongUpdate > 1000) {
             longupdate = true
             lastLongUpdate = currTime
