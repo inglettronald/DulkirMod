@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiContainer.class)
 public abstract class MixinGuiContainer extends GuiScreen {
-    @Inject(at=@At("HEAD"), method="drawSlot", cancellable = true)
+    @Inject(method="drawSlot", at=@At("HEAD"), cancellable = true)
     public void drawSlot(Slot slotIn, CallbackInfo ci) {
         if (Croesus.Companion.inCroesus() && Croesus.Companion.isChestOpened(slotIn)) {
             ci.cancel();
