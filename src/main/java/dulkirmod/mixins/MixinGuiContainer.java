@@ -22,25 +22,25 @@ public abstract class MixinGuiContainer extends GuiScreen {
             ci.cancel();
         }
         if (DungeonLeap.Companion.inLeapMenu() && DungeonLeap.Companion.isHighlightedLeapPlayer(slotIn)) {
-                ci.cancel();
+            ci.cancel();
 
-                ItemStack stack = new ItemStack(Blocks.wool, 1, EnumDyeColor.GREEN.getMetadata());
+            ItemStack stack = new ItemStack(Blocks.wool, 1, EnumDyeColor.GREEN.getMetadata());
 
-                this.zLevel = 100.0F;
-                this.itemRender.zLevel = 100.0F;
+            this.zLevel = 100.0F;
+            this.itemRender.zLevel = 100.0F;
 
-                GlStateManager.enableDepth();
-                this.itemRender.renderItemAndEffectIntoGUI(
-                        stack,
-                        slotIn.xDisplayPosition,
-                        slotIn.yDisplayPosition
-                );
-                this.itemRender.renderItemOverlayIntoGUI(this.fontRendererObj, stack,
-                        slotIn.xDisplayPosition, slotIn.yDisplayPosition, ""
-                );
+            GlStateManager.enableDepth();
+            this.itemRender.renderItemAndEffectIntoGUI(
+                    stack,
+                    slotIn.xDisplayPosition,
+                    slotIn.yDisplayPosition
+            );
+            this.itemRender.renderItemOverlayIntoGUI(this.fontRendererObj, stack,
+                    slotIn.xDisplayPosition, slotIn.yDisplayPosition, ""
+            );
 
-                this.itemRender.zLevel = 0.0F;
-                this.zLevel = 0.0F;
+            this.itemRender.zLevel = 0.0F;
+            this.zLevel = 0.0F;
         }
     }
 }

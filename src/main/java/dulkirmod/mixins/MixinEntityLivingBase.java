@@ -26,6 +26,6 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
                 (this.isPotionActive(Potion.digSlowdown) ?
                         6 + (1 + this.getActivePotionEffect(Potion.digSlowdown).getAmplifier()) * 2 :
                         6);
-        cir.setReturnValue(Math.max((int)(length* Math.exp(-DulkirMod.Companion.getConfig().getCustomSpeed())), 1));
+        cir.setReturnValue(Math.max((int) (length * Math.exp(-DulkirMod.Companion.getConfig().getCustomSpeed())), 1));
     }
 }
