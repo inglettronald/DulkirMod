@@ -13,7 +13,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent
 class DungeonLeap {
 
 
-    private var lastGuiOpenEvent : Long = 0
+    private var lastGuiOpenEvent: Long = 0
+
     @SubscribeEvent
     fun onTick(event: TickEvent.ClientTickEvent) {
         val lastInLeap = inLeapMenuBool
@@ -31,18 +32,19 @@ class DungeonLeap {
 
         if (inLeapMenuBool && System.currentTimeMillis() - lastGuiOpenEvent < 300) {
             for (i in 11..15) {
-                boolArray[i-11] = false
+                boolArray[i - 11] = false
                 val slotIn = DulkirMod.mc.thePlayer.openContainer.getSlot(i)
 
                 if (slotIn.stack == null) continue
                 val stack = slotIn.stack
-                if (Utils.stripColorCodes(stack.displayName) == Config.highlightLeapName) boolArray[i-11] = true
+                if (Utils.stripColorCodes(stack.displayName) == Config.highlightLeapName) boolArray[i - 11] = true
             }
         }
     }
+
     companion object {
-        var inLeapMenuBool : Boolean = false
-        var boolArray = BooleanArray(5) {false}
+        var inLeapMenuBool: Boolean = false
+        var boolArray = BooleanArray(5) { false }
 
         fun inLeapMenu(): Boolean {
             return inLeapMenuBool
@@ -50,7 +52,7 @@ class DungeonLeap {
 
         fun isHighlightedLeapPlayer(slotIn: Slot): Boolean {
             if (!inLeapMenuBool) return false
-            if(slotIn.inventory == mc.thePlayer.inventory) return false
+            if (slotIn.inventory == mc.thePlayer.inventory) return false
             val slotIndex = slotIn.slotIndex
             if (slotIndex !in 11..15) return false
             return boolArray[slotIndex - 11]

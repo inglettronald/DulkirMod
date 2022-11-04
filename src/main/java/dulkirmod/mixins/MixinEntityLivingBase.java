@@ -18,7 +18,7 @@ public abstract class MixinEntityLivingBase extends MixinEntity {
 
     @Shadow public abstract PotionEffect getActivePotionEffect(Potion potionIn);
 
-    @Inject(method = {"getArmSwingAnimationEnd()I"}, at = @At("HEAD"), cancellable = true)
+    @Inject(method = "getArmSwingAnimationEnd()I", at = @At("HEAD"), cancellable = true)
     public void adjustSwingLength(CallbackInfoReturnable<Integer> cir) {
         if (!DulkirMod.Companion.getConfig().getCustomAnimations()) return;
         int length = DulkirMod.Companion.getConfig().getIgnoreHaste() ? 6 : this.isPotionActive(Potion.digSpeed) ?

@@ -1,10 +1,8 @@
 package dulkirmod.utils
 
-import com.sun.org.apache.xpath.internal.operations.Bool
-import com.typesafe.config.ConfigOrigin
 import dulkirmod.config.Config
 
-data class ConfigData (
+data class ConfigData(
     val size: Float = Config.customSize,
     val scaleSwing: Boolean = Config.doesScaleSwing,
     val x: Float = Config.customX,
@@ -15,5 +13,5 @@ data class ConfigData (
     val roll: Float = Config.customRoll,
     val speed: Float = Config.customSpeed,
     val ignoreHaste: Boolean = Config.ignoreHaste,
-    val drinkingFix: Int = Config.drinkingSelector
+    val drinkingFix: Int = Config.drinkingSelector,
 )

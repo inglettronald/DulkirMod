@@ -42,7 +42,8 @@ class AbiphoneDND {
                 }
             }
             if (unformatted.startsWith("✆ Ring...") && unformatted.endsWith("[PICK UP]")
-                && System.currentTimeMillis() - lastRing < 5000) {
+                && System.currentTimeMillis() - lastRing < 5000
+            ) {
                 event.isCanceled = true;
             }
         }

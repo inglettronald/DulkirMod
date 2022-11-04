@@ -11,7 +11,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent
 
 class Croesus {
 
-    var lastGuiOpenEvent : Long = 0
+    var lastGuiOpenEvent: Long = 0
+
     @SubscribeEvent
     fun onTick(event: TickEvent.ClientTickEvent) {
         val lastInCroesus = inCroesusBool
@@ -29,7 +30,7 @@ class Croesus {
 
         if (inCroesusBool && System.currentTimeMillis() - lastGuiOpenEvent < 300) {
             for (i in 9..44) {
-                boolArray[i-9] = false
+                boolArray[i - 9] = false
                 val slotIn = mc.thePlayer.openContainer.getSlot(i)
 
                 if (slotIn.stack == null) continue
@@ -38,14 +39,15 @@ class Croesus {
 
                 val tagList: NBTTagList = stack.getSubCompound("display", true).getTagList("Lore", 8)
                 for (j in 0 until tagList.tagCount()) {
-                    if (tagList.getStringTagAt(j) == "§aChests have been opened!") boolArray[i-9] = true
+                    if (tagList.getStringTagAt(j) == "§aChests have been opened!") boolArray[i - 9] = true
                 }
             }
         }
     }
+
     companion object {
-        var inCroesusBool : Boolean = false
-        var boolArray = BooleanArray(36) {false}
+        var inCroesusBool: Boolean = false
+        var boolArray = BooleanArray(36) { false }
 
         fun inCroesus(): Boolean {
             return inCroesusBool
@@ -53,7 +55,7 @@ class Croesus {
 
         fun isChestOpened(slotIn: Slot): Boolean {
             if (!inCroesusBool) return false
-            if(slotIn.inventory == mc.thePlayer.inventory) return false
+            if (slotIn.inventory == mc.thePlayer.inventory) return false
             val slotindex = slotIn.slotIndex
             if (slotindex !in 9..44) return false
             return boolArray[slotindex - 9]

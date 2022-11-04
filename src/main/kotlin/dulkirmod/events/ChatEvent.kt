@@ -32,6 +32,6 @@ class ChatEvent {
         AbiphoneDND.handle(event, unformatted)
 
         // FAKE MESSAGE SENDER (DULKIR ONLY)
-        FakeMsg.handle(event,unformatted)
+        FakeMsg.handle(event, unformatted)
     }
 }

@@ -6,13 +6,13 @@ import dulkirmod.config.Config
 import dulkirmod.utils.ScoreBoardUtils
 import dulkirmod.utils.Utils
 
-var lastUpdate : Long = 0
+var lastUpdate: Long = 0
 
 fun alarmClock() {
     // CHECK IF IN SKYBLOCK
     if (!Utils.isInSkyblock()) return
     // CHECK TIME
-    val currTime : Long = System.currentTimeMillis()
+    val currTime: Long = System.currentTimeMillis()
     val lines = ScoreBoardUtils.getLines()
     for (l in lines) {
         // ZOMBIE VILLAGER

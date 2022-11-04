@@ -42,6 +42,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         category = "Dungeons"
     )
     var hideHealerFairy = false
+
     @Property(
         type = PropertyType.SWITCH,
         name = "Hide Heart Particles",
@@ -495,6 +496,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
             "If your bridge format does not work, message me on discord and I can probably add it."
         )
     }
+
     private object ConfigSorting : SortingBehavior() {
         override fun getCategoryComparator(): Comparator<in Category> = Comparator { o1, o2 ->
             if (o1.name == "General") return@Comparator -1

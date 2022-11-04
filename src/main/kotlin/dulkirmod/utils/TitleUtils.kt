@@ -10,7 +10,7 @@ import kotlin.math.min
 
 class TitleUtils {
     var curString = ""
-    var endTime : Long = 0
+    var endTime: Long = 0
 
     @SubscribeEvent
     fun onRender(event: RenderGameOverlayEvent.Text) {
@@ -21,13 +21,13 @@ class TitleUtils {
         var scale = ((screenWidth - 100) * Config.bestiaryNotifSize) / width
         scale = min(scale, 10.0)
         GlStateManager.pushMatrix()
-        GlStateManager.translate((screenWidth / 2 - width * scale / 2), screenHeight/2 - (4.5 * scale), 0.0)
+        GlStateManager.translate((screenWidth / 2 - width * scale / 2), screenHeight / 2 - (4.5 * scale), 0.0)
         GlStateManager.scale(scale, scale, scale)
         mc.fontRendererObj.drawString(curString, 0f, 0f, 0, Config.bestiaryTextShadow)
         GlStateManager.popMatrix()
     }
 
-    fun drawStringForTime(string : String, time : Int) {
+    fun drawStringForTime(string: String, time: Int) {
         this.curString = string
         this.endTime = time.toLong() + System.currentTimeMillis()
     }
