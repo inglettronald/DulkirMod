@@ -70,10 +70,11 @@ object Utils {
     }
 
     fun isInDungeons(): Boolean {
-        val lines = ScoreBoardUtils.getLines()
-        for (l in lines) {
-            if (l.contains("Catac\uD83C\uDF6D§combs"))
-                return true
+        val scoreboardList: List<String?> = TabListUtils.fetchTabEntires().map {
+            it.displayName?.unformattedText
+        }
+        for (l in scoreboardList) {
+            if (l == "       Dungeon Stats") return true
         }
         return false
     }
