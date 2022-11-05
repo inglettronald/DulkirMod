@@ -114,7 +114,7 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.0.9.2"
+        const val MOD_VERSION = "1.1.0"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
 
         val mc: Minecraft = Minecraft.getMinecraft()

@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.example.archloomtemplate"
-version = "1.0.9.2"
+version = "1.1.0"
 
 // Toolchains:
 java {
