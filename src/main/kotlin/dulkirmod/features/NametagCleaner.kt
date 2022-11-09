@@ -25,7 +25,8 @@ object NametagCleaner {
 
             if (config.hideArachneTags) {
                 val name = stripColorCodes(event.entity.customNameTag)
-                if (name.contains("Luxurious Spool") || name.contains("String") || name.contains("Arachne Fragment")) {
+                if (name.contains("Luxurious Spool") || name.contains("String") || name.contains("Arachne Fragment")
+                            || name.contains("Spider Eye")) {
                     mc.theWorld.removeEntity(event.entity)
                 }
             }

@@ -16,6 +16,7 @@ class ArachneTimer {
     private var startmillis: Long = -1
     private var endmillis: Long = -1
     private var spawnmillis: Long = -1
+    private var bigboy: Boolean = false
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
@@ -28,19 +29,21 @@ class ArachneTimer {
         }
 
         val unformatted = Utils.stripColorCodes(event.message.unformattedText)
-        if (unformatted == "[BOSS] Arachne: You dare to call me, the queen of the dark, to you. I'll accept no excuses, you shall die!") {
+        if (unformatted == "[BOSS] Arachne: With your sacrifice." || unformatted == "[BOSS] Arachne: A befitting welcome!") {
+            bigboy = false
             startmillis = System.currentTimeMillis()
         } else if (unformatted.startsWith('☄') && unformatted.contains("Something is awakening!")) {
+            if (unformatted.contains("Arachne Crystal!")) bigboy = true
             spawnmillis = System.currentTimeMillis()
         }
 
-        if (unformatted == "[BOSS] Arachne: You are lucky this time that you only called out a portion of my power. If you dared to face me at my peak, you would not survive!") {
+        if (unformatted.startsWith("                           Runecrafting:")) {
             endmillis = System.currentTimeMillis()
             if (startmillis > -1) {
                 killtime = (endmillis - startmillis).toFloat() / 1000
 
                 mc.thePlayer.addChatMessage(
-                    ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Arachne took §7$killtime §6seconds to kill.")
+                    ChatComponentText("          ${DulkirMod.CHAT_PREFIX} §6Arachne took §7$killtime §6seconds to kill.")
                 )
             }
         }
@@ -52,9 +55,14 @@ class ArachneTimer {
 
         if (spawnmillis > startmillis) {
             val color = Utils.getColorString(Config.bestiaryNotifColor)
-            var time = 18 - (System.currentTimeMillis() - spawnmillis) / 1000
+            var time: Int
+            time = if (bigboy) {
+                (40 - (System.currentTimeMillis() - spawnmillis) / 1000).toInt()
+            } else {
+                (18 - (System.currentTimeMillis() - spawnmillis) / 1000).toInt()
+            }
             if (time < 0) time = 0
-            WorldRenderUtils.render(Vec3(-282.5, 50.8, -178.5), "${color}${time}")
+            WorldRenderUtils.render(Vec3(-282.5, 50.8, -178.5), "${color}${time}", false)
         }
     }
 }
