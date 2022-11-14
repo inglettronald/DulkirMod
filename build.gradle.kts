@@ -27,7 +27,7 @@ loom {
             // If you don't want mixins, remove these lines
             property("mixin.debug", "true")
             property("asmhelper.verbose", "true")
-            arg("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
+            arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
             arg("--mixin", "mixins.dulkirmod.json")
         }
     }
@@ -101,7 +101,7 @@ tasks.withType(Jar::class) {
         this["ForceLoadAsMod"] = "true"
 
         // If you don't want mixins, remove these lines
-        this["TweakClass"] = "org.spongepowered.asm.launch.MixinTweaker"
+        this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
         this["MixinConfigs"] = "mixins.dulkirmod.json"
     }
 }
