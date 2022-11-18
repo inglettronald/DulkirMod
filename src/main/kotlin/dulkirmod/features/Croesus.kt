@@ -12,10 +12,12 @@ import net.minecraftforge.fml.common.gameevent.TickEvent
 class Croesus {
 
     var lastGuiOpenEvent: Long = 0
+    var lastPageNumber = 1
 
     @SubscribeEvent
     fun onTick(event: TickEvent.ClientTickEvent) {
         val lastInCroesus = inCroesusBool
+        var pageNumber = 1
 
         if (!Config.hideOpenedChests) return
         if (mc.currentScreen == null || !(mc.currentScreen is GuiChest)) {
@@ -23,6 +25,14 @@ class Croesus {
             return
         }
         inCroesusBool = (ContainerNameUtil.currentGuiChestName == "Croesus")
+
+        if (inCroesusBool) {
+            pageNumber = findPageNumber()
+        }
+
+        // weird way of detecting page turn
+        if(lastPageNumber != pageNumber)
+            lastGuiOpenEvent = System.currentTimeMillis()
 
         if (inCroesusBool && !lastInCroesus) {
             lastGuiOpenEvent = System.currentTimeMillis()
@@ -35,14 +45,23 @@ class Croesus {
 
                 if (slotIn.stack == null) continue
                 val stack = slotIn.stack
-                if (stack.getSubCompound("display", true)?.getTagList("Lore", 8) == null) continue
 
-                val tagList: NBTTagList = stack.getSubCompound("display", true).getTagList("Lore", 8)
+                val tagList: NBTTagList = stack.getSubCompound("display", false)?.getTagList("Lore", 8) ?: continue
                 for (j in 0 until tagList.tagCount()) {
                     if (tagList.getStringTagAt(j) == "§aChests have been opened!") boolArray[i - 9] = true
                 }
             }
         }
+    }
+
+    private fun findPageNumber(): Int {
+        val stackPrev = mc.thePlayer.openContainer.getSlot(45).stack ?: return lastPageNumber
+
+        val stackPrevLore = stackPrev.getSubCompound("display", false)?.getTagList("Lore", 8) ?: return 1
+
+        if (stackPrevLore.getStringTagAt(0).contains("1")) return 2
+
+        return 3
     }
 
     companion object {
