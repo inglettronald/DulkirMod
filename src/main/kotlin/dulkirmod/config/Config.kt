@@ -493,7 +493,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         )
         setCategoryDescription(
             "Bridge",
-            "If your bridge format does not work, message me on discord and I can probably add it."
+            "Does not work for replies, or having spaces in your discord username. I will not fix these " +
+                    "issues. If you have unrelated problems, dm me on discord."
         )
     }
 
