@@ -1,6 +1,5 @@
 package dulkirmod.features
 
-import dulkirmod.DulkirMod
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
 import dulkirmod.utils.ContainerNameUtil
@@ -33,11 +32,11 @@ class DungeonLeap {
         if (inLeapMenuBool && System.currentTimeMillis() - lastGuiOpenEvent < 300) {
             for (i in 11..15) {
                 boolArray[i - 11] = false
-                val slotIn = DulkirMod.mc.thePlayer.openContainer.getSlot(i)
+                val slotIn = mc.thePlayer.openContainer.getSlot(i)
 
                 if (slotIn.stack == null) continue
                 val stack = slotIn.stack
-                if (Utils.stripColorCodes(stack.displayName) == Config.highlightLeapName) boolArray[i - 11] = true
+                if (Utils.stripColorCodes(stack.displayName).lowercase() == Config.highlightLeapName.lowercase()) boolArray[i - 11] = true
             }
         }
     }

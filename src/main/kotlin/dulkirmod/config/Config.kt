@@ -268,7 +268,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Highlight custom player for leap in menu",
-        description = "changes texture to green wool!",
+        description = "Changes texture to green wool! Use the \"/hl\" command for convenient assignment.",
         category = "Dungeons"
     )
     var highlightLeap = false
@@ -493,8 +493,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         )
         setCategoryDescription(
             "Bridge",
-            "Does not work for replies, or having spaces in your discord username. I will not fix these " +
-                    "issues. If you have unrelated problems, dm me on discord."
+            "Dm me on discord with formatting issues."
         )
     }
 
