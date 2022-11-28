@@ -2,6 +2,7 @@ package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.config
 import dulkirmod.DulkirMod.Companion.mc
+import dulkirmod.utils.Utils
 import dulkirmod.utils.Utils.stripColorCodes
 import net.minecraft.entity.item.EntityArmorStand
 import net.minecraftforge.client.event.RenderLivingEvent
@@ -29,6 +30,12 @@ object NametagCleaner {
                             || name.contains("Spider Eye")) {
                     mc.theWorld.removeEntity(event.entity)
                 }
+            }
+
+            if (config.keeperFocus && Utils.area == "Spider's Den") {
+                val name = stripColorCodes(event.entity.customNameTag)
+                if (!name.contains("Keeper"))
+                    mc.theWorld.removeEntity(event.entity)
             }
         }
     }

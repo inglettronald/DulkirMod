@@ -5,6 +5,7 @@
   "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
     "ItemRendererMixin",
+    "MixinEntityRenderer",
     "MixinGuiContainer",
     "MixinRendererManager"
   ],

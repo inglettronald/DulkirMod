@@ -37,6 +37,25 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "Hurt Cam Slider",
+        description = "more or less ouchie",
+        category = "General"
+    )
+    var hurtCamSlider = false
+
+    @Property(
+        type = PropertyType.DECIMAL_SLIDER,
+        name = "Hurt Cam Intensity",
+        description = "1 is default, make sure other mods noHurtCam stuff is off",
+        category = "General",
+        minF = 0f,
+        maxF = 2f,
+        decimalPlaces = 1
+    )
+    var hurtCamIntensity = 1f
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Hide Healer fairy",
         description = "Probably disable when not in dungeons for now. Will fix later.",
         category = "Dungeons"
@@ -478,6 +497,25 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         subcategory = "Arachne"
     )
     var arachneSpawnTimer = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Show Arachne Keeper Spawn Locations",
+        description = "simple text waypoints",
+        category = "Bestiary",
+        subcategory = "Arachne"
+    )
+    var keeperWaypoints = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Focus Mode",
+        description = "only show the nametags of keepers. make sure to turn off when you're done",
+        category = "Bestiary",
+        subcategory = "Arachne"
+    )
+    var keeperFocus = false
+
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
@@ -486,6 +524,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("demoVolume", "bestiaryAlertSounds")
         addDependency("highlightLeapName", "highlightLeap")
         addDependency("abiCallerID", "abiDND")
+        addDependency("hurtCamIntensity", "hurtCamSlider")
 
         setCategoryDescription(
             "Custom Animations",

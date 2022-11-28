@@ -7,6 +7,7 @@ import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
 import dulkirmod.utils.ContainerNameUtil
 import dulkirmod.utils.TitleUtils
+import dulkirmod.utils.Utils.getArea
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -53,6 +54,7 @@ class DulkirMod {
         ClientCommandHandler.instance.registerCommand(SettingsCommand())
         ClientCommandHandler.instance.registerCommand(JoinDungeonCommand())
         ClientCommandHandler.instance.registerCommand(LeapNameCommand())
+        ClientCommandHandler.instance.registerCommand(HurtCamCommand())
     }
 
     @Mod.EventHandler
@@ -69,6 +71,7 @@ class DulkirMod {
         MinecraftForge.EVENT_BUS.register(ContainerNameUtil())
         MinecraftForge.EVENT_BUS.register(DungeonLeap())
         MinecraftForge.EVENT_BUS.register(AbiphoneDND())
+        MinecraftForge.EVENT_BUS.register(KeeperWaypoints())
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
 
@@ -98,6 +101,7 @@ class DulkirMod {
             alarmClock()
             brokenHypeNotif()
             matchoAlert.alert()
+            getArea()
             longupdate = false
         }
     }
@@ -114,7 +118,7 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.1.2"
+        const val MOD_VERSION = "1.1.3"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
 
         val mc: Minecraft = Minecraft.getMinecraft()

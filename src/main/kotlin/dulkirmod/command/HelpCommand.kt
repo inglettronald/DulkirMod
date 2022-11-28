@@ -24,5 +24,10 @@ class HelpCommand : ClientCommandBase("dulkirhelp") {
                 EnumChatFormatting.GRAY.toString() + "/fairy - toggles healer fairy visibility."
             )
         )
+        Minecraft.getMinecraft().thePlayer.addChatMessage(
+            ChatComponentText(
+                EnumChatFormatting.GRAY.toString() + "/hl - helps change highlighted leap player on the fly"
+            )
+        )
     }
 }

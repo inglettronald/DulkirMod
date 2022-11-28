@@ -18,6 +18,7 @@ class WorldRenderUtils {
             text: String,
             depthTest: Boolean = true,
             scale: Float = 1f,
+            showDistance: Boolean = false,
             shadow: Boolean = false,
             renderBlackBox: Boolean = true,
         ) {
@@ -66,6 +67,45 @@ class WorldRenderUtils {
                     0
                 )
             }
+
+            // for waypoints
+            if (showDistance) {
+                val distance = "§e${mc.thePlayer.positionVector.distanceTo(location).toInt()}m"
+                GlStateManager.translate(0.0, 8.66, 0.0)
+                GlStateManager.scale(.66, .66, .66)
+
+                if (renderBlackBox) {
+                    val j = mc.fontRendererObj.getStringWidth(distance) / 2
+                    disableTexture2D()
+                    val worldRenderer = Tessellator.getInstance().worldRenderer
+                    worldRenderer.begin(7, DefaultVertexFormats.POSITION_COLOR)
+                    worldRenderer.pos((-j - 1).toDouble(), (-1).toDouble(), 0.0).color(0.0f, 0.0f, 0.0f, 0.25f)
+                        .endVertex()
+                    worldRenderer.pos((-j - 1).toDouble(), 8.toDouble(), 0.0).color(0.0f, 0.0f, 0.0f, 0.25f).endVertex()
+                    worldRenderer.pos((j + 1).toDouble(), 8.toDouble(), 0.0).color(0.0f, 0.0f, 0.0f, 0.25f).endVertex()
+                    worldRenderer.pos((j + 1).toDouble(), (-1).toDouble(), 0.0).color(0.0f, 0.0f, 0.0f, 0.25f)
+                        .endVertex()
+                    Tessellator.getInstance().draw()
+                    enableTexture2D()
+                }
+
+                if (shadow) {
+                    mc.fontRendererObj.drawStringWithShadow(
+                        distance,
+                        -mc.fontRendererObj.getStringWidth(distance) / 2f,
+                        0f,
+                        0
+                    )
+                } else {
+                    mc.fontRendererObj.drawString(
+                        distance,
+                        -mc.fontRendererObj.getStringWidth(distance) / 2,
+                        0,
+                        0
+                    )
+                }
+            }
+
             GlStateManager.color(1f, 1f, 1f)
             GlStateManager.disableBlend()
             GlStateManager.popMatrix()
