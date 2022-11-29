@@ -22,5 +22,7 @@ Features: - MOST ARE OFF BY DEFAULT
 - Abiphone Do Not Disturb mode
 - Highlight specific ign in leap menu (/hl <user> or use settings menu)
 - Do not render opened chests at Croesus
+- Hurt Camera instensity slider
+- Arachne Keeper spawn waypoints
 
 This is epic.
