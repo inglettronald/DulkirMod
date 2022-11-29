@@ -23,6 +23,6 @@ Features: - MOST ARE OFF BY DEFAULT
 - Highlight specific ign in leap menu (/hl <user> or use settings menu)
 - Do not render opened chests at Croesus
 - Hurt Camera instensity slider
-- Arachne Keeper spawn waypoints
+- Arachne Keeper features
 
 This is epic.
