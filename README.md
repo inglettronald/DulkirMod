@@ -9,7 +9,7 @@ NEU and Skytils were great example mods to look for guidance from specifically, 
 
 Settings Command: /dulkir
 
-Features: - MOST ARE OFF BY DEFAULT
+## Features: - MOST ARE OFF BY DEFAULT
 
 ### General Quality of life
 - Hide Enchant Rune Particles
@@ -22,7 +22,7 @@ Features: - MOST ARE OFF BY DEFAULT
 - Bridge Bot Formatter
 
 ### Dungeon Features
-- Nametag cleaner for misc. dungeon stuff that is non-starred.
+- Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
 - Throttle Notifier
   - custom message
 - Join Dungeon Command Chat Notification
