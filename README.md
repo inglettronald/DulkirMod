@@ -1,28 +1,38 @@
 # This is Dulkir Mod!
 ## Custom animations does not work when you have oldanimations installed.
 
+Massive thanks to Soopyboo32, Nopo, Aton, and many others for the invaluable teachings that made this possible.
+They were instrumental to the design and debugging process, and I'm thankful that I've learned as much from this
+as I have.
+
+Settings Command: /dulkir
+
 Features: - MOST ARE OFF BY DEFAULT
+
+### General Quality of life
 - Hide Enchant Rune Particles.
 - Hide Heart Particles.
 - Hide Healer Fairy.
-- Throttle Notifier
-  - custom message
 - Custom Animations (courtesy of Aton)
   - String Export/Imports to share configs!
+- No Front-Cam
+- Hurt Camera instensity slider
+
+### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred.
 - Bridge Bot Formatter
+- Throttle Notifier
+  - custom message
 - Join Dungeon Command Chat Notification
-- No Front-Cam
+- Abiphone Do Not Disturb mode
+- Highlight specific ign in leap menu (/hl <user> or use settings menu)
+- Do not render opened chests at Croesus
+
+### Bestiary Related
 - Bestiary Notifications for Ghasts/Zombie Villagers
 - Notification when hype breaks and stops giving combat xp
 - Hide arachne loot nametags
 - Arachne Boss Kill timer
 - Arachne Boss Spawn countdown
 - Matcho Alerts!
-- Abiphone Do Not Disturb mode
-- Highlight specific ign in leap menu (/hl <user> or use settings menu)
-- Do not render opened chests at Croesus
-- Hurt Camera instensity slider
 - Arachne Keeper features
-
-This is epic.
