@@ -2,6 +2,7 @@ package dulkirmod.mixins;
 
 import dulkirmod.features.Croesus;
 import dulkirmod.features.DungeonLeap;
+import dulkirmod.features.ScalableTooltips;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -42,5 +43,10 @@ public abstract class MixinGuiContainer extends GuiScreen {
             this.itemRender.zLevel = 0.0F;
             this.zLevel = 0.0F;
         }
+    }
+    @Inject(method = "onGuiClosed", at = @At("HEAD"))
+    private void onGuiClosed(CallbackInfo ci) {
+        // reset values here
+        ScalableTooltips.INSTANCE.resetPos();
     }
 }

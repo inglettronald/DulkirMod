@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = {ItemRenderer.class})
-public class ItemRendererMixin {
+public class MixinItemRenderer {
 
     @Shadow @Final private RenderItem itemRenderer;
 

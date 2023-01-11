@@ -56,6 +56,25 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "Scalable Tooltips",
+        description = "more or less TOOLTIP",
+        category = "General"
+    )
+    var scaledTooltips = false
+
+    @Property(
+        type = PropertyType.DECIMAL_SLIDER,
+        name = "Tooltip Scale",
+        description = "1 is default",
+        category = "General",
+        minF = 0f,
+        maxF = 2f,
+        decimalPlaces = 1
+    )
+    var tooltipSize = 1f
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Hide Healer fairy",
         description = "Probably disable when not in dungeons for now. Will fix later.",
         category = "Dungeons"
@@ -525,6 +544,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("highlightLeapName", "highlightLeap")
         addDependency("abiCallerID", "abiDND")
         addDependency("hurtCamIntensity", "hurtCamSlider")
+        addDependency("tooltipSize", "scaledTooltips")
 
         setCategoryDescription(
             "Custom Animations",

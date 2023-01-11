@@ -61,17 +61,20 @@ class DulkirMod {
     fun onInit(event: FMLInitializationEvent) {
         config.init()
         // REGISTER Classes and such HERE
-        MinecraftForge.EVENT_BUS.register(this)
-        MinecraftForge.EVENT_BUS.register(ChatEvent())
-        MinecraftForge.EVENT_BUS.register(NametagCleaner)
-        MinecraftForge.EVENT_BUS.register(titleUtils)
-        MinecraftForge.EVENT_BUS.register(ArachneTimer())
-        MinecraftForge.EVENT_BUS.register(MatchoAlert())
-        MinecraftForge.EVENT_BUS.register(Croesus())
-        MinecraftForge.EVENT_BUS.register(ContainerNameUtil())
-        MinecraftForge.EVENT_BUS.register(DungeonLeap())
-        MinecraftForge.EVENT_BUS.register(AbiphoneDND())
-        MinecraftForge.EVENT_BUS.register(KeeperWaypoints())
+        val mcBus = MinecraftForge.EVENT_BUS
+        mcBus.register(this)
+        mcBus.register(ChatEvent())
+        mcBus.register(NametagCleaner)
+        mcBus.register(titleUtils)
+        mcBus.register(ArachneTimer())
+        mcBus.register(MatchoAlert())
+        mcBus.register(Croesus())
+        mcBus.register(ContainerNameUtil())
+        mcBus.register(DungeonLeap())
+        mcBus.register(AbiphoneDND())
+        mcBus.register(KeeperWaypoints())
+        mcBus.register(ScalableTooltips)
+
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
 
@@ -118,7 +121,7 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.1.3"
+        const val MOD_VERSION = "1.1.4"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
 
         val mc: Minecraft = Minecraft.getMinecraft()
