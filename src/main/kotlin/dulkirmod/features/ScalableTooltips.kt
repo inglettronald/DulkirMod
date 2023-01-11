@@ -8,7 +8,6 @@ import net.minecraft.client.renderer.RenderHelper
 import net.minecraftforge.fml.client.config.GuiUtils
 import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 
 object ScalableTooltips {
     var scrollY: Int = 0
@@ -22,9 +21,7 @@ object ScalableTooltips {
         mouseY: Int,
         screenWidth: Int,
         screenHeight: Int,
-        maxTextWidth: Int,
         font: FontRenderer,
-        ci: CallbackInfo
     ): Boolean {
         if(!Config.scaledTooltips) return false
         if(textLines.isEmpty()) return true
