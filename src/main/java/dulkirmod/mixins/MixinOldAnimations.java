@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinOldAnimations {
 
     @Inject(method = "renderItemInFirstPerson", at = @At(value = "HEAD"), cancellable = true)
-    public void angy(ItemRenderer renderer, ItemStack stack, float equipProgress, float partialTicks, CallbackInfoReturnable<Boolean> cir) {
+    public void disableCustomAnimationsStuff(ItemRenderer renderer, ItemStack stack, float equipProgress, float partialTicks, CallbackInfoReturnable<Boolean> cir) {
         if (DulkirMod.Companion.getConfig().getCustomAnimations())
             cir.setReturnValue(false);
     }
