@@ -20,6 +20,8 @@ Settings Command: /dulkir
 - Hurt Camera instensity slider
 - Abiphone Do Not Disturb mode
 - Bridge Bot Formatter
+- Scalable Tooltips!
+  - (This also overwrites/replaces Scrollable Tooltips, so you can remove that from your mods folder if you wish)
 
 ### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
