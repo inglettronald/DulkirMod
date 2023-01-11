@@ -56,8 +56,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
-        name = "Scalable Tooltips",
-        description = "more or less TOOLTIP",
+        name = "Tooltip Features",
+        description = "Turns on scrollable and (optional) scalable tooltips.",
         category = "General"
     )
     var scaledTooltips = false
