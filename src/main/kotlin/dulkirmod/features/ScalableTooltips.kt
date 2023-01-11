@@ -27,6 +27,7 @@ object ScalableTooltips {
         ci: CallbackInfo
     ): Boolean {
         if(!Config.scaledTooltips) return false
+        if(textLines.isEmpty()) return true
         val scale = Config.tooltipSize
 
         // Calculate the width and height of the tooltip box
