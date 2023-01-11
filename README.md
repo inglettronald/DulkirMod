@@ -1,6 +1,5 @@
 # This is Dulkir Mod!
-## Custom animations does not work when you have oldanimations installed.
-
+### Some features of OldAnimations may not work when custom animations is turned on. The mod also will just not properly work if you have other versions of oldanimations besides sk1er's.
 Massive thanks to Soopyboo32, Nopo, Aton, and many others for the invaluable teachings that made this possible.
 They were instrumental to the design and debugging process, and I'm thankful that I've learned as much from this
 as I have.
@@ -20,8 +19,8 @@ Settings Command: /dulkir
 - Hurt Camera instensity slider
 - Abiphone Do Not Disturb mode
 - Bridge Bot Formatter
-- Scalable Tooltips!
-  - (This also overwrites/replaces Scrollable Tooltips, so you can remove that from your mods folder if you wish)
+- Scalable Tooltips/Scrollable Tooltips
+  - (intended to replace and improve sk1er's)
 
 ### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
