@@ -14,6 +14,7 @@ object ScalableTooltips {
     var scrollX: Int = 0
     // Checks to see if large tooltips should be snapped (for larger than can fit on screen code)
     var snapFlag: Boolean = true
+    var scaleScale: Float = 0f
 
     fun drawScaledHoveringText(
         textLines: List<String>,
@@ -25,7 +26,35 @@ object ScalableTooltips {
     ): Boolean {
         if(!Config.scaledTooltips) return false
         if(textLines.isEmpty()) return true
-        val scale = Config.tooltipSize
+
+        // Calculate the amount of translation that should be applied based on how much the user has scrolled
+        val eventDWheel = Mouse.getDWheel()
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            if (eventDWheel < 0) {
+                scrollX += Minecraft.getMinecraft().displayWidth/192
+            } else if (eventDWheel > 0) {
+                //Scrolling to access higher stuff
+                scrollX -= Minecraft.getMinecraft().displayWidth/192
+            }
+        } else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
+            if (eventDWheel < 0) {
+                scaleScale -= .1f
+            } else if (eventDWheel > 0) {
+                scaleScale += .1f
+            }
+        } else {
+            if (eventDWheel < 0) {
+                scrollY -= Minecraft.getMinecraft().displayHeight/108
+            } else if (eventDWheel > 0) {
+                //Scrolling to access higher stuff
+                scrollY += Minecraft.getMinecraft().displayHeight/108
+            }
+        }
+        if (Mouse.isButtonDown(2)) {
+            scaleScale = 0f
+        }
+
+        val scale = (Config.tooltipSize + scaleScale).coerceAtLeast(0f)
 
         // Calculate the width and height of the tooltip box
         var width = 0
@@ -45,23 +74,6 @@ object ScalableTooltips {
         GlStateManager.disableLighting()
         GlStateManager.disableDepth()
 
-        // Calculate the amount of translation that should be applied based on how much the user has scrolled
-        val eventDWheel = Mouse.getDWheel()
-        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-            if (eventDWheel < 0) {
-                scrollX += Minecraft.getMinecraft().displayWidth/192
-            } else if (eventDWheel > 0) {
-                //Scrolling to access higher stuff
-                scrollX -= Minecraft.getMinecraft().displayWidth/192
-            }
-        } else {
-            if (eventDWheel < 0) {
-                scrollY -= Minecraft.getMinecraft().displayHeight/108
-            } else if (eventDWheel > 0) {
-                //Scrolling to access higher stuff
-                scrollY += Minecraft.getMinecraft().displayHeight/108
-            }
-        }
 
         // calculates where it wants to put the tooltip based on user input
         var x = ((mouseX + 12 + scrollX) / scale).toInt()
@@ -139,6 +151,7 @@ object ScalableTooltips {
     fun resetPos() {
         scrollX = 0
         scrollY = 0
+        scaleScale = 0f
         snapFlag = true
     }
 }

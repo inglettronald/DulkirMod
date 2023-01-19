@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(value = {GuiUtils.class}, remap = false)
+@Mixin(value = {GuiUtils.class}, remap = false, priority = 1001)
 public class MixinGuiUtils {
 
     @Inject(method = "drawHoveringText", at = @At("HEAD"), cancellable = true)

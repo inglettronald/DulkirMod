@@ -57,7 +57,7 @@ object Bridge {
                     "$newPrefix > $color$playerName§f: "
                 )
                 event.message.siblings[1] = ChatComponentText(
-                    event.message.siblings[1].unformattedText.replace("$playerName: ", "")
+                    event.message.siblings[1].unformattedText.replace("$playerName » ", "")
                 ).setChatStyle(event.message.siblings[1].chatStyle.createShallowCopy())
             }
         }
