@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.RenderHelper
+import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.client.config.GuiUtils
 import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
@@ -15,6 +16,7 @@ object ScalableTooltips {
     // Checks to see if large tooltips should be snapped (for larger than can fit on screen code)
     var snapFlag: Boolean = true
     var scaleScale: Float = 0f
+    var previousStack: ItemStack? = null
 
     fun drawScaledHoveringText(
         textLines: List<String>,

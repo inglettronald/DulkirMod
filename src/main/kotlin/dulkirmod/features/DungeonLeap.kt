@@ -19,7 +19,7 @@ class DungeonLeap {
         val lastInLeap = inLeapMenuBool
 
         if (!Config.highlightLeap) return
-        if (mc.currentScreen == null || !(mc.currentScreen is GuiChest)) {
+        if (mc.currentScreen == null || mc.currentScreen !is GuiChest) {
             inLeapMenuBool = false
             return
         }

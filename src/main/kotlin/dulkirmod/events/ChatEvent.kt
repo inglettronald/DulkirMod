@@ -1,9 +1,6 @@
 package dulkirmod.events
 
-import dulkirmod.features.chat.AbiphoneDND
-import dulkirmod.features.chat.Bridge
-import dulkirmod.features.chat.FakeMsg
-import dulkirmod.features.chat.ThrottleNotif
+import dulkirmod.features.chat.*
 import dulkirmod.utils.Utils.stripColorCodes
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
@@ -33,5 +30,8 @@ class ChatEvent {
 
         // FAKE MESSAGE SENDER (DULKIR ONLY)
         FakeMsg.handle(event, unformatted)
+
+        // Quick vanquisher thing
+        VanquisherTrigger.handle(unformatted)
     }
 }

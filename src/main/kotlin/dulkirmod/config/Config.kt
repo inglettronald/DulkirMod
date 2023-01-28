@@ -98,6 +98,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     var throttleNotifier = true
 
     @Property(
+        type = PropertyType.SWITCH,
+        name = "Vanquisher Broadcaster",
+        description = "sends patcher sendcoords msg when you spawn a vanquisher. might make this put a waypoint later",
+        category = "Random Beta Features"
+    )
+    var vanqBroadcast = false
+
+    @Property(
         type = PropertyType.TEXT,
         name = "Throttle Notifier String",
         description = "How do you want to tell people you are throttled?",
