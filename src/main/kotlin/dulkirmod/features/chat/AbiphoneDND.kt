@@ -19,7 +19,10 @@ class AbiphoneDND {
         if (System.currentTimeMillis() - lastRing < 5000) {
             if (event.name == "note.pling" && event.sound.volume == 0.69f && event.sound.pitch == 1.6666666f) {
                 // This throws an error but still blocks the sound. Not a great solution, but it works for now
-                event.isCanceled = true
+                try {
+                    event.isCanceled = true
+                } catch (ignored: IllegalArgumentException) {
+                }
             }
         }
     }
