@@ -1,8 +1,10 @@
 package dulkirmod.features
 
+import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
+import net.minecraft.client.gui.GuiChat
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.RenderHelper
 import net.minecraft.item.ItemStack
@@ -30,30 +32,31 @@ object ScalableTooltips {
         if(textLines.isEmpty()) return true
 
         // Calculate the amount of translation that should be applied based on how much the user has scrolled
+        // Only allows the user to scroll if you are NOT inside a chat GUI.
         val eventDWheel = Mouse.getDWheel()
-        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-            if (eventDWheel < 0) {
-                scrollX += Minecraft.getMinecraft().displayWidth/192
-            } else if (eventDWheel > 0) {
-                //Scrolling to access higher stuff
-                scrollX -= Minecraft.getMinecraft().displayWidth/192
+        if (mc.currentScreen !is GuiChat) {
+            if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+                if (eventDWheel < 0) {
+                    scrollX += Minecraft.getMinecraft().displayWidth / 192
+                } else if (eventDWheel > 0) {
+                    scrollX -= Minecraft.getMinecraft().displayWidth / 192
+                }
+            } else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
+                if (eventDWheel < 0) {
+                    scaleScale -= .1f
+                } else if (eventDWheel > 0) {
+                    scaleScale += .1f
+                }
+            } else {
+                if (eventDWheel < 0) {
+                    scrollY -= Minecraft.getMinecraft().displayHeight / 108
+                } else if (eventDWheel > 0) {
+                    scrollY += Minecraft.getMinecraft().displayHeight / 108
+                }
             }
-        } else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
-            if (eventDWheel < 0) {
-                scaleScale -= .1f
-            } else if (eventDWheel > 0) {
-                scaleScale += .1f
+            if (Mouse.isButtonDown(2)) {
+                scaleScale = 0f
             }
-        } else {
-            if (eventDWheel < 0) {
-                scrollY -= Minecraft.getMinecraft().displayHeight/108
-            } else if (eventDWheel > 0) {
-                //Scrolling to access higher stuff
-                scrollY += Minecraft.getMinecraft().displayHeight/108
-            }
-        }
-        if (Mouse.isButtonDown(2)) {
-            scaleScale = 0f
         }
 
         val scale = (Config.tooltipSize + scaleScale).coerceAtLeast(0f)
@@ -115,7 +118,7 @@ object ScalableTooltips {
             snapFlag = false
         }
 
-        //updates the position of x and y if it has been modified.
+        // updates the position of x and y if it has been modified.
         x = ((mouseX + 12 + scrollX) / scale).toInt()
         y = ((mouseY - 12 + scrollY) / scale).toInt()
 
