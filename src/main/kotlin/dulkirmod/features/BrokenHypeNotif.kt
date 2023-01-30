@@ -12,7 +12,7 @@ var oldChampionXp = -1.0
 var oldID = ""
 
 fun brokenHypeNotif() {
-    if (!Config.notifyHype) return;
+    if (!Config.notifyHype) return
 
     var kill = -1
     var championXp = -1.0
@@ -41,23 +41,23 @@ fun brokenHypeNotif() {
 
     // check if same item as previous run
     if (id == "") {
-        return;
+        return
     } else if (id != oldID) {
         // Check if this is a valid item for testing whether bestiary is broken.
         // That is, to be specific, check that it has champion and book of stats.
         // If it doesn't, don't reset because it can't be used anyway.
         if (kill == -1 || championXp == -1.0) {
-            return;
+            return
         }
         // If we get here this is a new item that is legitimate for testing bugged xp, in theory.
         oldID = id
         oldKill = kill
         oldChampionXp = championXp
-        return;
+        return
     }
 
     // If this section of the code is reached, then we have the same item, and we can check for updated stats
-    if (oldKill != kill && oldChampionXp == championXp) {
+    if (oldKill != kill && oldChampionXp == championXp && Utils.area != "Private Island") {
         mc.thePlayer.playSound("random.anvil_land", 1f * Config.bestiaryNotifVol, 0f)
         val color = Utils.getColorString(Config.bestiaryNotifColor)
         DulkirMod.titleUtils.drawStringForTime("${color}Hype Broken", 5000)
