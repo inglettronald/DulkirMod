@@ -2,6 +2,7 @@ package dulkirmod.features.chat
 
 import dulkirmod.DulkirMod
 import dulkirmod.config.Config
+import dulkirmod.utils.TextUtils
 import dulkirmod.utils.Utils
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 
@@ -11,11 +12,11 @@ object ThrottleNotif {
         if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier
             && Utils.isInDungeons()
         ) {
-            event.isCanceled = true;
-            if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {
-                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
-            } else {
-                DulkirMod.mc.thePlayer.sendChatMessage("/pc " + DulkirMod.config.customMessage)
+            event.isCanceled = true
+	        if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {
+                TextUtils.sendPartyChatMessage(DulkirMod.config.customMessage)
+            } else if (Config.throttleNotifierSpam) {
+                TextUtils.sendPartyChatMessage(DulkirMod.config.customMessage)
             }
             lastThrottle = System.currentTimeMillis()
         }
