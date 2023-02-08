@@ -6,6 +6,7 @@ import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
 import dulkirmod.utils.ContainerNameUtil
+import dulkirmod.utils.TextUtils
 import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils.getArea
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +15,6 @@ import kotlinx.coroutines.launch
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.settings.KeyBinding
-import net.minecraft.util.ChatComponentText
 import net.minecraftforge.client.ClientCommandHandler
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
@@ -93,19 +93,13 @@ class DulkirMod {
             display = null
         }
 
-        var longupdate = false
-        val currTime: Long = System.currentTimeMillis()
-        if (currTime - lastLongUpdate > 1000) {
-            longupdate = true
-            lastLongUpdate = currTime
-        }
-        if (longupdate) {
-            // EXECUTE STUFF HERE THAT DOESN'T REALLY NEED TO BE RUN EVERY TICK
+        val currTime = System.currentTimeMillis()
+        if (currTime - lastLongUpdate > 1000) { // long update
             alarmClock()
             brokenHypeNotif()
             matchoAlert.alert()
             getArea()
-            longupdate = false
+            lastLongUpdate = currTime
         }
     }
 
@@ -114,7 +108,7 @@ class DulkirMod {
         if (keyBinds[0].isPressed) display = config.gui()
         if (keyBinds[1].isPressed) {
             Config.noReverse3rdPerson = !Config.noReverse3rdPerson
-            mc.thePlayer.addChatMessage(ChatComponentText("§7Toggling No Selfie Camera Setting... now: §6${Config.noReverse3rdPerson}"))
+            TextUtils.toggledMessage("No Selfie Camera", Config.noReverse3rdPerson)
         }
     }
 
@@ -122,7 +116,7 @@ class DulkirMod {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
         const val MOD_VERSION = "1.1.5"
-        const val CHAT_PREFIX = "§f<§3DulkirMod§f>"
+        const val CHAT_PREFIX = "§f<§3DulkirMod§f>§r"
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config = Config
