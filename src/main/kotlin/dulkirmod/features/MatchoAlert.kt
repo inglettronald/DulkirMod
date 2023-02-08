@@ -5,7 +5,7 @@ import dulkirmod.config.Config
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.Utils
 
-class MatchoAlert() {
+class MatchoAlert {
 
     var hasSentAlert = false
 
@@ -26,16 +26,16 @@ class MatchoAlert() {
                     DulkirMod.titleUtils.drawStringForTime("${color}Matcho", 5000)
                     if (Config.bestiaryAlertSounds)
                         DulkirMod.mc.thePlayer.playSound("mob.villager.yes", 1f * Config.bestiaryNotifVol, 0f)
-                    hasSentAlert = true;
+                    hasSentAlert = true
                 } else if (s == " INACTIVE") hasSentAlert = false
-                break;
+                break
             }
             if (s == "Volcano Explosivity:")
                 explo = true
             if (s != null) {
                 if (s.contains("Area:") && !s.contains("Crimson Isle")) {
                     hasSentAlert = false
-                    break;
+                    break
                 }
             }
         }

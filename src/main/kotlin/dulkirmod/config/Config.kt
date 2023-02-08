@@ -495,7 +495,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         subcategory = "Audio"
     )
     fun demoVolume() {
-        DulkirMod.mc.thePlayer.playSound("mob.ghast.scream", 1f * Config.bestiaryNotifVol, 1f)
+        DulkirMod.mc.thePlayer.playSound("mob.ghast.scream", 1f * bestiaryNotifVol, 1f)
     }
 
     @Property(
