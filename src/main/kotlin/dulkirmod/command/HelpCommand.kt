@@ -1,33 +1,15 @@
 package dulkirmod.command
 
-import net.minecraft.client.Minecraft
+import dulkirmod.utils.TextUtils
 import net.minecraft.command.CommandException
 import net.minecraft.command.ICommandSender
-import net.minecraft.util.ChatComponentText
-import net.minecraft.util.EnumChatFormatting
 
 class HelpCommand : ClientCommandBase("dulkirhelp") {
     @Throws(CommandException::class)
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
-        Minecraft.getMinecraft().thePlayer.addChatMessage(
-            ChatComponentText(
-                EnumChatFormatting.GOLD.toString() + "" + EnumChatFormatting.BOLD + " HI THIS IS DULKIRMOD!"
-            )
-        )
-        Minecraft.getMinecraft().thePlayer.addChatMessage(
-            ChatComponentText(
-                EnumChatFormatting.GRAY.toString() + "/enchantrune - toggles enchant rune visibility."
-            )
-        )
-        Minecraft.getMinecraft().thePlayer.addChatMessage(
-            ChatComponentText(
-                EnumChatFormatting.GRAY.toString() + "/fairy - toggles healer fairy visibility."
-            )
-        )
-        Minecraft.getMinecraft().thePlayer.addChatMessage(
-            ChatComponentText(
-                EnumChatFormatting.GRAY.toString() + "/hl - helps change highlighted leap player on the fly"
-            )
-        )
+        TextUtils.info("§6§l HI THIS IS DULKIRMOD!", false)
+        TextUtils.info("  §7/enchantrune - toggles enchant rune visibility.", false)
+        TextUtils.info("  §7/fairy - toggles healer fairy visibility.", false)
+        TextUtils.info("  §7/hl - helps change highlighted leap player on the fly.", false)
     }
 }

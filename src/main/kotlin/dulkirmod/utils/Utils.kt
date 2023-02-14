@@ -3,7 +3,6 @@ package dulkirmod.utils
 import com.google.gson.Gson
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
-import net.minecraft.util.ChatComponentText
 import net.minecraft.util.EnumChatFormatting
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
@@ -48,11 +47,7 @@ object Utils {
             Config.drinkingSelector = import.drinkingFix
             Config.ignoreHaste = import.ignoreHaste
         } catch (e: Exception) {
-            mc.thePlayer.addChatMessage(
-                ChatComponentText(
-                    EnumChatFormatting.GOLD.toString() + "" + EnumChatFormatting.BOLD + "Current clipboard is not a recognizable Custom Animation Preset."
-                )
-            )
+            TextUtils.info("§6§lCurrent clipboard is not a recognizable Custom Animation Preset.")
         }
         mc.displayGuiScreen(null)
     }
@@ -65,7 +60,7 @@ object Utils {
                 return false
             }
             if (mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1) == null)
-                return false;
+                return false
             return stripColorCodes(mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1).displayName).contains("SKYBLOCK")
         }
         return false

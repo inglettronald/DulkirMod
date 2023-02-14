@@ -1,11 +1,9 @@
 package dulkirmod.features
 
-import dulkirmod.DulkirMod
-import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
+import dulkirmod.utils.TextUtils
 import dulkirmod.utils.Utils
 import dulkirmod.utils.WorldRenderUtils
-import net.minecraft.util.ChatComponentText
 import net.minecraft.util.Vec3
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.client.event.RenderWorldLastEvent
@@ -22,7 +20,7 @@ class ArachneTimer {
     fun onChat(event: ClientChatReceivedEvent) {
         if (!Config.arachneKillTimer) return
 
-        var killtime: Float = -1f;
+        var killtime: Float = -1f
 
         if (event.type == 2.toByte()) {
             return
@@ -41,10 +39,7 @@ class ArachneTimer {
             endmillis = System.currentTimeMillis()
             if (startmillis > -1) {
                 killtime = (endmillis - startmillis).toFloat() / 1000
-
-                mc.thePlayer.addChatMessage(
-                    ChatComponentText("          ${DulkirMod.CHAT_PREFIX} §6Arachne took §7$killtime §6seconds to kill.")
-                )
+                TextUtils.info("§6Arachne took §7$killtime §6seconds to kill.")
             }
         }
     }

@@ -1,11 +1,9 @@
 package dulkirmod.command
 
-import dulkirmod.DulkirMod
-import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
+import dulkirmod.utils.TextUtils
 import net.minecraft.command.CommandException
 import net.minecraft.command.ICommandSender
-import net.minecraft.util.ChatComponentText
 
 class JoinDungeonCommand : ClientCommandBase("joindungeon") {
     @Throws(CommandException::class)
@@ -24,14 +22,11 @@ class JoinDungeonCommand : ClientCommandBase("joindungeon") {
             if (args[1].toInt() in 1..7) {
                 num = args[1]
             }
-        } catch (e: NumberFormatException) {
-        }
+        } catch (_: NumberFormatException) {}
 
         if (Config.dungeonCommandConfirm) {
-            mc.thePlayer.addChatMessage(
-                ChatComponentText("${DulkirMod.CHAT_PREFIX} §6Running command: $type$num")
-            )
+            TextUtils.info("§6Running command: $type$num")
         }
-        mc.thePlayer.sendChatMessage("/joindungeon $arguments")
+        TextUtils.sendMessage("/joindungeon $arguments")
     }
 }

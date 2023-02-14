@@ -1,20 +1,15 @@
 package dulkirmod.features.chat
 
-import net.minecraft.client.Minecraft
-import net.minecraft.util.ChatComponentText
+import dulkirmod.utils.TextUtils
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 
 object FakeMsg {
+    private val dulkirRegex = "From \\[MVP(\\+|\\+\\+)] Dulkir: c:".toRegex()
     fun handle(event: ClientChatReceivedEvent, unformatted: String) {
-        if (unformatted.startsWith("From [MVP++] Dulkir: c:")) {
+        if (dulkirRegex.matches(unformatted)) {
             event.isCanceled = true
-            val newst = unformatted.substring("From [MVP++] Dulkir: c:".length)
-            Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText(newst.replace("&", "§")))
-        }
-        if (unformatted.startsWith("From [MVP+] Dulkir: c:")) {
-            event.isCanceled = true
-            val newst = unformatted.substring("From [MVP+] Dulkir: c:".length)
-            Minecraft.getMinecraft().thePlayer.addChatMessage(ChatComponentText(newst.replace("&", "§")))
+            val message = unformatted.replace(dulkirRegex, "").replace("&", "§")
+            TextUtils.info(message, false)
         }
     }
 }
