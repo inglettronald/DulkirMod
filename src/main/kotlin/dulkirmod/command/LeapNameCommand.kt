@@ -30,7 +30,7 @@ class LeapNameCommand : ClientCommandBase("hl") {
         }
     }
     private fun findUserNameFor(input: String, isClassName: Boolean): Boolean {
-        val scoreboardList = TabListUtils.fetchTabEntires().mapNotNull {
+        val scoreboardList = TabListUtils.fetchTabEntries().mapNotNull {
             it.displayName?.unformattedText
         }
         if (isClassName) {
@@ -41,6 +41,7 @@ class LeapNameCommand : ClientCommandBase("hl") {
                     return true
                 }
             }
+            
             TextUtils.info("§6Couldn't find anyone playing this class.")
             return false
         } else {

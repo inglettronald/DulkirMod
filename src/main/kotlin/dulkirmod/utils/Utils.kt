@@ -11,8 +11,6 @@ import java.awt.datatransfer.StringSelection
 import java.util.*
 
 object Utils {
-
-    var area = ""
     fun stripColorCodes(string: String): String {
         return string.replace("§.".toRegex(), "")
     }
@@ -66,27 +64,7 @@ object Utils {
         return false
     }
 
-    fun isInDungeons(): Boolean {
-        val scoreboardList: List<String?> = TabListUtils.fetchTabEntires().map {
-            it.displayName?.unformattedText
-        }
-        for (l in scoreboardList) {
-            if (l == "       Dungeon Stats") return true
-        }
-        return false
-    }
-
     fun getColorString(int: Int): String {
         return if (int == 16) "§z" else EnumChatFormatting.values()[int].toString()
-    }
-
-    fun getArea() {
-        val scoreboardList: List<String?> = TabListUtils.fetchTabEntires().map {
-            it.displayName?.unformattedText
-        }
-        for (l in scoreboardList) {
-            if (l != null && l.startsWith("Area: "))
-                area = l.substring(6)
-        }
     }
 }

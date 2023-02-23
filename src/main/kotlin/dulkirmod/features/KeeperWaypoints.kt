@@ -2,6 +2,7 @@ package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
+import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.Utils
 import dulkirmod.utils.WorldRenderUtils
 import net.minecraft.util.Vec3
@@ -13,7 +14,7 @@ class KeeperWaypoints {
     @SubscribeEvent
     fun onWorldRenderLast(event: RenderWorldLastEvent) {
         if (!Config.keeperWaypoints) return
-        if (Utils.area != "Spider's Den") return
+        if (TabListUtils.area != "Spider's Den") return
 
         val vec1 = Vec3(-208.5, 44.5, -259.5)
         val vec2 = Vec3(-311.5, 43.5, -232.5)

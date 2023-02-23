@@ -6,9 +6,9 @@ import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
 import dulkirmod.utils.ContainerNameUtil
+import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TextUtils
 import dulkirmod.utils.TitleUtils
-import dulkirmod.utils.Utils.getArea
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,6 +74,7 @@ class DulkirMod {
         mcBus.register(AbiphoneDND())
         mcBus.register(KeeperWaypoints())
         mcBus.register(ScalableTooltips)
+        mcBus.register(GardenVisitorAlert())
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -98,7 +99,10 @@ class DulkirMod {
             alarmClock()
             brokenHypeNotif()
             matchoAlert.alert()
-            getArea()
+            gardenVisitorAlert.alert()
+            // Now I don't have to fetch the entries for multiple things, this just updates and caches
+            // the data structure on 1s cooldown
+            TabListUtils.parseTabEntries()
             lastLongUpdate = currTime
         }
     }
@@ -124,6 +128,8 @@ class DulkirMod {
         val scope = CoroutineScope(EmptyCoroutineContext)
         val titleUtils = TitleUtils()
         val matchoAlert = MatchoAlert()
+        val gardenVisitorAlert = GardenVisitorAlert()
+        var tabEntries: List<String?> = emptyList()
 
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),

@@ -543,6 +543,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var keeperFocus = false
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Garden Visitor Alert",
+        description = "Notifies you if you have 5/5 garden visitors in queue",
+        category = "Farming"
+    )
+    var notifyMaxVisitors = true
+
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
