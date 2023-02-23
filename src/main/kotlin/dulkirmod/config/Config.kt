@@ -549,7 +549,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         description = "Notifies you if you have 5/5 garden visitors in queue",
         category = "Farming"
     )
-    var notifyMaxVisitors = true
+    var notifyMaxVisitors = false
 
     fun init() {
         initialize()
