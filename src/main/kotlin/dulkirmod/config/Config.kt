@@ -546,10 +546,18 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Garden Visitor Alert",
-        description = "Notifies you if you have 5/5 garden visitors in queue",
+        description = "Notifies you if you have max garden visitors in queue",
         category = "Farming"
     )
     var notifyMaxVisitors = false
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Persistent alert",
+        description = "If turned on, the alert will continue to flash until dealt with.",
+        category = "Farming"
+    )
+    var persistentAlert = true
 
     fun init() {
         initialize()
@@ -561,6 +569,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("abiCallerID", "abiDND")
         addDependency("hurtCamIntensity", "hurtCamSlider")
         addDependency("tooltipSize", "scaledTooltips")
+        addDependency("persistentAlert", "notifyMaxVisitors")
 
         setCategoryDescription(
             "Custom Animations",
