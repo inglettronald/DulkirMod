@@ -55,6 +55,7 @@ class DulkirMod {
         ClientCommandHandler.instance.registerCommand(JoinDungeonCommand())
         ClientCommandHandler.instance.registerCommand(LeapNameCommand())
         ClientCommandHandler.instance.registerCommand(HurtCamCommand())
+        ClientCommandHandler.instance.registerCommand(FarmingControlSchemeCommand())
     }
 
     @Mod.EventHandler
@@ -114,12 +115,15 @@ class DulkirMod {
             Config.noReverse3rdPerson = !Config.noReverse3rdPerson
             TextUtils.toggledMessage("No Selfie Camera", Config.noReverse3rdPerson)
         }
+        if (keyBinds[2].isPressed) {
+            FarmingControlSchemeCommand.toggleControls();
+        }
     }
 
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.1.7"
+        const val MOD_VERSION = "1.1.8"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>§r"
 
         val mc: Minecraft = Minecraft.getMinecraft()
@@ -134,6 +138,7 @@ class DulkirMod {
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
             KeyBinding("Toggle Selfie Setting", Keyboard.KEY_NONE, "Dulkir Mod"),
+            KeyBinding("Toggle Farming Controls", Keyboard.KEY_NONE, "Dulkir Mod")
         )
     }
 

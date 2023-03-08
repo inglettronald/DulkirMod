@@ -559,6 +559,17 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var persistentAlert = true
 
+    @Property(
+        type = PropertyType.DECIMAL_SLIDER,
+        name = "Default Sensitivity",
+        description = "For use with the /farmcontrols command toggle",
+        category = "Farming",
+        minF = 0f,
+        maxF = 2f,
+        decimalPlaces = 2
+    )
+    var defaultSens = .7f
+
     fun init() {
         initialize()
         addDependency("customMessage", "throttleNotifier")
