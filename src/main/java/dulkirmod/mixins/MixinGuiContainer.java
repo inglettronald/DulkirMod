@@ -17,12 +17,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiContainer.class)
 public abstract class MixinGuiContainer extends GuiScreen {
-    @Inject(method="drawSlot", at=@At("HEAD"), cancellable = true)
+    @Inject(method = "drawSlot", at = @At("HEAD"), cancellable = true)
     public void drawSlot(Slot slotIn, CallbackInfo ci) {
-        if (Croesus.Companion.inCroesus() && Croesus.Companion.isChestOpened(slotIn)) {
+        if (Croesus.inCroesus() && Croesus.isChestOpened(slotIn)) {
             ci.cancel();
         }
-        if (DungeonLeap.Companion.inLeapMenu() && DungeonLeap.Companion.isHighlightedLeapPlayer(slotIn)) {
+        if (DungeonLeap.INSTANCE.getInLeapMenu() && DungeonLeap.INSTANCE.isHighlightedLeapPlayer(slotIn)) {
             ci.cancel();
 
             ItemStack stack = new ItemStack(Blocks.wool, 1, EnumDyeColor.GREEN.getMetadata());
@@ -44,6 +44,7 @@ public abstract class MixinGuiContainer extends GuiScreen {
             this.zLevel = 0.0F;
         }
     }
+
     @Inject(method = "onGuiClosed", at = @At("HEAD"))
     private void onGuiClosed(CallbackInfo ci) {
         // reset values here

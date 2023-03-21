@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import kotlin.math.min
 
-class TitleUtils {
+object TitleUtils {
     var curString = ""
     var endTime: Long = 0
 

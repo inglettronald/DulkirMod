@@ -6,16 +6,14 @@ import net.minecraft.inventory.ContainerChest
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
-class ContainerNameUtil {
-    @SubscribeEvent
-    fun onTick(event: TickEvent.ClientTickEvent) {
-        if (mc.currentScreen !is GuiChest) return
-        val chest = mc.currentScreen as GuiChest
-        val container = chest.inventorySlots as ContainerChest
-        currentGuiChestName = container.lowerChestInventory.displayName.unformattedText
-    }
+object ContainerNameUtil {
+    var currentGuiChestName = ""
 
-    companion object {
-        var currentGuiChestName = ""
-    }
+    @SubscribeEvent
+	fun onTick(event: TickEvent.ClientTickEvent) {
+        val chest = mc.currentScreen
+		if (chest !is GuiChest) return
+		val container = chest.inventorySlots as ContainerChest
+		currentGuiChestName = container.lowerChestInventory.displayName.unformattedText
+	}
 }

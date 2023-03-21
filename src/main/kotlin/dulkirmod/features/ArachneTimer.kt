@@ -10,7 +10,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
-class ArachneTimer {
+object ArachneTimer {
     private var startmillis: Long = -1
     private var endmillis: Long = -1
     private var spawnmillis: Long = -1

@@ -10,7 +10,7 @@ import net.minecraftforge.client.event.RenderWorldLastEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import kotlin.math.max
 
-class KeeperWaypoints {
+object KeeperWaypoints {
     @SubscribeEvent
     fun onWorldRenderLast(event: RenderWorldLastEvent) {
         if (!Config.keeperWaypoints) return

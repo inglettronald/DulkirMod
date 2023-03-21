@@ -3,9 +3,10 @@ package dulkirmod.features
 import dulkirmod.DulkirMod
 import dulkirmod.config.Config
 import dulkirmod.utils.TabListUtils
+import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
 
-class MatchoAlert {
+object MatchoAlert {
 
     var hasSentAlert = false
 
@@ -19,7 +20,7 @@ class MatchoAlert {
 
         if (TabListUtils.explosivity && !hasSentAlert) {
             val color = Utils.getColorString(Config.bestiaryNotifColor)
-            DulkirMod.titleUtils.drawStringForTime("${color}Matcho", 5000)
+            TitleUtils.drawStringForTime("${color}Matcho", 5000)
             if (Config.bestiaryAlertSounds)
                 DulkirMod.mc.thePlayer.playSound("mob.villager.yes", 1f * Config.bestiaryNotifVol, 0f)
             hasSentAlert = true
