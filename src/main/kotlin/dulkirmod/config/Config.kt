@@ -13,6 +13,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "Patch Crimson Isle memory leak",
+        description = "This is a temporary fix for the memory leak on crimson isles. It will be removed when Hypixel fixes the issue.",
+        category = "General"
+    )
+    var crimsonIslesMemoryLeakPatch = true
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Hide Enchant Rune Particles",
         description = "ugly go bye-bye",
         category = "General"

@@ -6,7 +6,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.fml.common.eventhandler.EventPriority
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
-class ChatEvent {
+object ChatEvent {
 
     /**
      * This is mostly the way it is to avoid having to run strip color codes a bunch of times

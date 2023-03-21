@@ -1,9 +1,9 @@
 package dulkirmod.features
 
-import dulkirmod.DulkirMod
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.Config
 import dulkirmod.utils.TabListUtils
+import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
@@ -61,7 +61,7 @@ fun brokenHypeNotif() {
     if (oldKill != kill && oldChampionXp == championXp && TabListUtils.area != "Private Island") {
         mc.thePlayer.playSound("random.anvil_land", 1f * Config.bestiaryNotifVol, 0f)
         val color = Utils.getColorString(Config.bestiaryNotifColor)
-        DulkirMod.titleUtils.drawStringForTime("${color}Hype Broken", 5000)
+        TitleUtils.drawStringForTime("${color}Hype Broken", 5000)
     }
     // update item regardless of whether it is bugged or not
     oldKill = kill

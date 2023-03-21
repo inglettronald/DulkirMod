@@ -6,9 +6,9 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent
 object FakeMsg {
     private val dulkirRegex = "^From \\[MVP(\\+|\\+\\+)] Dulkir: c:".toRegex()
     fun handle(event: ClientChatReceivedEvent, unformatted: String) {
-        if (dulkirRegex.matches(unformatted)) {
+        if (unformatted.contains(dulkirRegex)) {
             event.isCanceled = true
-            val message = unformatted.replace(dulkirRegex, "").replace("&", "§")
+            val message = unformatted.replace(dulkirRegex, "").replace("&", "§").trim()
             TextUtils.info(message, false)
         }
     }

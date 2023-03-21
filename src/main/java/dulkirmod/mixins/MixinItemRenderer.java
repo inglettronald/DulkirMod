@@ -15,9 +15,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = {ItemRenderer.class}, priority = 1010)
 public class MixinItemRenderer {
 
-    @Shadow @Final private RenderItem itemRenderer;
+    @Shadow
+    @Final
+    private RenderItem itemRenderer;
 
-    @Shadow private ItemStack itemToRender;
+    @Shadow
+    private ItemStack itemToRender;
 
     @Inject(method = "transformFirstPersonItem(FF)V", at = @At("HEAD"), cancellable = true)
     public void itemTransform(float equipProgress, float swingProgress, CallbackInfo ci) {
@@ -25,11 +28,11 @@ public class MixinItemRenderer {
     }
 
     @Inject(method = "doItemUsedTransformations", at = @At("HEAD"), cancellable = true)
-    public void useTransform(float swingProgress, CallbackInfo ci){
+    public void useTransform(float swingProgress, CallbackInfo ci) {
         if (ItemAnimations.INSTANCE.scaledSwing(swingProgress)) ci.cancel();
     }
 
-    @Inject(method ="performDrinking", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "performDrinking", at = @At("HEAD"), cancellable = true)
     public void drinkTransform(AbstractClientPlayer clientPlayer, float partialTicks, CallbackInfo ci) {
         if (ItemAnimations.INSTANCE.rotationlessDrink(clientPlayer, partialTicks)) ci.cancel();
         if (ItemAnimations.INSTANCE.scaledDrinking(clientPlayer, partialTicks, itemToRender)) ci.cancel();
