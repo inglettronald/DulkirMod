@@ -111,7 +111,7 @@ object DragonTimer {
 		}
 	}
 
-	fun renderDragonBoxes() {
+	private fun renderDragonBoxes() {
 		if (!Config.dragonKillBox) return
 		if (!ScoreBoardUtils.isInM7) return
 		if (mc.thePlayer.positionVector.yCoord > 45) return
