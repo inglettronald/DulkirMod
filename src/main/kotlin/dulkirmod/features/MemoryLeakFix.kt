@@ -6,12 +6,12 @@ import net.minecraft.entity.Entity
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
-object ListClear {
+object MemoryLeakFix {
 	var lastClear = System.currentTimeMillis()
 
 	@SubscribeEvent
 	fun onTick(event: TickEvent.ClientTickEvent) {
-		if (!Config.crimsonIslesMemoryLeakPatch)
+		if (!Config.crimsonIslesMemoryLeakPatch) return
 
 		if (System.currentTimeMillis() - lastClear >= 30000L) {
 			val world = mc.theWorld ?: return
