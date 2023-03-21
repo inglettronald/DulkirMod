@@ -30,7 +30,7 @@ class DragonTimer {
      */
     fun handleNewParticle(particleID: Int, xCoord: Double, yCoord: Double, zCoord: Double) {
         if (particleID != 26) return
-        // if (!TabListUtils.isInDungeons) return
+        if (!ScoreBoardUtils.isInM7) return
         if (!Config.dragonTimer) return
         //TextUtils.info("§6particle id ${particleID} 175 = $p_175720_2_")
 
