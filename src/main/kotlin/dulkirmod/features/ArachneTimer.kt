@@ -57,7 +57,7 @@ class ArachneTimer {
                 (18 - (System.currentTimeMillis() - spawnmillis) / 1000).toInt()
             }
             if (time < 0) time = 0
-            WorldRenderUtils.render(Vec3(-282.5, 50.8, -178.5), "${color}${time}", false)
+            WorldRenderUtils.renderString(Vec3(-282.5, 50.8, -178.5), "${color}${time}", false)
         }
     }
 }

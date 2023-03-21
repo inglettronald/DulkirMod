@@ -125,6 +125,22 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "M7 Dragon Timer",
+        description = "Helps u arrow stack ig",
+        category = "Dungeons"
+    )
+    var dragonTimer = true
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Better M7 Dragon Killbox",
+        description = "Mostly stolen from odin",
+        category = "Dungeons"
+    )
+    var dragonKillBox = true
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Hide Extra Nametags",
         description = "Prevents some nametags not covered by skytils \"Hide non-starred nametags\" from rendering.",
         category = "General"
@@ -569,6 +585,14 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         decimalPlaces = 2
     )
     var defaultSens = .7f
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Turn off re-equip animation",
+        description = "Will stop the spam re-equip when stuff like cultivating is updating",
+        category = "Animations"
+    )
+    var cancelReequip = false
 
     fun init() {
         initialize()

@@ -19,6 +19,7 @@ import kotlin.math.pow
  * @author Aton - THANK YOU
  */
 object ItemAnimations {
+
     /**
      * Directly referenced hook for the itemTransform Inject in the ItemRenderer Mixin.
      * Takes care of scaling and positioning the held item.
@@ -111,4 +112,5 @@ object ItemAnimations {
         GlStateManager.translate(-newX, -newY, -newZ)
         return true
     }
+
 }

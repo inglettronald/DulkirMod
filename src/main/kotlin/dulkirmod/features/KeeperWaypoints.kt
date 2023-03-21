@@ -38,15 +38,15 @@ class KeeperWaypoints {
         val scale9 = max(1f, playerVec.distanceTo(vec9).toFloat()/10f)
 
         val color = Utils.getColorString(Config.bestiaryNotifColor)
-        WorldRenderUtils.render(vec1, "${color}1", false, scale1, true)
-        WorldRenderUtils.render(vec2, "${color}2", false, scale2, true)
-        WorldRenderUtils.render(vec3, "${color}3", false, scale3, true)
-        WorldRenderUtils.render(vec4, "${color}4", false, scale4, true)
-        WorldRenderUtils.render(vec5, "${color}5", false, scale5, true)
-        WorldRenderUtils.render(vec6, "${color}6", false, scale6, true)
-        WorldRenderUtils.render(vec7, "${color}7", false, scale7, true)
-        WorldRenderUtils.render(vec8, "${color}8", false, scale8, true)
-        WorldRenderUtils.render(vec9, "${color}9", false, scale9, true)
+        WorldRenderUtils.renderString(vec1, "${color}1", false, scale1, true)
+        WorldRenderUtils.renderString(vec2, "${color}2", false, scale2, true)
+        WorldRenderUtils.renderString(vec3, "${color}3", false, scale3, true)
+        WorldRenderUtils.renderString(vec4, "${color}4", false, scale4, true)
+        WorldRenderUtils.renderString(vec5, "${color}5", false, scale5, true)
+        WorldRenderUtils.renderString(vec6, "${color}6", false, scale6, true)
+        WorldRenderUtils.renderString(vec7, "${color}7", false, scale7, true)
+        WorldRenderUtils.renderString(vec8, "${color}8", false, scale8, true)
+        WorldRenderUtils.renderString(vec9, "${color}9", false, scale9, true)
     }
 }
 

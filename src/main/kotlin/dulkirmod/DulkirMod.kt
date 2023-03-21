@@ -5,10 +5,7 @@ import dulkirmod.config.Config
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
-import dulkirmod.utils.ContainerNameUtil
-import dulkirmod.utils.TabListUtils
-import dulkirmod.utils.TextUtils
-import dulkirmod.utils.TitleUtils
+import dulkirmod.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,6 +53,7 @@ class DulkirMod {
         ClientCommandHandler.instance.registerCommand(LeapNameCommand())
         ClientCommandHandler.instance.registerCommand(HurtCamCommand())
         ClientCommandHandler.instance.registerCommand(FarmingControlSchemeCommand())
+        ClientCommandHandler.instance.registerCommand(SpawnParticlesCommand())
     }
 
     @Mod.EventHandler
@@ -76,6 +74,7 @@ class DulkirMod {
         mcBus.register(KeeperWaypoints())
         mcBus.register(ScalableTooltips)
         mcBus.register(GardenVisitorAlert())
+        mcBus.register(DragonTimer())
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -104,6 +103,7 @@ class DulkirMod {
             // Now I don't have to fetch the entries for multiple things, this just updates and caches
             // the data structure on 1s cooldown
             TabListUtils.parseTabEntries()
+            ScoreBoardUtils.inM7()
             lastLongUpdate = currTime
         }
     }
@@ -133,6 +133,7 @@ class DulkirMod {
         val titleUtils = TitleUtils()
         val matchoAlert = MatchoAlert()
         val gardenVisitorAlert = GardenVisitorAlert()
+        val DragonTimer = DragonTimer()
         var tabEntries: List<String?> = emptyList()
 
         val keyBinds = arrayOf(
