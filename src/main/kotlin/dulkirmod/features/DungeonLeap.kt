@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
 object DungeonLeap {
-	@JvmField
     var inLeapMenu = false
     var leapPlayers = BooleanArray(5) { false }
 
@@ -44,7 +43,7 @@ object DungeonLeap {
 			}
 		}
 	}
-	@JvmStatic
+
 	fun isHighlightedLeapPlayer(slotIn: Slot): Boolean {
 		if (!inLeapMenu) return false
 		if (slotIn.inventory == mc.thePlayer.inventory) return false

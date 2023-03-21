@@ -22,7 +22,7 @@ public abstract class MixinGuiContainer extends GuiScreen {
         if (Croesus.inCroesus() && Croesus.isChestOpened(slotIn)) {
             ci.cancel();
         }
-        if (DungeonLeap.inLeapMenu && DungeonLeap.isHighlightedLeapPlayer(slotIn)) {
+        if (DungeonLeap.INSTANCE.getInLeapMenu() && DungeonLeap.INSTANCE.isHighlightedLeapPlayer(slotIn)) {
             ci.cancel();
 
             ItemStack stack = new ItemStack(Blocks.wool, 1, EnumDyeColor.GREEN.getMetadata());
