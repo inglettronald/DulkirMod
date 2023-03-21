@@ -62,7 +62,7 @@ class DulkirMod {
         // REGISTER Classes and such HERE
         val mcBus = MinecraftForge.EVENT_BUS
         mcBus.register(this)
-        mcBus.register(ListClear)
+        mcBus.register(MemoryLeakFix)
         mcBus.register(ChatEvent)
         mcBus.register(NametagCleaner)
         mcBus.register(TitleUtils)
