@@ -62,19 +62,20 @@ class DulkirMod {
         // REGISTER Classes and such HERE
         val mcBus = MinecraftForge.EVENT_BUS
         mcBus.register(this)
-        mcBus.register(ChatEvent())
+        mcBus.register(ListClear)
+        mcBus.register(ChatEvent)
         mcBus.register(NametagCleaner)
-        mcBus.register(titleUtils)
-        mcBus.register(ArachneTimer())
-        mcBus.register(MatchoAlert())
-        mcBus.register(Croesus())
-        mcBus.register(ContainerNameUtil())
-        mcBus.register(DungeonLeap())
-        mcBus.register(AbiphoneDND())
-        mcBus.register(KeeperWaypoints())
+        mcBus.register(TitleUtils)
+        mcBus.register(ArachneTimer)
+        mcBus.register(MatchoAlert)
+        mcBus.register(Croesus)
+        mcBus.register(ContainerNameUtil)
+        mcBus.register(DungeonLeap)
+        mcBus.register(AbiphoneDND)
+        mcBus.register(KeeperWaypoints)
         mcBus.register(ScalableTooltips)
-        mcBus.register(GardenVisitorAlert())
-        mcBus.register(DragonTimer())
+        mcBus.register(GardenVisitorAlert)
+        mcBus.register(DragonTimer)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -98,8 +99,7 @@ class DulkirMod {
         if (currTime - lastLongUpdate > 1000) { // long update
             alarmClock()
             brokenHypeNotif()
-            matchoAlert.alert()
-            gardenVisitorAlert.alert()
+            GardenVisitorAlert.alert()
             // Now I don't have to fetch the entries for multiple things, this just updates and caches
             // the data structure on 1s cooldown
             TabListUtils.parseTabEntries()
@@ -130,11 +130,6 @@ class DulkirMod {
         var config = Config
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
-        val titleUtils = TitleUtils()
-        val matchoAlert = MatchoAlert()
-        val gardenVisitorAlert = GardenVisitorAlert()
-        val DragonTimer = DragonTimer()
-        var tabEntries: List<String?> = emptyList()
 
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
