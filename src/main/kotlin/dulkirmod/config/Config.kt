@@ -84,7 +84,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Hide Healer fairy",
-        description = "Probably disable when not in dungeons for now. Will fix later.",
+        description = "Now only runs in dungeons lol",
         category = "Dungeons"
     )
     var hideHealerFairy = false
@@ -100,7 +100,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "Throttle Notifier",
-        description = "Making features out of bugs wow",
+        description = "Im pretty sure this is mostly patched? Idk I'm leaving it in",
         category = "Dungeons"
     )
     var throttleNotifier = true
@@ -134,7 +134,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     @Property(
         type = PropertyType.SWITCH,
         name = "M7 Dragon Timer",
-        description = "Helps u arrow stack ig",
+        description = "Large in-world text timers to help you see when dragons will spawn.",
         category = "Dungeons"
     )
     var dragonTimer = true

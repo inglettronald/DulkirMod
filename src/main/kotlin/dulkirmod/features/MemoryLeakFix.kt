@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
 object MemoryLeakFix {
-	var lastClear = System.currentTimeMillis()
+	private var lastClear = System.currentTimeMillis()
 
 	@SubscribeEvent
 	fun onTick(event: TickEvent.ClientTickEvent) {

@@ -8,8 +8,11 @@ import net.minecraft.util.BlockPos
 import net.minecraft.util.Vec3
 import net.minecraft.world.World
 import net.minecraftforge.client.event.RenderWorldLastEvent
+import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import java.awt.Color
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 object DragonTimer {
@@ -28,10 +31,9 @@ object DragonTimer {
 	 */
 	fun handleNewParticle(pID: Int, x: Double, y: Double, z: Double) {
 		if (!Config.dragonTimer) return
+		if (!ScoreBoardUtils.isInM7) return
 
 		if (pID != 26) return
-		// if (!TabListUtils.isInDungeons) return
-		//TextUtils.info("§6particle id ${particleID} 175 = $p_175720_2_")
 
 		val particleVec = Vec3(x, y, z)
 		dragons.forEach {
@@ -45,6 +47,8 @@ object DragonTimer {
 		renderDragonBoxes()
 
 		if (!Config.dragonTimer) return
+		if (!ScoreBoardUtils.inM7()) return
+
 		val curTime = System.currentTimeMillis()
 		dragons.forEach {
 			if (it.spawnTime + 5000 < curTime || isDead(it.color)) return@forEach
@@ -125,5 +129,13 @@ object DragonTimer {
 		WorldRenderUtils.drawCustomBox(14.5, 25.0, 13.0, 15.0, 45.5, 25.0, Color(255, 85, 85, 255), 3f, phase = false)
 		// Orange
 		WorldRenderUtils.drawCustomBox(72.0, 30.0, 8.0, 20.0, 47.0, 30.0, Color(255, 170, 0, 255), 3f, phase = false)
-	  }
-  }
+	}
+
+	@SubscribeEvent
+	fun updateM7Check(event: WorldEvent.Load) {
+		val executor = Executors.newSingleThreadScheduledExecutor()
+		executor.schedule({
+			ScoreBoardUtils.inM7()
+		}, 10, TimeUnit.SECONDS)
+	}
+}
