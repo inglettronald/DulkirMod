@@ -47,7 +47,7 @@ object DragonTimer {
 		renderDragonBoxes()
 
 		if (!Config.dragonTimer) return
-		if (!ScoreBoardUtils.inM7()) return
+		if (!ScoreBoardUtils.isInM7) return
 
 		val curTime = System.currentTimeMillis()
 		dragons.forEach {
