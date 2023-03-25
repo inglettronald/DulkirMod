@@ -1,6 +1,6 @@
 package dulkirmod.command
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TextUtils
 import net.minecraft.command.CommandException
@@ -26,7 +26,7 @@ class LeapNameCommand : ClientCommandBase("hl") {
             else -> findUserNameFor(username, false)
         }
         if (foundPlayer) {
-            TextUtils.info("§6Selected Leap Highlight for username: §f${Config.highlightLeapName}§6.")
+            TextUtils.info("§6Selected Leap Highlight for username: §f${DulkirConfig.highlightLeapName}§6.")
         }
     }
     private fun findUserNameFor(input: String, isClassName: Boolean): Boolean {
@@ -37,7 +37,7 @@ class LeapNameCommand : ClientCommandBase("hl") {
             for (l in scoreboardList) {
                 if (l.contains(input)) {
                     val strArr = l.split(" ")
-                    Config.highlightLeapName = strArr[1]
+                    DulkirConfig.highlightLeapName = strArr[1]
                     return true
                 }
             }
@@ -51,7 +51,7 @@ class LeapNameCommand : ClientCommandBase("hl") {
                 if (strArr.size < 2) continue
                 val username = strArr[1]
                 if (username.lowercase() == input.lowercase()) {
-                    Config.highlightLeapName = username
+                    DulkirConfig.highlightLeapName = username
                     return true
                 }
             }

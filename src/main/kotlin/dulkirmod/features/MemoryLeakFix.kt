@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import net.minecraft.entity.Entity
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
@@ -11,7 +11,7 @@ object MemoryLeakFix {
 
 	@SubscribeEvent
 	fun onTick(event: TickEvent.ClientTickEvent) {
-		if (!Config.crimsonIslesMemoryLeakPatch) return
+		if (!DulkirConfig.crimsonIslesMemoryLeakPatch) return
 
 		if (System.currentTimeMillis() - lastClear >= 30000L) {
 			val world = mc.theWorld ?: return

@@ -10,7 +10,6 @@ class FairyCommand : ClientCommandBase("fairy") {
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
         config.hideHealerFairy = !config.hideHealerFairy
         TextUtils.toggledMessage("Healer Fairy Hider", config.hideHealerFairy)
-        config.markDirty()
-        config.writeData()
+        config.save()
     }
 }

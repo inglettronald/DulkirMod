@@ -1,6 +1,6 @@
 package dulkirmod.command
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TextUtils
 import net.minecraft.client.Minecraft
 import net.minecraft.client.settings.KeyBinding
@@ -38,7 +38,7 @@ class FarmingControlSchemeCommand : ClientCommandBase("farmcontrols") {
 
                 KeyBinding.setKeyBindState(jumpKey.keyCode, false)
                 jumpKey.keyCode = 57 // 57 = space key code
-                minecraft.gameSettings.mouseSensitivity = Config.defaultSens / 2
+                minecraft.gameSettings.mouseSensitivity = DulkirConfig.defaultSens / 2
             }
 
             // Save the changes to the control settings

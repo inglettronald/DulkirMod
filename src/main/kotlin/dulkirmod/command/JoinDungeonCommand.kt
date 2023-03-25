@@ -1,6 +1,6 @@
 package dulkirmod.command
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TextUtils
 import net.minecraft.command.CommandException
 import net.minecraft.command.ICommandSender
@@ -24,7 +24,7 @@ class JoinDungeonCommand : ClientCommandBase("joindungeon") {
             }
         } catch (_: NumberFormatException) {}
 
-        if (Config.dungeonCommandConfirm) {
+        if (DulkirConfig.dungeonCommandConfirm) {
             TextUtils.info("§6Running command: $type$num")
         }
         TextUtils.sendMessage("/joindungeon $arguments")

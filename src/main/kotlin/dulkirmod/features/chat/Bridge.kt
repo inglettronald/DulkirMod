@@ -1,6 +1,6 @@
 package dulkirmod.features.chat
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.Utils
 import net.minecraft.util.ChatComponentText
 import net.minecraft.util.EnumChatFormatting
@@ -16,12 +16,12 @@ object Bridge {
 
     fun handle(event: ClientChatReceivedEvent) {
         val message = event.message.unformattedText
-        if (guildFormat matches message && Config.bridgeBot) {
+        if (guildFormat matches message && DulkirConfig.bridgeBot) {
             val matchResult = guildFormat.find(message)
             val (prefix, name, playerName) = matchResult!!.destructured
-            if (Utils.stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
+            if (Utils.stripColorCodes(name.lowercase()) == DulkirConfig.botName.lowercase()) {
                 val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
-                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
+                val color = if (DulkirConfig.bridgeColor == 16) "§z" else EnumChatFormatting.values()[DulkirConfig.bridgeColor]
                 event.message.siblings[0] = ChatComponentText(
                     "$newPrefix > $color$playerName§f: "
                 )
@@ -32,12 +32,12 @@ object Bridge {
         }
 
         // OTHER FORMAT
-        else if (alternateFormat matches message && Config.bridgeBot) {
+        else if (alternateFormat matches message && DulkirConfig.bridgeBot) {
             val matchResult = alternateFormat.find(message)
             val (prefix, name, playerName) = matchResult!!.destructured
-            if (Utils.stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
+            if (Utils.stripColorCodes(name.lowercase()) == DulkirConfig.botName.lowercase()) {
                 val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
-                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
+                val color = if (DulkirConfig.bridgeColor == 16) "§z" else EnumChatFormatting.values()[DulkirConfig.bridgeColor]
                 event.message.siblings[0] = ChatComponentText(
                     "$newPrefix > $color$playerName§f: "
                 )
@@ -47,12 +47,12 @@ object Bridge {
             }
         }
 
-        else if (otherAltFormat matches message && Config.bridgeBot) {
+        else if (otherAltFormat matches message && DulkirConfig.bridgeBot) {
             val matchResult = otherAltFormat.find(message)
             val (prefix, name, playerName) = matchResult!!.destructured
-            if (Utils.stripColorCodes(name.lowercase()) == Config.botName.lowercase()) {
+            if (Utils.stripColorCodes(name.lowercase()) == DulkirConfig.botName.lowercase()) {
                 val newPrefix = if (prefix == "§2Guild") "§2Bridge" else "§3Bridge"
-                val color = if (Config.bridgeColor == 16) "§z" else EnumChatFormatting.values()[Config.bridgeColor]
+                val color = if (DulkirConfig.bridgeColor == 16) "§z" else EnumChatFormatting.values()[DulkirConfig.bridgeColor]
                 event.message.siblings[0] = ChatComponentText(
                     "$newPrefix > $color$playerName§f: "
                 )

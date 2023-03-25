@@ -1,7 +1,7 @@
 package dulkirmod.features.chat
 
 import dulkirmod.DulkirMod
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TextUtils
 import net.minecraftforge.client.event.ClientChatReceivedEvent
@@ -13,9 +13,9 @@ object ThrottleNotif {
             && TabListUtils.isInDungeons
         ) {
             event.isCanceled = true
-	        if (!Config.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {
+	        if (!DulkirConfig.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {
                 TextUtils.sendPartyChatMessage(DulkirMod.config.customMessage)
-            } else if (Config.throttleNotifierSpam) {
+            } else if (DulkirConfig.throttleNotifierSpam) {
                 TextUtils.sendPartyChatMessage(DulkirMod.config.customMessage)
             }
             lastThrottle = System.currentTimeMillis()

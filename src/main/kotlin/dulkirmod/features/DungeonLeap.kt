@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.ContainerNameUtil
 import dulkirmod.utils.Utils
 import net.minecraft.client.gui.inventory.GuiChest
@@ -19,7 +19,7 @@ object DungeonLeap {
 	fun onTick(event: TickEvent.ClientTickEvent) {
 		val lastInLeap = inLeapMenu
 
-		if (!Config.highlightLeap) return
+		if (!DulkirConfig.highlightLeap) return
 		if (mc.currentScreen == null || mc.currentScreen !is GuiChest) {
 			inLeapMenu = false
 			return
@@ -37,7 +37,7 @@ object DungeonLeap {
 
 				if (slotIn.stack == null) continue
 				val stack = slotIn.stack
-				if (Utils.stripColorCodes(stack.displayName).equals(Config.highlightLeapName, true)) {
+				if (Utils.stripColorCodes(stack.displayName).equals(DulkirConfig.highlightLeapName, true)) {
                     leapPlayers[i - 11] = true
                 }
 			}

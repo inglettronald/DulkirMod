@@ -1,17 +1,17 @@
 package dulkirmod.utils
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 
 data class ConfigData(
-    val size: Float = Config.customSize,
-    val scaleSwing: Boolean = Config.doesScaleSwing,
-    val x: Float = Config.customX,
-    val y: Float = Config.customY,
-    val z: Float = Config.customZ,
-    val yaw: Float = Config.customYaw,
-    val pitch: Float = Config.customPitch,
-    val roll: Float = Config.customRoll,
-    val speed: Float = Config.customSpeed,
-    val ignoreHaste: Boolean = Config.ignoreHaste,
-    val drinkingFix: Int = Config.drinkingSelector,
+    val size: Float = DulkirConfig.customSize,
+    val scaleSwing: Boolean = DulkirConfig.doesScaleSwing,
+    val x: Float = DulkirConfig.customX,
+    val y: Float = DulkirConfig.customY,
+    val z: Float = DulkirConfig.customZ,
+    val yaw: Float = DulkirConfig.customYaw,
+    val pitch: Float = DulkirConfig.customPitch,
+    val roll: Float = DulkirConfig.customRoll,
+    val speed: Float = DulkirConfig.customSpeed,
+    val ignoreHaste: Boolean = DulkirConfig.ignoreHaste,
+    val drinkingFix: Int = DulkirConfig.drinkingSelector,
 )

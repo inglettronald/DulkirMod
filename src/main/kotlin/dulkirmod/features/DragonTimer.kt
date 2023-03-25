@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.ScoreBoardUtils
 import dulkirmod.utils.WorldRenderUtils
 import net.minecraft.util.BlockPos
@@ -30,7 +30,7 @@ object DragonTimer {
 	 * Called from within the MixinWorld Class
 	 */
 	fun handleNewParticle(pID: Int, x: Double, y: Double, z: Double) {
-		if (!Config.dragonTimer) return
+		if (!DulkirConfig.dragonTimer) return
 		if (!ScoreBoardUtils.isInM7) return
 
 		if (pID != 26) return
@@ -46,7 +46,7 @@ object DragonTimer {
 	fun onRenderWorld(event: RenderWorldLastEvent) {
 		renderDragonBoxes()
 
-		if (!Config.dragonTimer) return
+		if (!DulkirConfig.dragonTimer) return
 		if (!ScoreBoardUtils.isInM7) return
 
 		val curTime = System.currentTimeMillis()
@@ -116,7 +116,7 @@ object DragonTimer {
 	}
 
 	private fun renderDragonBoxes() {
-		if (!Config.dragonKillBox) return
+		if (!DulkirConfig.dragonKillBox) return
 		if (!ScoreBoardUtils.isInM7) return
 		if (mc.thePlayer.positionVector.yCoord > 45) return
 		// Blue

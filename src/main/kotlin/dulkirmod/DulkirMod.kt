@@ -1,7 +1,7 @@
 package dulkirmod
 
 import dulkirmod.command.*
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
@@ -90,7 +90,7 @@ class DulkirMod {
 
     @SubscribeEvent
     fun onTick(event: ClientTickEvent) {
-        if (Config.noReverse3rdPerson && mc.gameSettings.thirdPersonView == 2)
+        if (DulkirConfig.noReverse3rdPerson && mc.gameSettings.thirdPersonView == 2)
             mc.gameSettings.thirdPersonView = 0
 
         if (event.phase == TickEvent.Phase.START && display != null) {
@@ -113,10 +113,10 @@ class DulkirMod {
 
     @SubscribeEvent
     fun onKey(event: KeyInputEvent) {
-        if (keyBinds[0].isPressed) display = config.gui()
+        if (keyBinds[0].isPressed) config.openGui()
         if (keyBinds[1].isPressed) {
-            Config.noReverse3rdPerson = !Config.noReverse3rdPerson
-            TextUtils.toggledMessage("No Selfie Camera", Config.noReverse3rdPerson)
+            DulkirConfig.noReverse3rdPerson = !DulkirConfig.noReverse3rdPerson
+            TextUtils.toggledMessage("No Selfie Camera", DulkirConfig.noReverse3rdPerson)
         }
         if (keyBinds[2].isPressed) {
             FarmingControlSchemeCommand.toggleControls();
@@ -130,7 +130,7 @@ class DulkirMod {
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>§r"
 
         val mc: Minecraft = Minecraft.getMinecraft()
-        var config = Config
+        var config = DulkirConfig
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
 

@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.ContainerNameUtil
 import net.minecraft.client.gui.inventory.GuiChest
 import net.minecraft.inventory.Slot
@@ -19,7 +19,7 @@ object Croesus {
 		val lastInCroesus = inCroesusBool
 		var pageNumber = 1
 
-		if (!Config.hideOpenedChests) return
+		if (!DulkirConfig.hideOpenedChests) return
 		if (mc.currentScreen == null || !(mc.currentScreen is GuiChest)) {
 			inCroesusBool = false
 			return

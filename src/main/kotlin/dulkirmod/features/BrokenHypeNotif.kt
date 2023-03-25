@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
@@ -13,7 +13,7 @@ var oldChampionXp = -1.0
 var oldID = ""
 
 fun brokenHypeNotif() {
-    if (!Config.notifyHype) return
+    if (!DulkirConfig.notifyHype) return
 
     var kill = -1
     var championXp = -1.0
@@ -59,8 +59,8 @@ fun brokenHypeNotif() {
 
     // If this section of the code is reached, then we have the same item, and we can check for updated stats
     if (oldKill != kill && oldChampionXp == championXp && TabListUtils.area != "Private Island") {
-        mc.thePlayer.playSound("random.anvil_land", 1f * Config.bestiaryNotifVol, 0f)
-        val color = Utils.getColorString(Config.bestiaryNotifColor)
+        mc.thePlayer.playSound("random.anvil_land", 1f * DulkirConfig.bestiaryNotifVol, 0f)
+        val color = Utils.getColorString(DulkirConfig.bestiaryNotifColor)
         TitleUtils.drawStringForTime("${color}Hype Broken", 5000)
     }
     // update item regardless of whether it is bugged or not

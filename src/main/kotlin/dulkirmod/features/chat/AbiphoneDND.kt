@@ -1,6 +1,6 @@
 package dulkirmod.features.chat
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TextUtils
 import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.client.event.sound.PlaySoundEvent
@@ -14,7 +14,7 @@ object AbiphoneDND {
 	//BLOCK ABIPHONE SOUNDS
 	@SubscribeEvent(receiveCanceled = false, priority = EventPriority.LOW)
 	fun onSound(event: PlaySoundEvent) {
-		if (!Config.abiDND) return
+		if (!DulkirConfig.abiDND) return
 		if (System.currentTimeMillis() - lastRing < 5000) {
 			if (event.name == "note.pling" && event.sound.volume == 0.69f && event.sound.pitch == 1.6666666f) {
 				event.result = null
@@ -23,12 +23,12 @@ object AbiphoneDND {
 	}
 
 	fun handle(event: ClientChatReceivedEvent, unformatted: String) {
-		if (!Config.abiDND) return
+		if (!DulkirConfig.abiDND) return
 		if (unformatted matches abiphoneFormat) {
 			val matchResult = abiphoneFormat.find(unformatted)
 			event.isCanceled = true
 			lastRing = System.currentTimeMillis()
-			if (Config.abiCallerID) {
+			if (DulkirConfig.abiCallerID) {
 				val blocked = if (Math.random() < .001) "Breefing"
 				else matchResult?.groups?.get(1)?.value
 				TextUtils.info("§6Call blocked from $blocked!")

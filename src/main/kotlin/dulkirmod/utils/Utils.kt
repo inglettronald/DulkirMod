@@ -2,7 +2,7 @@ package dulkirmod.utils
 
 import com.google.gson.Gson
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import net.minecraft.util.EnumChatFormatting
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard
@@ -33,17 +33,17 @@ object Utils {
 		try {
 			val jsonString = String(Base64.getDecoder().decode(base64))
 			val import = gson.fromJson(jsonString, ConfigData::class.java)
-			Config.customSize = import.size
-			Config.customSpeed = import.speed
-			Config.doesScaleSwing = import.scaleSwing
-			Config.customX = import.x
-			Config.customY = import.y
-			Config.customZ = import.z
-			Config.customYaw = import.yaw
-			Config.customPitch = import.pitch
-			Config.customRoll = import.roll
-			Config.drinkingSelector = import.drinkingFix
-			Config.ignoreHaste = import.ignoreHaste
+			DulkirConfig.customSize = import.size
+			DulkirConfig.customSpeed = import.speed
+			DulkirConfig.doesScaleSwing = import.scaleSwing
+			DulkirConfig.customX = import.x
+			DulkirConfig.customY = import.y
+			DulkirConfig.customZ = import.z
+			DulkirConfig.customYaw = import.yaw
+			DulkirConfig.customPitch = import.pitch
+			DulkirConfig.customRoll = import.roll
+			DulkirConfig.drinkingSelector = import.drinkingFix
+			DulkirConfig.ignoreHaste = import.ignoreHaste
 		} catch (e: Exception) {
 			TextUtils.info("§6§lCurrent clipboard is not a recognizable Custom Animation Preset.")
 		}

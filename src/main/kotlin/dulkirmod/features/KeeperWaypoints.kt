@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.Utils
 import dulkirmod.utils.WorldRenderUtils
@@ -13,7 +13,7 @@ import kotlin.math.max
 object KeeperWaypoints {
     @SubscribeEvent
     fun onWorldRenderLast(event: RenderWorldLastEvent) {
-        if (!Config.keeperWaypoints) return
+        if (!DulkirConfig.keeperWaypoints) return
         if (TabListUtils.area != "Spider's Den") return
 
         val vec1 = Vec3(-208.5, 44.5, -259.5)
@@ -37,7 +37,7 @@ object KeeperWaypoints {
         val scale8 = max(1f, playerVec.distanceTo(vec8).toFloat()/10f)
         val scale9 = max(1f, playerVec.distanceTo(vec9).toFloat()/10f)
 
-        val color = Utils.getColorString(Config.bestiaryNotifColor)
+        val color = Utils.getColorString(DulkirConfig.bestiaryNotifColor)
         WorldRenderUtils.renderString(vec1, "${color}1", false, scale1, true)
         WorldRenderUtils.renderString(vec2, "${color}2", false, scale2, true)
         WorldRenderUtils.renderString(vec3, "${color}3", false, scale3, true)

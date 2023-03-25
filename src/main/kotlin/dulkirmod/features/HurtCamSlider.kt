@@ -1,14 +1,14 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.util.MathHelper
 
 object HurtCamSlider {
     fun renderHurt(partialTicks: Float): Boolean {
-        if (!Config.hurtCamSlider) return false
+        if (!DulkirConfig.hurtCamSlider) return false
         if (mc.renderViewEntity is EntityLivingBase) {
             val entitylivingbase = mc.renderViewEntity as EntityLivingBase
             var f: Float = (entitylivingbase.hurtTime.toFloat() - partialTicks)
@@ -23,7 +23,7 @@ object HurtCamSlider {
             f = MathHelper.sin(f * f * f * f * Math.PI.toFloat())
             val f2 = entitylivingbase.attackedAtYaw
             GlStateManager.rotate(-f2, 0.0f, 1.0f, 0.0f)
-            GlStateManager.rotate(-f * 14.0f * Config.hurtCamIntensity, 0.0f, 0.0f, 1.0f)
+            GlStateManager.rotate(-f * 14.0f * DulkirConfig.hurtCamIntensity, 0.0f, 0.0f, 1.0f)
             GlStateManager.rotate(f2, 0.0f, 1.0f, 0.0f)
         }
         return true

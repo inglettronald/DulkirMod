@@ -10,7 +10,6 @@ class EnchantRuneCommand : ClientCommandBase("enchantrune") {
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
         config.hideEnchantRune = !config.hideEnchantRune
         TextUtils.toggledMessage("Enchant Rune Hider", config.hideEnchantRune)
-        config.markDirty()
-        config.writeData()
+        config.save()
     }
 }

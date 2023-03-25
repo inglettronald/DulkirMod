@@ -1,6 +1,6 @@
 package dulkirmod.features
 
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TextUtils
 import dulkirmod.utils.Utils
 import dulkirmod.utils.WorldRenderUtils
@@ -18,7 +18,7 @@ object ArachneTimer {
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
     fun onChat(event: ClientChatReceivedEvent) {
-        if (!Config.arachneKillTimer) return
+        if (!DulkirConfig.arachneKillTimer) return
 
         var killtime: Float = -1f
 
@@ -46,10 +46,10 @@ object ArachneTimer {
 
     @SubscribeEvent
     fun onWorldRenderLast(event: RenderWorldLastEvent) {
-        if (!Config.arachneSpawnTimer) return
+        if (!DulkirConfig.arachneSpawnTimer) return
 
         if (spawnmillis > startmillis) {
-            val color = Utils.getColorString(Config.bestiaryNotifColor)
+            val color = Utils.getColorString(DulkirConfig.bestiaryNotifColor)
             var time: Int
             time = if (bigboy) {
                 (40 - (System.currentTimeMillis() - spawnmillis) / 1000).toInt()

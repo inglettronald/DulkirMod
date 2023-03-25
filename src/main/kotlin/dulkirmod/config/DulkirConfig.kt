@@ -1,21 +1,20 @@
 package dulkirmod.config
 
+import cc.polyfrost.oneconfig.config.Config
+import cc.polyfrost.oneconfig.config.annotations.*
+import cc.polyfrost.oneconfig.config.data.Mod
+import cc.polyfrost.oneconfig.config.data.ModType
 import dulkirmod.DulkirMod
 import dulkirmod.utils.Utils
-import gg.essential.vigilance.Vigilant
-import gg.essential.vigilance.data.Category
-import gg.essential.vigilance.data.Property
-import gg.essential.vigilance.data.PropertyType
-import gg.essential.vigilance.data.SortingBehavior
-import java.io.File
 
-object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", sortingBehavior = ConfigSorting) {
+object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-config.json") {
 
-    @Property(
-        type = PropertyType.SWITCH,
+
+    @Switch(
         name = "Patch Crimson Isle memory leak",
         description = "This is a temporary fix for the memory leak on crimson isles. It will be removed when Hypixel fixes the issue.",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var crimsonIslesMemoryLeakPatch = true
 
@@ -23,15 +22,16 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Hide Enchant Rune Particles",
         description = "ugly go bye-bye",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var hideEnchantRune = false
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Abiphone Do-Not-Disturb",
         description = "Detects incoming calls and mutes ring audio for like 5 seconds. \nWorks as long as u don't lag particularly hard at the same time you're being called.",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var abiDND = false
 
@@ -39,15 +39,16 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Abiphone Caller ID",
         description = "If DND is on, still give the player a quick 1 liner to tell them who is calling.",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var abiCallerID = false
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Hurt Cam Slider",
         description = "more or less ouchie",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var hurtCamSlider = false
 
@@ -62,54 +63,54 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var hurtCamIntensity = 1f
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Tooltip Features",
         description = "Turns on scrollable and (optional) scalable tooltips.",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var scaledTooltips = false
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Tooltip Scale",
         description = "1 is default",
         category = "General",
-        minF = 0f,
-        maxF = 2f,
-        decimalPlaces = 1
+        subcategory = "General",
+        min = 0f,
+        max = 2f,
+        step = 0
     )
     var tooltipSize = 1f
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Hide Healer fairy",
         description = "Now only runs in dungeons lol",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var hideHealerFairy = false
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Hide Heart Particles",
         description = "Useful for hyperion and healer bullshit",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var hideHeartParticles = false
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Throttle Notifier",
         description = "Im pretty sure this is mostly patched? Idk I'm leaving it in",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var throttleNotifier = true
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Vanquisher Broadcaster",
         description = "sends patcher sendcoords msg when you spawn a vanquisher. might make this put a waypoint later",
-        category = "Random Beta Features"
+        category = "Random Beta Features",
+        subcategory = "Random Beta Features"
     )
     var vanqBroadcast = false
 
@@ -118,6 +119,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Throttle Notifier String",
         description = "How do you want to tell people you are throttled?",
         category = "Dungeons",
+        subcategory = "Dungeons",
         placeholder = "i am being throttled zzz",
         protectedText = false
     )
@@ -127,7 +129,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Throttle Notifier Spam",
         description = "LET EM KNOW!",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var throttleNotifierSpam = true
 
@@ -135,23 +138,24 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "M7 Dragon Timer",
         description = "Large in-world text timers to help you see when dragons will spawn.",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var dragonTimer = true
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Better M7 Dragon Killbox",
         description = "Mostly stolen from odin",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var dragonKillBox = true
 
-    @Property(
-        type = PropertyType.SWITCH,
+    @Switch(
         name = "Hide Extra Nametags",
         description = "Prevents some nametags not covered by skytils \"Hide non-starred nametags\" from rendering.",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var hideTags = true
 
@@ -160,7 +164,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Global Toggle",
         description = "Change the look of your held item",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Animations"
     )
     var customAnimations = false
 
@@ -169,17 +174,18 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Size",
         description = "Scales the size of your currently held item. Default: 0",
         category = "Animations",
-        minF = -1.5f,
-        maxF = 1.5f,
-        decimalPlaces = 2
+        subcategory = "Dungeons",
+        min = -1.5f,
+        max = 1.5f,
+        step = 0
     )
     var customSize = 0f
 
-    @Property(
-        type = PropertyType.CHECKBOX,
+    @Checkbox(
         name = "Scale Swing",
         description = "Also scale the size of the swing animation.",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Animations"
     )
     var doesScaleSwing = true
 
@@ -194,69 +200,69 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
     )
     var customX = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Y",
         description = "Moves the held item. Default: 0",
         category = "Animations",
-        minF = -1.5f,
-        maxF = 1.5f,
-        decimalPlaces = 2
+        subcategory = "Animations",
+        min = -1.5f,
+        max = 1.5f,
+        step = 0
     )
     var customY = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Z",
         description = "Moves the held item. Default: 0",
         category = "Animations",
-        minF = -1.5f,
-        maxF = 1.5f,
-        decimalPlaces = 2
+        subcategory = "Animations",
+        min = -1.5f,
+        max = 1.5f,
+        step = 0
     )
     var customZ = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Yaw",
         description = "Rotates your held item. Default: 0",
         category = "Animations",
-        minF = -180f,
-        maxF = 180f,
-        decimalPlaces = 0
+        subcategory = "Animations",
+        min = -180f,
+        max = 180f,
+        step = 1
     )
     var customYaw = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Pitch",
         description = "Rotates your held item. Default: 0",
         category = "Animations",
-        minF = -180f,
-        maxF = 180f,
-        decimalPlaces = 0
+        subcategory = "Animations",
+        min = -180f,
+        max = 180f,
+        step = 1
     )
     var customPitch = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Roll",
         description = "Rotates your held item. Default: 0",
         category = "Animations",
-        minF = -180f,
-        maxF = 180f,
-        decimalPlaces = 0
+        subcategory = "Animations",
+        min = -180f,
+        max = 180f,
+        step = 1
     )
     var customRoll = 0f
 
-    @Property(
-        type = PropertyType.DECIMAL_SLIDER,
+    @Slider(
         name = "Speed",
         description = "Speed of the swing animation.",
         category = "Animations",
-        minF = -2f,
-        maxF = 1f,
-        decimalPlaces = 2
+        subcategory = "Animations",
+        min = -2f,
+        max = 1f,
+        step = 0
     )
     var customSpeed = 0f
 
@@ -264,7 +270,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.CHECKBOX,
         name = "Ignore Haste",
         description = "Makes the chosen speed override haste modifiers.",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Animations",
     )
     var ignoreHaste = true
 
@@ -273,6 +280,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Drinking Fix",
         description = "Pick how to handle drinking animations.",
         category = "Animations",
+        subcategory = "Fixes",
         options = ["No fix", "Rotationless", "Fixed"]
     )
     var drinkingSelector = 2
@@ -302,28 +310,28 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Export Preset as String",
         description = "Base64 representation of your current config - will copy to clipboard when pressed.",
         category = "Animations",
-        subcategory = "Presets"
+        subcategory = "Presets",
+        text = "Export!"
     )
-    fun presetString() {
-        Utils.animationConfigToString()
-    }
+    fun presetString() = Utils.animationConfigToString()
 
-    @Property(
-        type = PropertyType.BUTTON,
+
+    @Button(
         name = "Import Preset from Clipboard",
         description = "Base64 representation of your config accepted from clipboard. Closes gui.",
         category = "Animations",
-        subcategory = "Presets"
+        subcategory = "Presets",
+        text = "Import!"
     )
-    fun stringToConfig() {
-        Utils.animationStringtoConfig()
-    }
+    fun stringToConfig() = Utils.animationStringtoConfig()
+
 
     @Property(
         type = PropertyType.SWITCH,
         name = "JoinDungeon Command Confirmation",
         description = "Chat notification when you push the button. Useful if you suck at navigating a numpad.",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var dungeonCommandConfirm = true
 
@@ -331,7 +339,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Hide Chests that are already opened at Croesus",
         description = "Just doesn't render the item if it has the chest opened string",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var hideOpenedChests = false
 
@@ -339,7 +348,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Highlight custom player for leap in menu",
         description = "Changes texture to green wool! Use the \"/hl\" command for convenient assignment.",
-        category = "Dungeons"
+        category = "Dungeons",
+        subcategory = "Dungeons"
     )
     var highlightLeap = false
 
@@ -348,6 +358,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Highlighted player name",
         description = "case-sensitive",
         category = "Dungeons",
+        subcategory = "Dungeons",
         placeholder = "Dilkur",
         protectedText = false
     )
@@ -357,7 +368,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Remove Selfie Camera",
         description = "Get rid of pesky reverse third person!",
-        category = "General"
+        category = "General",
+        subcategory = "General"
     )
     var noReverse3rdPerson = false
 
@@ -365,7 +377,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Bridge Bot Formatter",
         description = "Global Toggle",
-        category = "Bridge"
+        category = "Bridge",
+        subcategory = "Bridge"
     )
     var bridgeBot = false
 
@@ -374,6 +387,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Bridge Bot Name",
         description = "Not case-sensitive",
         category = "Bridge",
+        subcategory = "Bridge",
         placeholder = "Bweefing",
         protectedText = false
     )
@@ -384,6 +398,7 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         name = "Bridge Chatter Name Color",
         description = "Pick how the player name looks.",
         category = "Bridge",
+        subcategory = "Bridge",
         options = ["§0Black",
             "§1Dark Blue",
             "§2Dark Green",
@@ -571,7 +586,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Garden Visitor Alert",
         description = "Notifies you if you have max garden visitors in queue",
-        category = "Farming"
+        category = "Farming",
+        subcategory = "Farming"
     )
     var notifyMaxVisitors = false
 
@@ -579,7 +595,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Persistent alert",
         description = "If turned on, the alert will continue to flash until dealt with.",
-        category = "Farming"
+        category = "Farming",
+        subcategory = "Farming"
     )
     var persistentAlert = true
 
@@ -598,7 +615,8 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         type = PropertyType.SWITCH,
         name = "Turn off re-equip animation",
         description = "Will stop the spam re-equip when stuff like cultivating is updating",
-        category = "Animations"
+        category = "Animations",
+        subcategory = "Fixes"
     )
     var cancelReequip = false
 
@@ -614,14 +632,6 @@ object Config : Vigilant(File("./config/dulkirmod/config.toml"), "DulkirMod", so
         addDependency("tooltipSize", "scaledTooltips")
         addDependency("persistentAlert", "notifyMaxVisitors")
 
-        setCategoryDescription(
-            "Custom Animations",
-            "All settings that are related to custom animations. Mostly help from Aton."
-        )
-        setCategoryDescription(
-            "Bridge",
-            "Dm me on discord with formatting issues."
-        )
     }
 
     private object ConfigSorting : SortingBehavior() {

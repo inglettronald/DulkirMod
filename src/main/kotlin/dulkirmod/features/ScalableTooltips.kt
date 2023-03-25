@@ -1,7 +1,7 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.Config
+import dulkirmod.config.DulkirConfig
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.gui.GuiChat
@@ -28,7 +28,7 @@ object ScalableTooltips {
         screenHeight: Int,
         font: FontRenderer,
     ): Boolean {
-        if(!Config.scaledTooltips) return false
+        if(!DulkirConfig.scaledTooltips) return false
         if(textLines.isEmpty()) return true
 
         // Calculate the amount of translation that should be applied based on how much the user has scrolled
@@ -59,7 +59,7 @@ object ScalableTooltips {
             }
         }
 
-        val scale = (Config.tooltipSize + scaleScale).coerceAtLeast(0f)
+        val scale = (DulkirConfig.tooltipSize + scaleScale).coerceAtLeast(0f)
 
         // Calculate the width and height of the tooltip box
         var width = 0

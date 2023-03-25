@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -17,8 +18,6 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(8))
 }
 
-
-
 // Minecraft configuration:
 loom {
     log4jConfigs.from(file("log4j2.xml"))
@@ -27,7 +26,7 @@ loom {
             // If you don't want mixins, remove these lines
             property("mixin.debug", "true")
             property("asmhelper.verbose", "true")
-            arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
+            arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
             arg("--mixin", "mixins.dulkirmod.json")
         }
     }
@@ -58,11 +57,14 @@ repositories {
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://repo.essential.gg/repository/maven-public/")
+    maven("https://repo.polyfrost.cc/releases")
 }
 
 val shadowImpl: Configuration by configurations.creating {
     configurations.implementation.get().extendsFrom(this)
 }
+
+
 
 dependencies {
     minecraft("com.mojang:minecraft:1.8.9")
@@ -78,11 +80,20 @@ dependencies {
     // If you don't want to log in with your real minecraft account, remove this line
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
 
-    shadowImpl("gg.essential:loader-launchwrapper:1.1.3")
-    implementation("gg.essential:essential-1.8.9-forge:5155+gf6c1d3696")
+    // Basic OneConfig dependencies for legacy versions. See OneConfig example mod for more info
+    compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.0-alpha+") // Should not be included in jar
+    // include should be replaced with a configuration that includes this in the jar
+    shadowImpl("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+") // Should be included in jar
 
 }
 
+// Configures our shadow/shade configuration, so we can
+// include some dependencies within our mod jar file.
+tasks.named<ShadowJar>("shadowJar") {
+    archiveClassifier.set("dev") // TODO: machete gets confused by the `dev` prefix.
+    configurations = listOf(shadowImpl)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
 // Tasks:
 
 tasks.withType(JavaCompile::class) {
@@ -101,7 +112,7 @@ tasks.withType(Jar::class) {
         this["ForceLoadAsMod"] = "true"
 
         // If you don't want mixins, remove these lines
-        this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
+        this["TweakClass"] = "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker"
         this["MixinConfigs"] = "mixins.dulkirmod.json"
     }
 }
