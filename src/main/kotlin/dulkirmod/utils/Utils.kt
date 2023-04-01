@@ -55,7 +55,8 @@ object Utils {
         if (mc.isSingleplayer) return false
 		if (mc.thePlayer.clientBrand?.contains("hypixel", true) == false) return false
         val objective = mc.thePlayer.worldScoreboard.getObjectiveInDisplaySlot(1) ?: return false
-		return stripColorCodes(objective.displayName).contains("skyblock", true)
+		val stripColorCodes = stripColorCodes(objective.displayName)
+		return stripColorCodes.contains("skyblock", true) ||stripColorCodes.contains("skiblock", true)
 	}
 
 	fun getColorString(int: Int): String {
