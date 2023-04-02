@@ -26,8 +26,14 @@ fun brokenHypeNotif() {
     // get info about held item
     if (stack.hasTagCompound()) {
         val tag: NBTTagCompound = stack.tagCompound
-        if (tag.hasKey("ExtraAttributes", 10)) {
+        if (tag.hasKey("ExtraAttributes", 10) && tag.hasKey("display", 10)) {
             val ea: NBTTagCompound = tag.getCompoundTag("ExtraAttributes")
+            val dis: NBTTagCompound = tag.getCompoundTag("display")
+
+            if (dis.hasKey("Name"))
+                if(!dis.getString("Name").contains("(Hyperion|Astraea|Scylla|Valkyrie)".toRegex()))
+                    return
+
             if (ea.hasKey("id", 8)) {
                 id = ea.getString("id")
             }
