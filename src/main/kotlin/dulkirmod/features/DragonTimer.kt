@@ -133,7 +133,7 @@ object DragonTimer {
 			WorldRenderUtils.drawCustomBox(14.5, 25.0, 13.0, 15.0, 45.5, 25.0, Color(255, 85, 85, 255), 3f, phase = false)
 		// Orange
 		if (!isDead("orange"))
-			WorldRenderUtils.drawCustomBox(72.0, 30.0, 8.0, 20.0, 47.0, 30.0, Color(255, 170, 0, 255), 3f, phase = false)
+			WorldRenderUtils.drawCustomBox(72.0, 30.0, 8.0, 20.0, 47.0, 29.0, Color(255, 170, 0, 255), 3f, phase = false)
 	}
 
 	@SubscribeEvent
