@@ -21,6 +21,9 @@ Settings Command: /dulkir
 - Bridge Bot Formatter
 - Scalable Tooltips/Scrollable Tooltips
   - (intended to replace and improve sk1er's)
+- Patch Crimson Isles Memory Leak
+  - (This will be removed when hypixel fixes patrols)
+- Option to remove enchant glint on armor (fix for runes)
 
 ### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
@@ -30,6 +33,9 @@ Settings Command: /dulkir
 - Highlight specific ign in leap menu (/hl <user> or use settings menu)
 - Do not render opened chests at Croesus
 - Hide Healer Fairy
+- Wither/Blood Key Hud Element
+- Dragon Kill Boxes for M7
+- Dragon Spawn Timers for M7
 
 ### Bestiary Related
 - Bestiary Notifications for Ghasts/Zombie Villagers
