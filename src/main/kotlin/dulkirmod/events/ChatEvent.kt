@@ -33,5 +33,8 @@ object ChatEvent {
 
         // Quick vanquisher thing
         VanquisherTrigger.handle(unformatted)
+
+        // Key Hud Element
+        DungeonKeyDisplay.handle(unformatted)
     }
 }
