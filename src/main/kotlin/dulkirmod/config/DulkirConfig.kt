@@ -7,8 +7,15 @@ import cc.polyfrost.oneconfig.config.data.ModType
 import dulkirmod.DulkirMod
 import dulkirmod.utils.Utils
 
+
 object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-config.json") {
 
+    @HUD(
+        name = "Wither Key Display",
+        category = "HUD",
+        subcategory = "Dungeons"
+    )
+    var witherKeyDisplayHUD: DulkirHud = DulkirHud()
 
     @Switch(
         name = "Patch Crimson Isle memory leak",
@@ -111,6 +118,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Random Beta Features"
     )
     var vanqBroadcast = false
+
+    @Switch(
+        name = "Cancel Armor Glint",
+        description = "If you want all glint gone, I suggest using Patcher for that.",
+        category = "Random Beta Features",
+        subcategory = "Random Beta Features"
+    )
+    var cancelArmorGlint = false
 
     @Text(
         name = "Throttle Notifier String",

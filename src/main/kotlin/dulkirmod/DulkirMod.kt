@@ -2,6 +2,7 @@ package dulkirmod
 
 import dulkirmod.command.*
 import dulkirmod.config.DulkirConfig
+import dulkirmod.config.DulkirHud
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
@@ -131,6 +132,7 @@ class DulkirMod {
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config = DulkirConfig
+        var hud = DulkirHud()
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
 

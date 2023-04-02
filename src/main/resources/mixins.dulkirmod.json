@@ -8,6 +8,7 @@
     "MixinGuiContainer",
     "MixinGuiScreen",
     "MixinItemRenderer",
+    "MixinLayerArmorBase",
     "MixinRendererManager"
   ],
   "mixins": [
