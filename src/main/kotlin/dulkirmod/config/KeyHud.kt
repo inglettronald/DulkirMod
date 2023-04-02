@@ -3,8 +3,7 @@ import cc.polyfrost.oneconfig.hud.TextHud
 import dulkirmod.features.chat.DungeonKeyDisplay
 
 
-class DulkirHud : TextHud(true) {
-
+class KeyHud : TextHud(true) {
 
     override fun getLines(lines: MutableList<String>?, example: Boolean) {
         if (example) {

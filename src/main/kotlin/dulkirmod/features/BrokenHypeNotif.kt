@@ -3,7 +3,6 @@ package dulkirmod.features
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
-import dulkirmod.utils.TextUtils
 import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
 import net.minecraft.item.ItemStack
@@ -40,7 +39,6 @@ fun brokenHypeNotif() {
             }
         }
     }
-    TextUtils.info(id)
     // check if a wither blade, then check if same id
     if (!(id matches "(HYPERION|ASTRAEA|SCYLLA|VALKYRIE)".toRegex())) {
         return

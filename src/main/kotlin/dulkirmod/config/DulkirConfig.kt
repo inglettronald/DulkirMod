@@ -10,13 +10,6 @@ import dulkirmod.utils.Utils
 
 object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-config.json") {
 
-    @HUD(
-        name = "Wither Key Display",
-        category = "HUD",
-        subcategory = "Dungeons"
-    )
-    var witherKeyDisplayHUD: DulkirHud = DulkirHud()
-
     @Switch(
         name = "Patch Crimson Isle memory leak",
         description = "This is a temporary fix for the memory leak on crimson isles. It will be removed when Hypixel fixes the issue.",
@@ -600,6 +593,13 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Fixes"
     )
     var cancelReequip = false
+
+    @HUD(
+        name = "Wither Key Display",
+        category = "HUD",
+        subcategory = "Dungeons"
+    )
+    var witherKeyDisplayHUD: KeyHud = KeyHud()
 
     fun init() {
         initialize()
