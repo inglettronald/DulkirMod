@@ -3,6 +3,7 @@ package dulkirmod.features
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
+import dulkirmod.utils.TextUtils
 import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
 import net.minecraft.item.ItemStack
@@ -28,12 +29,6 @@ fun brokenHypeNotif() {
         val tag: NBTTagCompound = stack.tagCompound
         if (tag.hasKey("ExtraAttributes", 10) && tag.hasKey("display", 10)) {
             val ea: NBTTagCompound = tag.getCompoundTag("ExtraAttributes")
-            val dis: NBTTagCompound = tag.getCompoundTag("display")
-
-            if (dis.hasKey("Name"))
-                if(!dis.getString("Name").contains("(Hyperion|Astraea|Scylla|Valkyrie)".toRegex()))
-                    return
-
             if (ea.hasKey("id", 8)) {
                 id = ea.getString("id")
             }
@@ -45,9 +40,9 @@ fun brokenHypeNotif() {
             }
         }
     }
-
-    // check if same item as previous run
-    if (id == "") {
+    TextUtils.info(id)
+    // check if a wither blade, then check if same id
+    if (!(id matches "(HYPERION|ASTRAEA|SCYLLA|VALKYRIE)".toRegex())) {
         return
     } else if (id != oldID) {
         // Check if this is a valid item for testing whether bestiary is broken.
