@@ -4,6 +4,11 @@ Massive thanks to Soopyboo32, Nopo, Aton, and many others for the invaluable tea
 They were instrumental to the design and debugging process, and I'm thankful that I've learned as much from this
 as I have.
 
+[![discord badge](https://img.shields.io/discord/819011720001224735?label=discord&color=9089DA&logo=discord&style=for-the-badge)](https://discord.gg/WnJwrNZQSn)
+[![twitch](https://img.shields.io/twitch/status/dulkir?style=for-the-badge)](https://www.twitch.tv/dulkir)
+[![downloads](https://img.shields.io/github/downloads/inglettronald/DulkirMod/total?style=for-the-badge)](https://github.com/inglettronald/DulkirMod)
+
+
 NEU and Skytils were great example mods to look for guidance from specifically, as well.
 
 Settings Command: /dulkir

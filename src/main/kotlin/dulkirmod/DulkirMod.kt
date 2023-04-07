@@ -1,8 +1,8 @@
 package dulkirmod
 
+import dulkirmod.Huds.KeyHud
 import dulkirmod.command.*
 import dulkirmod.config.DulkirConfig
-import dulkirmod.config.KeyHud
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND

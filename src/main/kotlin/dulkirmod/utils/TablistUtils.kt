@@ -15,6 +15,10 @@ object TabListUtils {
     var explosivity: Boolean = false
     var isInDungeons: Boolean = false
     var maxVisitors: Boolean = false
+    var emptyComposter: Boolean = false
+    var gardenMilestone: String = ""
+    var timeTillNextVisitor: String = ""
+    var numVisitors: Int = 0
 
     private val playerInfoOrdering = object : Ordering<NetworkPlayerInfo>() {
         override fun compare(p_compare_1_: NetworkPlayerInfo?, p_compare_2_: NetworkPlayerInfo?): Int {
@@ -55,33 +59,40 @@ object TabListUtils {
             it.displayName?.unformattedText
         }
 
+
         for (line in scoreboardList) {
-            if (line.startsWith("Area: "))
-                area = line.substring(6)
-            else if (line == "Volcano Explosivity:") {
-                exploFlag = true
+            when {
+                line.startsWith("Area: ") -> area = line.substring(6)
+                line == "Volcano Explosivity:" -> exploFlag = true
+                exploFlag -> {
+                    exploFlag = false
+                    if (line != " INACTIVE") {
+                        explosivity = true
+                    }
+                }
+                line == "       Dungeon Stats" -> {
+                    isInDungeons = true
+                }
+                line == " Time Left: INACTIVE" -> emptyComposter = true
+                line.startsWith(" Milestone") -> gardenMilestone = line.substring(1)
+                line.startsWith(" Next Visitor:") -> {
+                    timeTillNextVisitor = line.substring(15)
+                    maxVisitors = (timeTillNextVisitor == "Queue Full!")
+                }
+                line.startsWith("Visitors:") -> {
+                    numVisitors = line.substring(11, 12).toInt() // TODO: FIX WHEN THEY ADD THE TENTH VISITOR
+                }
             }
-            else if (exploFlag) {
-                explosivity = line != " INACTIVE"
-                exploFlag = false
-            }
-            else if (line == "       Dungeon Stats") {
-                isInDungeons = true
-                dungeonFlag = true
-            }
-            // Here is some scuffed code that basically makes sure maxVisitors is assigned appropriately.
-            // It's awful and I do not care to fix it lol.
-            else if (line == " Next Visitor: Queue Full!")
-                maxVisitors = true
-            else if (line.startsWith(" Next Visitor:"))
-                maxVisitors = false
         }
 
-        if (area != "Crimson Isle")
+        if (area != "Crimson Isle") {
             explosivity = false
-        if (area != "Garden")
+        }
+        if (area != "Garden") {
             maxVisitors = false
-        if (!dungeonFlag)
+        }
+        if (!isInDungeons) {
             isInDungeons = false
+        }
     }
 }

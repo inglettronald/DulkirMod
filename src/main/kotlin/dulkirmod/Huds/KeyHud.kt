@@ -1,4 +1,4 @@
-package dulkirmod.config
+package dulkirmod.Huds
 import cc.polyfrost.oneconfig.hud.TextHud
 import dulkirmod.features.chat.DungeonKeyDisplay
 

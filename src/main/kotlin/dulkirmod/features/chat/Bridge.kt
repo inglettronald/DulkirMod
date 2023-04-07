@@ -8,11 +8,11 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent
 
 object Bridge {
     private val guildFormat =
-        "^(§2Guild|§3Officer|§2G|§3O) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^>]+) > .+".toRegex()
+        "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^>]+) > .+".toRegex()
     private val alternateFormat =
-        "^(§2Guild|§3Officer|§2G|§3O) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^:]+): .+".toRegex()
+        "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^:]+): .+".toRegex()
     private val otherAltFormat =
-        "^(§2Guild|§3Officer|§2G|§3O) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^»]+) » .+".toRegex()
+        "^(§2Guild|§3Officer) > (?:\\S+ )?([\\w§]{3,18})(?: §[a-z0-9]\\[[A-Z]+])?§f: ([^»]+) » .+".toRegex()
 
     fun handle(event: ClientChatReceivedEvent) {
         val message = event.message.unformattedText

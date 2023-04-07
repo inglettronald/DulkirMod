@@ -8,12 +8,12 @@ import net.minecraft.command.ICommandSender
 class JoinDungeonCommand : ClientCommandBase("joindungeon") {
     @Throws(CommandException::class)
     override fun processCommand(sender: ICommandSender, args: Array<String>) {
-        var arguments = args.contentToString().replace("[", "").replace("]", "").replace(",", "")
+        val arguments = args.contentToString().replace("[", "").replace("]", "").replace(",", "")
         var type = ""
         var num = ""
-        if (args[0] == "master_catacombs") {
+        if (args[0].lowercase() == "master_catacombs") {
             type = "M"
-        } else if (args[0] == "catacombs") {
+        } else if (args[0].lowercase() == "catacombs") {
             type = "F"
         }
 

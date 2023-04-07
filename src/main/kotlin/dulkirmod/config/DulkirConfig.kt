@@ -5,6 +5,9 @@ import cc.polyfrost.oneconfig.config.annotations.*
 import cc.polyfrost.oneconfig.config.data.Mod
 import cc.polyfrost.oneconfig.config.data.ModType
 import dulkirmod.DulkirMod
+import dulkirmod.Huds.GardenInfoHud
+import dulkirmod.Huds.KeyHud
+import dulkirmod.Huds.YawDisplayHud
 import dulkirmod.utils.Utils
 
 
@@ -175,7 +178,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         name = "Size",
         description = "Scales the size of your currently held item. Default: 0",
         category = "Animations",
-        subcategory = "Dungeons",
+        subcategory = "Animations",
         min = -1.5f,
         max = 1.5f,
         step = 0
@@ -600,6 +603,62 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Dungeons"
     )
     var witherKeyDisplayHUD: KeyHud = KeyHud()
+
+    @HUD(
+        name = "Pitch/Yaw Display",
+        category = "HUD",
+        subcategory = "Farming"
+    )
+    var YawDisplayHud: YawDisplayHud = YawDisplayHud()
+
+    @Switch(
+        name = "Display Pitch as well",
+        description = "useful for some slime launcher stuff",
+        category = "HUD",
+        subcategory = "Farming"
+    )
+    var showPitch = false
+
+    @Switch(
+        name = "3 Decimals on Yaw",
+        description = "are u ok bro",
+        category = "HUD",
+        subcategory = "Farming"
+    )
+    var yaw3Decimals = false
+
+    @HUD(
+        name = "Garden Info Display",
+        category = "HUD",
+        subcategory = "Garden"
+    )
+    var GardenInfoHud: GardenInfoHud = GardenInfoHud()
+
+    @Switch(
+        name = "Empty Composter Notif",
+        description = "Will display in HUD instead of giga-alert",
+        category = "HUD",
+        subcategory = "Garden"
+    )
+    var composterAlert = true
+
+    @Switch(
+        name = "Farming Milestone Display",
+        description = "Increasing number go brr",
+        category = "HUD",
+        subcategory = "Garden"
+    )
+    var gardenMilestoneDisplay = true
+
+    @Switch(
+        name = "Visitor Info",
+        description = "Show number present and time until next",
+        category = "HUD",
+        subcategory = "Garden"
+    )
+    var visitorInfo = true
+
+
 
     fun init() {
         initialize()
