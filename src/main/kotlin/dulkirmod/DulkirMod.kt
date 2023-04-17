@@ -80,6 +80,7 @@ class DulkirMod {
         mcBus.register(GardenVisitorAlert)
         mcBus.register(DragonTimer)
         mcBus.register(HideHealerFairy)
+        mcBus.register(SecretSounds)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
