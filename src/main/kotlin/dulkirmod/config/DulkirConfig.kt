@@ -363,6 +363,36 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var highlightLeapName: String = "Dilkur"
 
     @Switch(
+        name = "Play sound when clicking secrets in dungeons",
+        description = "Will play on levers, chests and essence",
+        category = "Dungeons",
+        subcategory = "Dungeons"
+    )
+    var secretClickSounds = false
+
+    @Slider(
+        name = "Secret Click Volume",
+        description = "Volume of click sound",
+        category = "Dungeons",
+        subcategory = "Dungeons",
+        min = 0f,
+        max = 1f,
+        step = 0
+    )
+    var secretSoundVolume = .7f
+
+    @Button(
+        name = "Demo Volume Selection",
+        description = "Plays the Random Break sound as Reference, Might add individual sliders later but this seems like enough",
+        category = "Dungeons",
+        subcategory = "Dungeons",
+        text = "Test"
+    )
+    fun demoSecretVolume() {
+        DulkirMod.mc.thePlayer.playSound("random.break", 1f * secretSoundVolume, 1f)
+    }
+
+    @Switch(
         name = "Remove Selfie Camera",
         description = "Get rid of pesky reverse third person!",
         category = "General",
@@ -671,6 +701,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         addDependency("hurtCamIntensity", "hurtCamSlider")
         addDependency("tooltipSize", "scaledTooltips")
         addDependency("persistentAlert", "notifyMaxVisitors")
-
+        addDependency("secretSoundVolume", "secretClickSounds")
+        addDependency("demoSecretVolume", "secretClickSounds")
     }
 }
