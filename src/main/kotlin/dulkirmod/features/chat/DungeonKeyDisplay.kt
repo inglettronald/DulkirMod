@@ -10,7 +10,7 @@ object DungeonKeyDisplay {
     private val altOpenMessage = "The BLOOD DOOR has been opened!".toRegex()
     var hasKey = false;
     fun handle(stringUnformatted: String) {
-        if (!TabListUtils.isInDungeons) {
+        if (TabListUtils.area != "Dungeon") {
             hasKey = false
             return
         }

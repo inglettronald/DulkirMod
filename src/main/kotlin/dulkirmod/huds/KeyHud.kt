@@ -1,9 +1,9 @@
-package dulkirmod.Huds
+package dulkirmod.huds
 import cc.polyfrost.oneconfig.hud.TextHud
 import dulkirmod.features.chat.DungeonKeyDisplay
 
 
-class KeyHud : TextHud(true) {
+class KeyHud : TextHud(false) {
 
     override fun getLines(lines: MutableList<String>?, example: Boolean) {
         if (example) {

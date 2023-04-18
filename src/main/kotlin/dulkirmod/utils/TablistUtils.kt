@@ -13,7 +13,6 @@ val NetworkPlayerInfo.text: String
 object TabListUtils {
     var area: String = ""
     var explosivity: Boolean = false
-    var isInDungeons: Boolean = false
     var maxVisitors: Boolean = false
     var emptyComposter: Boolean = false
     var gardenMilestone: String = ""
@@ -53,8 +52,8 @@ object TabListUtils {
     fun parseTabEntries() {
         // exploFlag is just telling the loop that the next line is the relevant tab entry
         var exploFlag = false
+        var numVisitorsFlag = false
         // dungeonFlag keeps track of whether we've found the in-dungeons state.
-        var dungeonFlag = false
         val scoreboardList: List<String> = fetchTabEntries().mapNotNull {
             it.displayName?.unformattedText
         }
@@ -71,9 +70,11 @@ object TabListUtils {
                     }
                 }
                 line == "       Dungeon Stats" -> {
-                    isInDungeons = true
+                    area = "Dungeon"
                 }
-                line == " Time Left: INACTIVE" -> emptyComposter = true
+                line.startsWith(" Time Left:") -> {
+                    emptyComposter = (line.substring(12) == "INACTIVE")
+                }
                 line.startsWith(" Milestone") -> gardenMilestone = line.substring(1)
                 line.startsWith(" Next Visitor:") -> {
                     timeTillNextVisitor = line.substring(15)
@@ -81,6 +82,7 @@ object TabListUtils {
                 }
                 line.startsWith("Visitors:") -> {
                     numVisitors = line.substring(11, 12).toInt() // TODO: FIX WHEN THEY ADD THE TENTH VISITOR
+                    numVisitorsFlag = true
                 }
             }
         }
@@ -91,8 +93,8 @@ object TabListUtils {
         if (area != "Garden") {
             maxVisitors = false
         }
-        if (!isInDungeons) {
-            isInDungeons = false
+        if (!numVisitorsFlag) {
+            numVisitors = 0
         }
     }
 }

@@ -1,4 +1,4 @@
-package dulkirmod.Huds
+package dulkirmod.huds
 
 import cc.polyfrost.oneconfig.hud.TextHud
 import dulkirmod.DulkirMod.Companion.mc
@@ -6,7 +6,7 @@ import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.Utils
 
-class YawDisplayHud : TextHud(true) {
+class YawDisplayHud : TextHud(false) {
     override fun getLines(lines: MutableList<String>?, example: Boolean) {
         if (!Utils.isInSkyblock()) return
         if (TabListUtils.area != "Garden") return

@@ -10,7 +10,7 @@ object ThrottleNotif {
     private var lastThrottle: Long = 0
     fun handle(event: ClientChatReceivedEvent, unformatted: String) {
         if (unformatted == "This menu has been throttled! Please slow down..." && DulkirMod.config.throttleNotifier
-            && TabListUtils.isInDungeons
+            && TabListUtils.area == "Dungeon"
         ) {
             event.isCanceled = true
 	        if (!DulkirConfig.throttleNotifierSpam && System.currentTimeMillis() - lastThrottle > 8000) {

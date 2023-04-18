@@ -2,7 +2,7 @@ package dulkirmod.features
 
 
 import dulkirmod.DulkirMod.Companion.config
-import dulkirmod.utils.TabListUtils.isInDungeons
+import dulkirmod.utils.TabListUtils
 import net.minecraft.entity.Entity
 import net.minecraft.entity.item.EntityArmorStand
 import net.minecraft.init.Items
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
 object HideHealerFairy {
     fun handle(entity: Entity, cir: CallbackInfoReturnable<Boolean>) {
         if (!config.hideHealerFairy) return
-        if (!isInDungeons) return
+        if (TabListUtils.area != "Dungeon") return
         if (entity is EntityArmorStand) {
             if (entity.heldItem != null && entity.heldItem.item === Items.skull) {
                 val stack = entity.heldItem

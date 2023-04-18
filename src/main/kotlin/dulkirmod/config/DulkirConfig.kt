@@ -5,9 +5,9 @@ import cc.polyfrost.oneconfig.config.annotations.*
 import cc.polyfrost.oneconfig.config.data.Mod
 import cc.polyfrost.oneconfig.config.data.ModType
 import dulkirmod.DulkirMod
-import dulkirmod.Huds.GardenInfoHud
-import dulkirmod.Huds.KeyHud
-import dulkirmod.Huds.YawDisplayHud
+import dulkirmod.huds.GardenInfoHud
+import dulkirmod.huds.KeyHud
+import dulkirmod.huds.YawDisplayHud
 import dulkirmod.utils.Utils
 
 
