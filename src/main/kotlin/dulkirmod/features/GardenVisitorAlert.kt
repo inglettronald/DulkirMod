@@ -1,10 +1,12 @@
 package dulkirmod.features
 
 import dulkirmod.DulkirMod
+import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TitleUtils
 import dulkirmod.utils.Utils
+import net.minecraft.client.audio.SoundCategory
 
 object GardenVisitorAlert {
     private var hasSentAlert = false
@@ -21,9 +23,14 @@ object GardenVisitorAlert {
         if (TabListUtils.maxVisitors && !hasSentAlert) {
             val color = Utils.getColorString(DulkirConfig.bestiaryNotifColor)
             TitleUtils.drawStringForTime("${color}Max Visitors", 5000)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .3f)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .6f)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .9f)
+
+
+            val prevNote = mc.gameSettings.getSoundLevel(SoundCategory.RECORDS)
+            mc.gameSettings.setSoundLevel(SoundCategory.RECORDS, 1f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .3f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .6f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .9f)
+            mc.gameSettings.setSoundLevel(SoundCategory.RECORDS, prevNote)
             hasSentAlert = true
             lastAlert = System.currentTimeMillis().toInt()
         } else if (!TabListUtils.maxVisitors) hasSentAlert = false
