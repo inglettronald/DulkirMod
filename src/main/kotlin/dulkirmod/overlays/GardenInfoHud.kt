@@ -1,4 +1,4 @@
-package dulkirmod.huds
+package dulkirmod.overlays
 
 import cc.polyfrost.oneconfig.hud.TextHud
 import dulkirmod.config.DulkirConfig
