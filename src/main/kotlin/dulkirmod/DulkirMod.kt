@@ -108,6 +108,7 @@ class DulkirMod {
             // Now I don't have to fetch the entries for multiple things, this just updates and caches
             // the data structure on 1s cooldown
             TabListUtils.parseTabEntries()
+            DragonFeatures.updateDragonDead()
             lastLongUpdate = currTime
         }
     }
