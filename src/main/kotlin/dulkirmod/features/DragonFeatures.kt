@@ -95,7 +95,7 @@ object DragonFeatures {
 
 	fun updateDragonDead() {
 		if (!(DulkirConfig.dragonKillBox || DulkirConfig.lbWaypoints || DulkirConfig.decoyWaypoints || DulkirConfig.gyroWaypoints)) return
-		//if (!ScoreBoardUtils.isInM7) return
+		if (!ScoreBoardUtils.isInM7) return
 		if (mc.theWorld == null) return
 		if (mc.thePlayer.positionVector.yCoord > 45) return
 
@@ -156,7 +156,7 @@ object DragonFeatures {
 
 	private fun renderDragonBoxes() {
 		if (!DulkirConfig.dragonKillBox) return
-		//if (!ScoreBoardUtils.isInM7) return
+		if (!ScoreBoardUtils.isInM7) return
 		if (mc.thePlayer.positionVector.yCoord > 45) return
 		// Blue
 		if (isAlive("blue"))
@@ -186,7 +186,7 @@ object DragonFeatures {
 	@SubscribeEvent
 	fun renderP5Waypoints(event: RenderWorldLastEvent) {
 		if (!(DulkirConfig.gyroWaypoints || DulkirConfig.lbWaypoints || DulkirConfig.decoyWaypoints)) return
-		//if (!ScoreBoardUtils.isInM7) return
+		if (!ScoreBoardUtils.isInM7) return
 		val playerVec = mc.thePlayer.positionVector
 		if (playerVec.yCoord > 45) return
 		if (DulkirConfig.gyroWaypoints) {
