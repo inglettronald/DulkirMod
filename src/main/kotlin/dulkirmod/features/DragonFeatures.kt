@@ -15,7 +15,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
-object DragonTimer {
+object DragonFeatures {
 	data class Dragon(val color: String, val pos: Vec3, var spawnTime: Long)
 
 	private val dragons = arrayOf(
@@ -24,6 +24,24 @@ object DragonTimer {
 		Dragon("green", Vec3(26.0, 18.0, 95.0), 0),
 		Dragon("purple", Vec3(57.0, 18.0, 125.0), 0),
 		Dragon("blue", Vec3(84.0, 18.0, 95.0), 0)
+	)
+
+	val gyros = arrayOf(
+		Vec3(83.5,5.5,104.5), // blue
+		Vec3(25.5, 5.5, 81.5) // green
+	)
+	val decoys = arrayOf(
+		Vec3(32.5, 19.5, 59.9), // red
+		Vec3(56.5, 7.5, 124.5), // purple
+		Vec3(90.5, 11.5, 100.5), // blue
+		Vec3(21.5, 11.5, 88.5) // green
+	)
+	val shoot = arrayOf(
+		Vec3(56.5, 20.5, 124.5), // purple
+		Vec3(84.5, 20.5, 59.5), // orange
+		Vec3(23.5,21.5, 54.5), // red
+		Vec3(27.5, 16.5, 94.5), // green
+		Vec3(85.5, 20.5, 98.5) // blue
 	)
 
 	/**
@@ -142,5 +160,31 @@ object DragonTimer {
 		executor.schedule({
 			ScoreBoardUtils.inM7()
 		}, 10, TimeUnit.SECONDS)
+	}
+
+	@SubscribeEvent
+	fun renderP5Waypoints(event: RenderWorldLastEvent) {
+		if (!(DulkirConfig.gyroWaypoints || DulkirConfig.lbWaypoints || DulkirConfig.decoyWaypoints)) return
+		if (!ScoreBoardUtils.isInM7) return
+		val playerVec = mc.thePlayer.positionVector
+		if (playerVec.yCoord > 45) return
+		if (DulkirConfig.gyroWaypoints) {
+			val color = "§6"
+			for (g in gyros) {
+				WorldRenderUtils.renderString(g, "${color}Gyro", false, max(1f, playerVec.distanceTo(g).toFloat()/10f), false)
+			}
+		}
+		if (DulkirConfig.lbWaypoints) {
+			val color = "§a"
+			for (s in shoot) {
+				WorldRenderUtils.renderString(s, "${color}Target", false, max(1f, playerVec.distanceTo(s).toFloat()/10f), false)
+			}
+		}
+		if (DulkirConfig.decoyWaypoints) {
+			val color = "§3"
+			for (d in decoys) {
+				WorldRenderUtils.renderString(d, "${color}Decoy", false, max(1f, playerVec.distanceTo(d).toFloat()/10f), false)
+			}
+		}
 	}
 }

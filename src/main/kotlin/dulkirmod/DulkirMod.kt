@@ -5,7 +5,6 @@ import dulkirmod.config.DulkirConfig
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
-import dulkirmod.huds.KeyHud
 import dulkirmod.utils.ContainerNameUtil
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.TextUtils
@@ -78,7 +77,7 @@ class DulkirMod {
         mcBus.register(KeeperWaypoints)
         mcBus.register(ScalableTooltips)
         mcBus.register(GardenVisitorAlert)
-        mcBus.register(DragonTimer)
+        mcBus.register(DragonFeatures)
         mcBus.register(HideHealerFairy)
         mcBus.register(SecretSounds)
 
@@ -133,7 +132,6 @@ class DulkirMod {
 
         val mc: Minecraft = Minecraft.getMinecraft()
         var config = DulkirConfig
-        var hud = KeyHud()
         var display: GuiScreen? = null
         val scope = CoroutineScope(EmptyCoroutineContext)
 

@@ -5,10 +5,11 @@ import cc.polyfrost.oneconfig.config.annotations.*
 import cc.polyfrost.oneconfig.config.data.Mod
 import cc.polyfrost.oneconfig.config.data.ModType
 import dulkirmod.DulkirMod
-import dulkirmod.huds.GardenInfoHud
-import dulkirmod.huds.KeyHud
-import dulkirmod.huds.YawDisplayHud
+import dulkirmod.overlays.GardenInfoHud
+import dulkirmod.overlays.KeyHud
+import dulkirmod.overlays.YawDisplayHud
 import dulkirmod.utils.Utils
+import net.minecraft.client.audio.SoundCategory
 
 
 object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-config.json") {
@@ -156,6 +157,30 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Dungeons"
     )
     var dragonKillBox = true
+
+    @Switch(
+        name = "Gyro Waypoints",
+        description = "Only renders in p5",
+        category = "Dungeons",
+        subcategory = "Dungeons"
+    )
+    var gyroWaypoints = true
+
+    @Switch(
+        name = "Decoy Waypoints",
+        description = "Only renders in p5",
+        category = "Dungeons",
+        subcategory = "Dungeons"
+    )
+    var decoyWaypoints = true
+
+    @Switch(
+        name = "LB Waypoints",
+        description = "Only renders in p5",
+        category = "Dungeons",
+        subcategory = "Dungeons"
+    )
+    var lbWaypoints = true
 
     @Switch(
         name = "Hide Extra Nametags",
@@ -389,7 +414,17 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         text = "Test"
     )
     fun demoSecretVolume() {
-        DulkirMod.mc.thePlayer.playSound("random.break", 1f * secretSoundVolume, 1f)
+        val prevMaster = DulkirMod.mc.gameSettings.getSoundLevel(SoundCategory.MASTER)
+        DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.MASTER, 1f)
+        val prevNote = DulkirMod.mc.gameSettings.getSoundLevel(SoundCategory.MASTER)
+        DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.RECORDS, 1f)
+        DulkirMod.mc.thePlayer.playSound(
+            "note.pling",
+            1f * DulkirConfig.secretSoundVolume,
+            1f
+        )
+        DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.MASTER, prevMaster)
+        DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.RECORDS, prevNote)
     }
 
     @Switch(
