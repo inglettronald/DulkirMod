@@ -2,7 +2,6 @@ package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.gui.GuiChat
 import net.minecraft.client.renderer.GlStateManager
@@ -37,9 +36,9 @@ object ScalableTooltips {
         if (mc.currentScreen !is GuiChat) {
             if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                 if (eventDWheel < 0) {
-                    scrollX += Minecraft.getMinecraft().displayWidth / 192
+                    scrollX += mc.displayWidth / 192
                 } else if (eventDWheel > 0) {
-                    scrollX -= Minecraft.getMinecraft().displayWidth / 192
+                    scrollX -= mc.displayWidth / 192
                 }
             } else if (Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)) {
                 if (eventDWheel < 0) {
@@ -49,9 +48,9 @@ object ScalableTooltips {
                 }
             } else {
                 if (eventDWheel < 0) {
-                    scrollY -= Minecraft.getMinecraft().displayHeight / 108
+                    scrollY -= mc.displayHeight / 108
                 } else if (eventDWheel > 0) {
-                    scrollY += Minecraft.getMinecraft().displayHeight / 108
+                    scrollY += mc.displayHeight / 108
                 }
             }
             if (Mouse.isButtonDown(2)) {
