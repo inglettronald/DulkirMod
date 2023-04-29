@@ -76,7 +76,7 @@ object DragonFeatures {
 
 		val curTime = System.currentTimeMillis()
 		dragons.forEach {
-			if (it.spawnTime + 5000 < curTime || isAlive(it.color)) return@forEach
+			if (it.spawnTime + 5000 < curTime || !isAlive(it.color)) return@forEach
 			val timeUntilSpawn = (it.spawnTime + 5000 - curTime) / 1000f
 			val color = when {
 				timeUntilSpawn <= 1 -> "§c"
