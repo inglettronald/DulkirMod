@@ -29,6 +29,7 @@ Settings Command: /dulkir
 - Patch Crimson Isles Memory Leak
   - (This will be removed when hypixel fixes patrols)
 - Option to remove enchant glint on armor (fix for runes)
+- Pitch/Yaw Display (2 decimals)
 
 ### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
@@ -41,6 +42,8 @@ Settings Command: /dulkir
 - Wither/Blood Key Hud Element
 - Dragon Kill Boxes for M7
 - Dragon Spawn Timers for M7
+- Useful Gyro/Decoy waypoints for P5
+- Secret Chime (credit to Aton)
 
 ### Bestiary Related
 - Bestiary Notifications for Ghasts/Zombie Villagers
