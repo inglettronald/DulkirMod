@@ -148,7 +148,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         category = "Dungeons",
         subcategory = "Dungeons"
     )
-    var dragonTimer = true
+    var dragonTimer = false
 
     @Switch(
         name = "Better M7 Dragon Killbox",
@@ -156,7 +156,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         category = "Dungeons",
         subcategory = "Dungeons"
     )
-    var dragonKillBox = true
+    var dragonKillBox = false
 
     @Switch(
         name = "Gyro Waypoints",
@@ -164,7 +164,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         category = "Dungeons",
         subcategory = "Dungeons"
     )
-    var gyroWaypoints = true
+    var gyroWaypoints = false
 
     @Switch(
         name = "Decoy Waypoints",
@@ -172,7 +172,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         category = "Dungeons",
         subcategory = "Dungeons"
     )
-    var decoyWaypoints = true
+    var decoyWaypoints = false
 
     @Switch(
         name = "LB Waypoints",
@@ -180,7 +180,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         category = "Dungeons",
         subcategory = "Dungeons"
     )
-    var lbWaypoints = true
+    var lbWaypoints = false
 
     @Switch(
         name = "Hide Extra Nametags",
