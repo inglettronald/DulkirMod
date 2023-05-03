@@ -5,10 +5,7 @@ import dulkirmod.config.DulkirConfig
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
-import dulkirmod.utils.ContainerNameUtil
-import dulkirmod.utils.TabListUtils
-import dulkirmod.utils.TextUtils
-import dulkirmod.utils.TitleUtils
+import dulkirmod.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -80,6 +77,8 @@ class DulkirMod {
         mcBus.register(DragonFeatures)
         mcBus.register(HideHealerFairy)
         mcBus.register(SecretSounds)
+        mcBus.register(BlazeSlayerFeatures)
+        mcBus.register(WorldRenderUtils)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }

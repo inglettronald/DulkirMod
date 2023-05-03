@@ -85,6 +85,22 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var tooltipSize = 1f
 
     @Switch(
+        name = "Highlight Blaze slayer Minibosses",
+        description = "HITBOXES!",
+        category = "General",
+        subcategory = "Nether"
+    )
+    var minibossHitbox = false
+
+    @Switch(
+        name = "Blaze Slayer Attunement Display",
+        description = "Shows a hit-box to indicate what dagger you should use",
+        category = "General",
+        subcategory = "Nether"
+    )
+    var attunementDisplay = false
+
+    @Switch(
         name = "Hide Healer fairy",
         description = "Now only runs in dungeons lol",
         category = "Dungeons",
