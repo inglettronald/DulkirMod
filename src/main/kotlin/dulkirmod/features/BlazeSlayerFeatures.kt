@@ -11,7 +11,7 @@ import java.awt.Color
 
 object BlazeSlayerFeatures {
 
-    private val minibosses = "(Flare Demon)|(Kindleheart Demon)|(Burningsoul Demon)|(Smoldering Blaze)".toRegex()
+    private val minibosses = "(Flare Demon)|(Kindleheart Demon)|(Burningsoul Demon)".toRegex()
 
     @SubscribeEvent
     fun onRenderLiving(event: RenderLivingEvent.Post<*>) {
