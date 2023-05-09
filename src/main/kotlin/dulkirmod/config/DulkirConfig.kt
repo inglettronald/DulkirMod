@@ -141,6 +141,15 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var cancelArmorGlint = false
 
     @Text(
+        name = "Dynamic Key Command",
+        description = "'/dk help' for more info",
+        category = "Random Beta Features",
+        subcategory = "Random Beta Features",
+        secure = false
+    )
+    var dynamicCommandString = ""
+
+    @Text(
         name = "Throttle Notifier String",
         description = "How do you want to tell people you are throttled?",
         category = "Dungeons",

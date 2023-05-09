@@ -41,18 +41,20 @@ class DulkirMod {
     fun preInit(event: FMLPreInitializationEvent) {
         val directory = File(event.modConfigurationDirectory, "dulkirmod")
         directory.mkdirs()
+        val cch = ClientCommandHandler.instance
 
         // REGISTER COMMANDS HERE        // Help Commands
-        ClientCommandHandler.instance.registerCommand(HelpCommand())
+        cch.registerCommand(HelpCommand())
 
         // General
-        ClientCommandHandler.instance.registerCommand(EnchantRuneCommand())
-        ClientCommandHandler.instance.registerCommand(FairyCommand())
-        ClientCommandHandler.instance.registerCommand(SettingsCommand())
-        ClientCommandHandler.instance.registerCommand(JoinDungeonCommand())
-        ClientCommandHandler.instance.registerCommand(LeapNameCommand())
-        ClientCommandHandler.instance.registerCommand(HurtCamCommand())
-        ClientCommandHandler.instance.registerCommand(FarmingControlSchemeCommand())
+        cch.registerCommand(EnchantRuneCommand())
+        cch.registerCommand(FairyCommand())
+        cch.registerCommand(SettingsCommand())
+        cch.registerCommand(JoinDungeonCommand())
+        cch.registerCommand(LeapNameCommand())
+        cch.registerCommand(HurtCamCommand())
+        cch.registerCommand(FarmingControlSchemeCommand())
+        cch.registerCommand(DynamicKeyCommand())
     }
 
     @Mod.EventHandler
@@ -122,6 +124,9 @@ class DulkirMod {
         if (keyBinds[2].isPressed) {
             FarmingControlSchemeCommand.toggleControls();
         }
+        if (keyBinds[3].isPressed) {
+            TextUtils.sendMessage("/${DulkirConfig.dynamicCommandString}")
+        }
     }
 
     companion object {
@@ -138,7 +143,8 @@ class DulkirMod {
         val keyBinds = arrayOf(
             KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
             KeyBinding("Toggle Selfie Setting", Keyboard.KEY_NONE, "Dulkir Mod"),
-            KeyBinding("Toggle Farming Controls", Keyboard.KEY_NONE, "Dulkir Mod")
+            KeyBinding("Toggle Farming Controls", Keyboard.KEY_NONE, "Dulkir Mod"),
+            KeyBinding("Dynamic Key", Keyboard.KEY_NONE, "Dulkir Mod")
         )
     }
 
