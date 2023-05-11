@@ -695,7 +695,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var witherKeyDisplayHUD: KeyHud = KeyHud()
 
     @HUD(
-        name = "Pitch/Yaw Display",
+        name = "Pitch/Yaw Display in Garden",
         category = "HUD",
         subcategory = "Farming"
     )
@@ -716,6 +716,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Farming"
     )
     var yaw3Decimals = false
+
+    @Switch(
+        name = "Display outside garden",
+        description = "why do you need this",
+        category = "HUD",
+        subcategory = "Farming"
+    )
+    var showYawEverywhere = false
 
     @HUD(
         name = "Garden Info Display",
