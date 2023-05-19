@@ -2,7 +2,7 @@ package dulkirmod.mixins;
 
 import dulkirmod.DulkirMod;
 import dulkirmod.events.EntityRemovedEvent;
-import dulkirmod.features.DragonFeatures;
+import dulkirmod.features.dungeons.DragonFeatures;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;

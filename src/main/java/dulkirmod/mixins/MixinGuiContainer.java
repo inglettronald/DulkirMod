@@ -1,8 +1,8 @@
 package dulkirmod.mixins;
 
-import dulkirmod.features.Croesus;
-import dulkirmod.features.DungeonLeap;
 import dulkirmod.features.ScalableTooltips;
+import dulkirmod.features.dungeons.Croesus;
+import dulkirmod.features.dungeons.DungeonLeap;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;

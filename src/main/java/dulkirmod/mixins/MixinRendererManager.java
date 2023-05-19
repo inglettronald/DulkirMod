@@ -1,6 +1,6 @@
 package dulkirmod.mixins;
 
-import dulkirmod.features.HideHealerFairy;
+import dulkirmod.features.dungeons.HideHealerFairy;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Mixin;
