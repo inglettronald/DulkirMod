@@ -47,6 +47,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var abiCallerID = false
 
     @Switch(
+        name = "View Bobbing Features",
+        description = "Global Toggle, make sure view bobbing is turned on in game settings",
+        category = "General",
+        subcategory = "General"
+    )
+    var bobbingFeatures = false
+
+    @Switch(
         name = "Hurt Cam Slider",
         description = "more or less ouchie",
         category = "General",
@@ -719,7 +727,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
 
     @Switch(
         name = "Display outside garden",
-        description = "why do you need this",
+        description = "Useful for something!",
         category = "HUD",
         subcategory = "Farming"
     )
@@ -756,6 +764,21 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     )
     var visitorInfo = true
 
+    @Switch(
+        name = "Steak Display",
+        description = "Show a hitbox around a mob when it can be 1 shot with Steak",
+        category = "Rift",
+        subcategory = "Vamp Slayer"
+    )
+    var steakDisplay = false
+
+    @Switch(
+        name = "Ichor Highlight",
+        description = "Shows a hitbox around current ichors",
+        category = "Rift",
+        subcategory = "Vamp Slayer"
+    )
+    var ichorHighlight = false
 
 
     fun init() {
