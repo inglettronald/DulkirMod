@@ -5,6 +5,9 @@ import dulkirmod.config.DulkirConfig
 import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
+import dulkirmod.features.dungeons.*
+import dulkirmod.features.rift.IchorHighlight
+import dulkirmod.features.rift.SteakDisplay
 import dulkirmod.utils.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -81,6 +84,8 @@ class DulkirMod {
         mcBus.register(SecretSounds)
         mcBus.register(BlazeSlayerFeatures)
         mcBus.register(WorldRenderUtils)
+        mcBus.register(IchorHighlight)
+        mcBus.register(SteakDisplay)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -132,7 +137,7 @@ class DulkirMod {
     companion object {
         const val MOD_ID = "dulkirmod"
         const val MOD_NAME = "Dulkir Mod"
-        const val MOD_VERSION = "1.2.1"
+        const val MOD_VERSION = "1.2.2"
         const val CHAT_PREFIX = "§f<§3DulkirMod§f>§r"
 
         val mc: Minecraft = Minecraft.getMinecraft()
