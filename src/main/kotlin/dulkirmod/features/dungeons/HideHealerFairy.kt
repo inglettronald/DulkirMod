@@ -1,4 +1,4 @@
-package dulkirmod.features
+package dulkirmod.features.dungeons
 
 
 import dulkirmod.DulkirMod.Companion.config
