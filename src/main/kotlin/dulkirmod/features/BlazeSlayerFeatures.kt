@@ -1,8 +1,6 @@
 package dulkirmod.features
 
-import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
-import dulkirmod.mixins.AccessorRenderManager
 import dulkirmod.utils.TabListUtils
 import dulkirmod.utils.Utils
 import dulkirmod.utils.WorldRenderUtils
