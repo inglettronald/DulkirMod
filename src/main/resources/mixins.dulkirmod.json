@@ -4,12 +4,13 @@
   "package": "dulkirmod.mixins",
   "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
+    "AccessorRenderManager",
     "MixinEntityRenderer",
     "MixinGuiContainer",
     "MixinGuiScreen",
     "MixinItemRenderer",
     "MixinLayerArmorBase",
-    "MixinRendererManager"
+    "MixinRenderManager"
   ],
   "mixins": [
     "MixinEntity",
