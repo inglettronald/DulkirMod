@@ -10,8 +10,6 @@ import net.minecraft.client.renderer.WorldRenderer
 import net.minecraft.client.renderer.entity.RenderManager
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats
 import net.minecraft.util.Vec3
-import net.minecraftforge.client.event.RenderWorldLastEvent
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
@@ -23,7 +21,6 @@ class WorldRenderUtils {
         private val tessellator: Tessellator = Tessellator.getInstance()
         private val worldRenderer: WorldRenderer = tessellator.worldRenderer
         private val renderManager: RenderManager = mc.renderManager
-        var partialTicks: Float = 0f
         fun renderString(
             location: Vec3,
             text: String,
@@ -175,11 +172,6 @@ class WorldRenderUtils {
             GlStateManager.enableDepth()
 
             GlStateManager.popMatrix()
-        }
-
-        @SubscribeEvent
-        fun grabPartialTicks(event: RenderWorldLastEvent) {
-            this.partialTicks = event.partialTicks
         }
 
         fun getRenderX() : Double {
