@@ -39,6 +39,7 @@ import kotlin.coroutines.EmptyCoroutineContext
 class DulkirMod {
 
     var lastLongUpdate: Long = 0
+    var lastLongerUpdate: Long = 0
 
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
@@ -116,6 +117,11 @@ class DulkirMod {
             TabListUtils.parseTabEntries()
             DragonFeatures.updateDragonDead()
             lastLongUpdate = currTime
+        }
+
+        if (currTime - lastLongerUpdate > 5000) { // longer update
+            MemoryLeakFix.clearBlankStands()
+            lastLongerUpdate = currTime
         }
     }
 
