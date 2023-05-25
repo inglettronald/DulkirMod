@@ -34,12 +34,13 @@ object MemoryLeakFix {
 	}
 
 	fun clearBlankStands() {
+		if (!DulkirConfig.blankStandRemoval) return
 		val world = mc.theWorld ?: return
 		val currentEnts = world.loadedEntityList
 		currentEnts.forEach {
-			if (it !is EntityArmorStand) return
-			if (it.name != "Armor Stand") return
-			if (it.inventory.any{slot -> slot != null}) return
+			if (it !is EntityArmorStand) return@forEach
+			if (it.name != "Armor Stand") return@forEach
+			if (it.inventory.any{slot -> slot != null}) return@forEach
 			world.removeEntityFromWorld(it.entityId)
 		}
 	}
