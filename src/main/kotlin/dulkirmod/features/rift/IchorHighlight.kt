@@ -19,12 +19,10 @@ object IchorHighlight {
         if (TabListUtils.area != "The Rift") return
         val entity = event.entity
 
-        val x =
-            entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * WorldRenderUtils.partialTicks
-        val y =
-            entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * WorldRenderUtils.partialTicks
-        val z =
-            entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * WorldRenderUtils.partialTicks
+        val newPos = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
+        val x = newPos[0]
+        val y = newPos[1] + 3
+        val z = newPos[2]
 
         if (entity is EntityArmorStand) {
             if (entity.getEquipmentInSlot(4) != null && entity.getEquipmentInSlot(4).item === Items.skull) {

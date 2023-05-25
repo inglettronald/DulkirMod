@@ -19,17 +19,15 @@ object SteakDisplay {
 
         if (event.entity is EntityArmorStand && event.entity.hasCustomName()) {
             val name = Utils.stripColorCodes(event.entity.customNameTag)
-            val x =
-                event.entity.lastTickPosX + (event.entity.posX - event.entity.lastTickPosX) * WorldRenderUtils.partialTicks
-            val y =
-                event.entity.lastTickPosY + (event.entity.posY - event.entity.lastTickPosY) * WorldRenderUtils.partialTicks
-            val z =
-                event.entity.lastTickPosZ + (event.entity.posZ - event.entity.lastTickPosZ) * WorldRenderUtils.partialTicks
-            if (name.contains(char)) {
+            val newPos = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
+            val x = newPos[0]
+            val y = newPos[1]
+            val z = newPos[2]
+            if (name.contains(char) && name.contains("Vampire Boss")) {
                 WorldRenderUtils.drawCustomBox(
                     x - .5,
                     1.0,
-                    y - 2,
+                    y - 1.5,
                     1.5,
                     z - .5,
                     1.0,

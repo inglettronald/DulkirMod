@@ -1,6 +1,7 @@
 package dulkirmod.utils
 
 import dulkirmod.DulkirMod.Companion.mc
+import dulkirmod.mixins.AccessorRenderManager
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.GlStateManager.disableTexture2D
 import net.minecraft.client.renderer.GlStateManager.enableTexture2D
@@ -179,6 +180,22 @@ class WorldRenderUtils {
         @SubscribeEvent
         fun grabPartialTicks(event: RenderWorldLastEvent) {
             this.partialTicks = event.partialTicks
+        }
+
+        fun getRenderX() : Double {
+            return (mc.renderManager as AccessorRenderManager).renderX
+        }
+
+        fun getRenderY() : Double {
+            return (mc.renderManager as AccessorRenderManager).renderY
+        }
+
+        fun getRenderZ() : Double {
+            return (mc.renderManager as AccessorRenderManager).renderZ
+        }
+
+        fun fixRenderPos(x: Double, y: Double, z: Double) : Array<Double> {
+            return arrayOf(x + getRenderX(), y + getRenderY(), z + getRenderZ())
         }
     }
 }
