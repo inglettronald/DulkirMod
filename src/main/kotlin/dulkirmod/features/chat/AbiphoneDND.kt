@@ -24,7 +24,7 @@ object AbiphoneDND {
 
 	fun handle(event: ClientChatReceivedEvent, unformatted: String) {
 		if (!DulkirConfig.abiDND) return
-		if (unformatted matches abiphoneFormat) {
+		if (unformatted matches abiphoneFormat && !unformatted.contains("Elle") && !unformatted.contains("Dean")) {
 			val matchResult = abiphoneFormat.find(unformatted)
 			event.isCanceled = true
 			lastRing = System.currentTimeMillis()
