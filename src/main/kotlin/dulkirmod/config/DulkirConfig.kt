@@ -23,6 +23,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var crimsonIslesMemoryLeakPatch = true
 
     @Switch(
+        name = "Remove Useless Armor Stands",
+        description = "Another hypixel issue, should be a significant fps boost in relevant scenarios.",
+        category = "General",
+        subcategory = "General"
+    )
+    var blankStandRemoval = true
+
+    @Switch(
         name = "Hide Enchant Rune Particles",
         description = "ugly go bye-bye",
         category = "General",
@@ -45,22 +53,6 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "General"
     )
     var abiCallerID = false
-
-    @Switch(
-        name = "View Bobbing Features",
-        description = "Global Toggle, make sure view bobbing is turned on in game settings",
-        category = "General",
-        subcategory = "General"
-    )
-    var bobbingFeatures = false
-
-    @Switch(
-        name = "Hurt Cam Slider",
-        description = "more or less ouchie",
-        category = "General",
-        subcategory = "General"
-    )
-    var hurtCamSlider = false
 
     @Slider(
         name = "Hurt Cam Intensity",
