@@ -87,6 +87,7 @@ class DulkirMod {
         mcBus.register(WorldRenderUtils)
         mcBus.register(IchorHighlight)
         mcBus.register(SteakDisplay)
+        mcBus.register(StarredMobBoxes)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }

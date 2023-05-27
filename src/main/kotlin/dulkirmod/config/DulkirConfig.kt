@@ -31,6 +31,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var blankStandRemoval = true
 
     @Switch(
+        name = "Debug Armor stands",
+        description = "Another hypixel issue, should be a significant fps boost in relevant scenarios.",
+        category = "General",
+        subcategory = "General"
+    )
+    var debugStandRemoval = false
+
+    @Switch(
         name = "Hide Enchant Rune Particles",
         description = "ugly go bye-bye",
         category = "General",
@@ -115,6 +123,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         subcategory = "Dungeons"
     )
     var hideHeartParticles = false
+
+    @Switch(
+        name = "Starred Mob Boxes",
+        description = "Self Explanatory, NOT esp",
+        category = "Dungeons",
+        subcategory = "Dungeons"
+    )
+    var starredBoxes = false
 
     @Switch(
         name = "Throttle Notifier",
