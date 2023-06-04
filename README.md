@@ -9,7 +9,7 @@ as I have.
 [![downloads](https://img.shields.io/github/downloads/inglettronald/DulkirMod/total?style=for-the-badge)](https://github.com/inglettronald/DulkirMod)
 
 
-NEU and Skytils were great example mods to look for guidance from specifically, as well.
+[NEU](https://github.com/Moulberry/NotEnoughUpdates) and [Skytils](https://github.com/Skytils/SkytilsMod) were great example mods to look for guidance from, specifically for some utility functions, as well.
 
 Settings Command: /dulkir
 
