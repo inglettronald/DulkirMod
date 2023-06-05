@@ -36,5 +36,7 @@ object ChatEvent {
 
         // Key Hud Element
         DungeonKeyDisplay.handle(unformatted)
+
+        DoubleHookDing.handle(event, unformatted)
     }
 }
