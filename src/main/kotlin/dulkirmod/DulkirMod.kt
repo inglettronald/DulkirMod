@@ -28,6 +28,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent
 import org.lwjgl.input.Keyboard
 import java.io.File
+import java.lang.management.ManagementFactory
 import kotlin.coroutines.EmptyCoroutineContext
 
 @Mod(
