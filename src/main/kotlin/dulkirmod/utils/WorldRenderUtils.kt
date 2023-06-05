@@ -174,20 +174,20 @@ class WorldRenderUtils {
             GlStateManager.popMatrix()
         }
 
-        fun getRenderX() : Double {
+        private fun getRenderX() : Double {
             return (mc.renderManager as AccessorRenderManager).renderX
         }
 
-        fun getRenderY() : Double {
+        private fun getRenderY() : Double {
             return (mc.renderManager as AccessorRenderManager).renderY
         }
 
-        fun getRenderZ() : Double {
+        private fun getRenderZ() : Double {
             return (mc.renderManager as AccessorRenderManager).renderZ
         }
 
-        fun fixRenderPos(x: Double, y: Double, z: Double) : Array<Double> {
-            return arrayOf(x + getRenderX(), y + getRenderY(), z + getRenderZ())
+        fun fixRenderPos(x: Double, y: Double, z: Double) : Triple<Double, Double, Double> {
+            return Triple(x + getRenderX(), y + getRenderY(), z + getRenderZ())
         }
     }
 }

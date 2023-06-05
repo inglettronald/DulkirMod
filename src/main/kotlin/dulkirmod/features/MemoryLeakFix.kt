@@ -48,28 +48,4 @@ object MemoryLeakFix {
 			world.removeEntityFromWorld(it.entityId)
 		}
 	}
-
-	@SubscribeEvent
-	fun displayBlankStands(event: RenderLivingEvent.Post<*>) {
-		if (!DulkirConfig.debugStandRemoval) return
-		if (event.entity !is EntityArmorStand) return
-		if (event.entity.hasCustomName()) return
-		if (event.entity.inventory.any{slot -> slot != null}) return
-		val pos = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
-		val x = pos[0]
-		val y = pos[1]
-		val z = pos[2]
-
-		WorldRenderUtils.drawCustomBox(
-			x - .5,
-			1.0,
-			y - .5,
-			1.0,
-			z - .5,
-			1.0,
-			Color(15, 247, 236, 255),
-			3f,
-			phase = true
-		)
-	}
 }

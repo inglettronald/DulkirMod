@@ -19,10 +19,7 @@ object SteakDisplay {
 
         if (event.entity is EntityArmorStand && event.entity.hasCustomName()) {
             val name = Utils.stripColorCodes(event.entity.customNameTag)
-            val newPos = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
-            val x = newPos[0]
-            val y = newPos[1]
-            val z = newPos[2]
+            val (x, y, z) = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
             if (name.contains(char) && name.contains("Vampire Boss")) {
                 WorldRenderUtils.drawCustomBox(
                     x - .5,
