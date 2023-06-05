@@ -19,7 +19,7 @@ object IchorHighlight {
         if (TabListUtils.area != "The Rift") return
         val entity = event.entity
 
-        val (x, y, z) = WorldRenderUtils.fixRenderPos(event.x, event.y + 3, event.z)
+        val (x, y, z) = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
 
         if (entity is EntityArmorStand) {
             if (entity.getEquipmentInSlot(4) != null && entity.getEquipmentInSlot(4).item === Items.skull) {
@@ -35,7 +35,7 @@ object IchorHighlight {
                                 WorldRenderUtils.drawCustomBox(
                                     x - .5,
                                     1.0,
-                                    y - 2,
+                                    y + 1,
                                     1.0,
                                     z - .5,
                                     1.0,

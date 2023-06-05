@@ -1,6 +1,6 @@
 {
-  "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
   "package": "dulkirmod.mixins",
   "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
@@ -10,9 +10,7 @@
     "MixinGuiScreen",
     "MixinItemRenderer",
     "MixinLayerArmorBase",
-    "MixinRenderManager"
-  ],
-  "mixins": [
+    "MixinRenderManager",
     "MixinEntity",
     "MixinEntityLivingBase",
     "MixinGuiUtils",

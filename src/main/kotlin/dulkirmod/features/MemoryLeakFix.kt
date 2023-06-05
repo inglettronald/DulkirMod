@@ -2,13 +2,10 @@ package dulkirmod.features
 
 import dulkirmod.DulkirMod.Companion.mc
 import dulkirmod.config.DulkirConfig
-import dulkirmod.utils.WorldRenderUtils
 import net.minecraft.entity.Entity
 import net.minecraft.entity.item.EntityArmorStand
-import net.minecraftforge.client.event.RenderLivingEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
-import java.awt.Color
 
 object MemoryLeakFix {
 	private var lastClear = System.currentTimeMillis()
