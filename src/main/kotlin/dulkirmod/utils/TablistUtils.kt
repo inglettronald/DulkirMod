@@ -3,6 +3,7 @@ package dulkirmod.utils
 import com.google.common.collect.ComparisonChain
 import com.google.common.collect.Ordering
 import dulkirmod.DulkirMod.Companion.mc
+import dulkirmod.config.DulkirConfig
 import net.minecraft.client.network.NetworkPlayerInfo
 import net.minecraft.world.WorldSettings
 
@@ -18,6 +19,7 @@ object TabListUtils {
     var gardenMilestone: String = ""
     var timeTillNextVisitor: String = ""
     var numVisitors: Int = 0
+    var archerName: String = ""
 
     private val playerInfoOrdering = object : Ordering<NetworkPlayerInfo>() {
         override fun compare(p_compare_1_: NetworkPlayerInfo?, p_compare_2_: NetworkPlayerInfo?): Int {
@@ -84,9 +86,16 @@ object TabListUtils {
                     numVisitors = line.substring(11, 12).toInt() // TODO: FIX WHEN THEY ADD THE TENTH VISITOR
                     numVisitorsFlag = true
                 }
+                line.contains("(Archer") -> {
+                    val strArr = line.split(" ")
+                    archerName = strArr[1]
+                }
             }
         }
 
+        if (area != "Dungeon") {
+            archerName = ""
+        }
         if (area != "Crimson Isle") {
             explosivity = false
         }
