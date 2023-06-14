@@ -1,6 +1,6 @@
+
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     idea
@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.example.archloomtemplate"
-version = "1.2.2"
+version = "1.2.3"
 
 // Toolchains:
 java {
