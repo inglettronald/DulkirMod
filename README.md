@@ -26,10 +26,13 @@ Settings Command: /dulkir
 - Bridge Bot Formatter
 - Scalable Tooltips/Scrollable Tooltips
   - (intended to replace and improve sk1er's)
-- Patch Crimson Isles Memory Leak
-  - (This will be removed when hypixel fixes patrols)
+- Patch Crimson Isles Memory Leak (Deprecated, will be removed in next version)
+- Perfomance option of Blank Armor Stand Removal
+ - this is motivated due to some more hypixel related performance issues, should improve performance in Arachne and Eman
 - Option to remove enchant glint on armor (fix for runes)
 - Pitch/Yaw Display (2 decimals)
+- "Dynamic Key" feature for quick Chat Macro Swapping
+   - run /dk help for more info
 
 ### Dungeon Features
 - Nametag cleaner for misc. dungeon stuff that is non-starred (Specifically missed by skytils)
@@ -45,6 +48,12 @@ Settings Command: /dulkir
 - Useful Gyro/Decoy waypoints for P5
 - Secret Chime (credit to Aton)
 
+### Slayer Features
+- Blaze Slayer attunement display boxes (should be reliable)
+- Blaze Slayer miniboss highlight
+- Steak Display for Vampire Slayer (lets you know when steak can finish off boss)
+- Blood Ichor highlight for Vampire Slayer T5
+  
 ### Bestiary Related
 - Bestiary Notifications for Ghasts/Zombie Villagers
 - Notification when hype breaks and stops giving combat xp
@@ -52,4 +61,4 @@ Settings Command: /dulkir
 - Arachne Boss Kill timer
 - Arachne Boss Spawn countdown
 - Matcho Alerts!
-- Arachne Keeper features
+- Arachne Keeper features\
