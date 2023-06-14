@@ -29,18 +29,19 @@ object BlazeSlayerFeatures {
             if (event.entity is EntityArmorStand && event.entity.hasCustomName()) {
                 val name = Utils.stripColorCodes(event.entity.customNameTag)
                 val (x, y, z) = WorldRenderUtils.fixRenderPos(event.x, event.y, event.z)
-                val color = phaseColors.firstOrNull { name.contains(it.first) }?.second ?: return
-                WorldRenderUtils.drawCustomBox(
-                    x - 0.5,
-                    1.0,
-                    y - 2,
-                    1.5,
-                    z - 0.5,
-                    1.0,
-                    color,
-                    3f,
-                    phase = false
-                )
+                val color = phaseColors.firstOrNull { name.contains(it.first) }?.second
+                if (color != null)
+                    WorldRenderUtils.drawCustomBox(
+                        x - 0.5,
+                        1.0,
+                        y - 2,
+                        1.5,
+                        z - 0.5,
+                        1.0,
+                        color,
+                        3f,
+                        phase = false
+                    )
             }
         }
 

@@ -32,7 +32,7 @@ object ReaperDisplay {
     }
 
     @SubscribeEvent
-    fun onWorldLoad(event: WorldEvent) {
+    fun onWorldLoad(event: WorldEvent.Load) {
         lastReaperUsage = 0L
     }
 
