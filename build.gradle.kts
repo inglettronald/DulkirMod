@@ -29,7 +29,6 @@ loom {
             property("asmhelper.verbose", "true")
             arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
             arg("--mixin", "mixins.dulkirmod.json")
-            arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
         }
     }
     forge {
@@ -72,13 +71,12 @@ dependencies {
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
-    shadowImpl("gg.essential:loader-launchwrapper:1.1.3")
 
     // If you don't want mixins, remove these lines
-    compileOnly("org.spongepowered:mixin:0.8.5-SNAPSHOT") {
+    compileOnly("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
         isTransitive = false
     }
-    annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
+    annotationProcessor("net.fabricmc:sponge-mixin:0.11.4+mixin.0.8.5")
 
     // If you don't want to log in with your real minecraft account, remove this line
     runtimeOnly("me.djtheredstoner:DevAuth-forge-legacy:1.1.0")
