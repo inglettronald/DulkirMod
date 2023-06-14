@@ -79,6 +79,22 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var hideEnchantRune = false
 
     @Switch(
+        name = "Reaper Armor Cooldown Display",
+        description = "Will show as item durability",
+        category = "General",
+        subcategory = "General"
+    )
+    var displayReaperCD = false
+
+    @Switch(
+        name = "Wither Impact Cooldown Display",
+        description = "Will show as item durability",
+        category = "General",
+        subcategory = "General"
+    )
+    var displayImpactCD = false
+
+    @Switch(
         name = "Abiphone Do-Not-Disturb",
         description = "Detects incoming calls and mutes ring audio for like 5 seconds. \nWorks as long as u don't lag particularly hard at the same time you're being called.",
         category = "General",
@@ -834,6 +850,6 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         addDependency("persistentAlert", "notifyMaxVisitors")
         addDependency("secretSoundVolume", "secretClickSounds")
         addDependency("demoSecretVolume", "secretClickSounds")
-        addDependency("boxArcherEverywhere", "boxArcher")
+        addDependency("archerBoxEverywhere", "archerBox")
     }
 }

@@ -10,8 +10,6 @@ import dulkirmod.features.rift.IchorHighlight
 import dulkirmod.features.rift.SteakDisplay
 import dulkirmod.utils.*
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.settings.KeyBinding
@@ -20,7 +18,6 @@ import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.client.registry.ClientRegistry
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
-import net.minecraftforge.fml.common.event.FMLLoadCompleteEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent
@@ -28,7 +25,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent
 import org.lwjgl.input.Keyboard
 import java.io.File
-import java.lang.management.ManagementFactory
 import kotlin.coroutines.EmptyCoroutineContext
 
 @Mod(
@@ -89,13 +85,10 @@ class DulkirMod {
         mcBus.register(IchorHighlight)
         mcBus.register(SteakDisplay)
         mcBus.register(ArcherHighlight)
+        mcBus.register(ReaperDisplay)
+        mcBus.register(ImpactDisplay)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
-    }
-
-    @Mod.EventHandler
-    fun postInit(event: FMLLoadCompleteEvent) = scope.launch(Dispatchers.IO) {
-
     }
 
     @SubscribeEvent

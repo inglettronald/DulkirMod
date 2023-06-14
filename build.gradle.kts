@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.ir.backend.js.compile
 
 plugins {
     idea
@@ -28,6 +29,7 @@ loom {
             property("asmhelper.verbose", "true")
             arg("--tweakClass", "cc.polyfrost.oneconfig.loader.stage0.LaunchWrapperTweaker")
             arg("--mixin", "mixins.dulkirmod.json")
+            arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
         }
     }
     forge {
@@ -70,9 +72,10 @@ dependencies {
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
+    shadowImpl("gg.essential:loader-launchwrapper:1.1.3")
 
     // If you don't want mixins, remove these lines
-    shadowImpl("org.spongepowered:mixin:0.7.11-SNAPSHOT") {
+    compileOnly("org.spongepowered:mixin:0.8.5-SNAPSHOT") {
         isTransitive = false
     }
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
@@ -84,7 +87,6 @@ dependencies {
     compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.0-alpha+") // Should not be included in jar
     // include should be replaced with a configuration that includes this in the jar
     shadowImpl("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+") // Should be included in jar
-
 }
 
 // Configures our shadow/shade configuration, so we can
