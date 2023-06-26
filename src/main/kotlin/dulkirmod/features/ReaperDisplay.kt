@@ -1,8 +1,8 @@
 package dulkirmod.features
 
+import dulkirmod.events.AlwaysPlaySoundEvent
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
-import net.minecraftforge.client.event.sound.PlaySoundEvent
 import net.minecraftforge.event.world.WorldEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable
@@ -25,7 +25,7 @@ object ReaperDisplay {
     }
 
     @SubscribeEvent
-    fun onSound(event: PlaySoundEvent) {
+    fun onSound(event: AlwaysPlaySoundEvent) {
         if (event.name != "mob.zombie.remedy") return
         if (event.sound.pitch != 1.0f) return
         if (event.sound.volume != .5f) return

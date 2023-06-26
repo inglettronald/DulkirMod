@@ -1,21 +1,22 @@
 {
   "compatibilityLevel": "JAVA_8",
-  "minVersion": "0.8",
+  "minVersion": "0.6",
   "package": "dulkirmod.mixins",
   "refmap": "mixins.dulkirmod.refmap.json",
   "client": [
     "AccessorRenderManager",
+    "MixinEntity",
+    "MixinEntityLivingBase",
     "MixinEntityRenderer",
     "MixinGuiContainer",
     "MixinGuiScreen",
-    "MixinItemRenderer",
-    "MixinLayerArmorBase",
-    "MixinRenderManager",
-    "MixinEntity",
-    "MixinEntityLivingBase",
     "MixinGuiUtils",
     "MixinItem",
+    "MixinItemRenderer",
+    "MixinLayerArmorBase",
     "MixinOldAnimations",
+    "MixinRenderManager",
+    "MixinSoundManager",
     "MixinWorld"
   ]
 }
