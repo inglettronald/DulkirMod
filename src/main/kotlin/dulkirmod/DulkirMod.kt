@@ -6,6 +6,7 @@ import dulkirmod.events.ChatEvent
 import dulkirmod.features.*
 import dulkirmod.features.chat.AbiphoneDND
 import dulkirmod.features.dungeons.*
+import dulkirmod.features.rift.EffigyWaypoint
 import dulkirmod.features.rift.IchorHighlight
 import dulkirmod.features.rift.SteakDisplay
 import dulkirmod.utils.*
@@ -87,6 +88,7 @@ class DulkirMod {
         mcBus.register(ArcherHighlight)
         mcBus.register(ReaperDisplay)
         mcBus.register(ImpactDisplay)
+        mcBus.register(EffigyWaypoint)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
@@ -111,6 +113,7 @@ class DulkirMod {
             // the data structure on 1s cooldown
             TabListUtils.parseTabEntries()
             DragonFeatures.updateDragonDead()
+            EffigyWaypoint.checkEffigies()
             lastLongUpdate = currTime
         }
 

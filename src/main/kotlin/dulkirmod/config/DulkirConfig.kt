@@ -836,6 +836,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     )
     var ichorHighlight = false
 
+    @Switch(
+        name = "Inactive Effigy Waypoint",
+        description = "Useful for learning/remembering where the effigies are in relation to the scoreboard position",
+        category = "Rift",
+        subcategory = "Vamp Slayer"
+    )
+    var effigyWaypoint = false
+
 
     fun init() {
         initialize()
