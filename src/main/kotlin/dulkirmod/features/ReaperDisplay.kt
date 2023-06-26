@@ -10,7 +10,8 @@ import kotlin.math.min
 
 object ReaperDisplay {
 
-    var lastReaperUsage = 0L
+    private var lastReaperUsage = 0L
+    private val reaperRegex = "(REAPER_CHESTPLATE)|(REAPER_LEGGINGS)|(REAPER_BOOTS)".toRegex()
 
     fun shouldDisplay(stack: ItemStack, cir: CallbackInfoReturnable<Boolean>) {
         if (!isReaper(stack)) return
@@ -43,7 +44,7 @@ object ReaperDisplay {
                 val ea: NBTTagCompound = tag.getCompoundTag("ExtraAttributes")
                 if (ea.hasKey("id", 8)) {
                     val id = ea.getString("id")
-                    return id matches "(REAPER_CHESTPLATE)|(REAPER_LEGGINGS)|(REAPER_BOOTS)".toRegex()
+                    return id matches reaperRegex
                 }
             }
         }

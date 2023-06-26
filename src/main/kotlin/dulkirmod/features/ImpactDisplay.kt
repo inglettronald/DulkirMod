@@ -10,7 +10,8 @@ import kotlin.math.min
 
 object ImpactDisplay {
 
-    var lastImpact = 0L
+    private var lastImpact = 0L
+    private val bladeRegex = "(HYPERION|ASTRAEA|SCYLLA|VALKYRIE)".toRegex()
 
     fun shouldDisplay(stack: ItemStack, cir: CallbackInfoReturnable<Boolean>) {
         if (!isBlade(stack)) return
@@ -43,7 +44,7 @@ object ImpactDisplay {
                 val ea: NBTTagCompound = tag.getCompoundTag("ExtraAttributes")
                 if (ea.hasKey("id", 8)) {
                     val id = ea.getString("id")
-                    return id matches "(HYPERION|ASTRAEA|SCYLLA|VALKYRIE)".toRegex()
+                    return id matches bladeRegex
                 }
             }
         }
