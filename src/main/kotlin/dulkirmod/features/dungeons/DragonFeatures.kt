@@ -62,7 +62,7 @@ object DragonFeatures {
 
 		val particleVec = Vec3(x, y, z)
 		dragons.forEach {
-			if (System.currentTimeMillis() - it.spawnTime < 10000 || !inRangeOf(it.color, particleVec)) return@forEach
+			if (System.currentTimeMillis() - it.spawnTime < 7000 || !inRangeOf(it.color, particleVec)) return@forEach
 			it.spawnTime = System.currentTimeMillis()
 		}
 	}

@@ -14,10 +14,10 @@ object BlazeSlayerFeatures {
     private val minibosses = "(Flare Demon)|(Kindleheart Demon)|(Burningsoul Demon)".toRegex()
 
     private val phaseColors = listOf(
-        "CRYSTAL ♨" to Color(15, 247, 236, 200),
-        "ASHEN ♨" to Color(40, 40, 40, 200),
-        "AURIC ♨" to Color(206, 219, 57, 200),
-        "SPIRIT ♨" to Color(255, 255, 255, 200)
+        "CRYSTAL ♨" to Color(15, 247, 236, 255),
+        "ASHEN ♨" to Color(0, 0, 0, 255),
+        "AURIC ♨" to Color(206, 219, 57, 255),
+        "SPIRIT ♨" to Color(255, 255, 255, 255)
     )
 
     @SubscribeEvent

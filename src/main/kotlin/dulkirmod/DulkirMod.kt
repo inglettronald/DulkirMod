@@ -57,6 +57,7 @@ class DulkirMod {
         cch.registerCommand(HurtCamCommand())
         cch.registerCommand(FarmingControlSchemeCommand())
         cch.registerCommand(DynamicKeyCommand())
+        cch.registerCommand(ResetSlayerTracker())
     }
 
     @Mod.EventHandler
@@ -89,6 +90,7 @@ class DulkirMod {
         mcBus.register(ReaperDisplay)
         mcBus.register(ImpactDisplay)
         mcBus.register(EffigyWaypoint)
+        mcBus.register(SlayerTrackerUtil)
 
         keyBinds.forEach(ClientRegistry::registerKeyBinding)
     }
