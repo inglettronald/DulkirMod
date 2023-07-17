@@ -116,6 +116,7 @@ class DulkirMod {
             TabListUtils.parseTabEntries()
             DragonFeatures.updateDragonDead()
             EffigyWaypoint.checkEffigies()
+            SlayerTrackerUtil.updateSessionTime()
             lastLongUpdate = currTime
         }
 

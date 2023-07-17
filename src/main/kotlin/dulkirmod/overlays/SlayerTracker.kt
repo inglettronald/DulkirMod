@@ -5,7 +5,9 @@ import dulkirmod.utils.SlayerTrackerUtil.averageBossesPerHour
 import dulkirmod.utils.SlayerTrackerUtil.averageSpawnKillTime
 import dulkirmod.utils.SlayerTrackerUtil.averageXPPerHour
 import dulkirmod.utils.SlayerTrackerUtil.currentSlayerType
+import dulkirmod.utils.SlayerTrackerUtil.sessionTime
 import dulkirmod.utils.SlayerTrackerUtil.sessionXP
+import dulkirmod.utils.Utils
 import java.text.NumberFormat
 
 class SlayerTracker : TextHud(false) {
@@ -21,6 +23,7 @@ class SlayerTracker : TextHud(false) {
             lines?.add("Average Spawn + Kill Time: ${"%.2f".format(averageSpawnKillTime)}s")
             lines?.add("Average Bosses Per Hour: ${"%.1f".format(averageBossesPerHour)}")
             lines?.add("Average XP Per Hour: ${NumberFormat.getInstance().format(averageXPPerHour)}")
+            lines?.add("Session Timer: ${Utils.formatTime(sessionTime)}")
         }
     }
 }

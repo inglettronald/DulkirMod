@@ -61,4 +61,53 @@ object Utils {
 	fun getColorString(int: Int): String {
 		return if (int == 16) "§z" else EnumChatFormatting.values()[int].toString()
 	}
+
+	/**
+	 * method that takes an amount of time described by a millisecond amount and translates it to a readable string.
+	 */
+	fun formatTime(millisAmount: Long, includeSubSeconds: Boolean = false): String {
+		if (millisAmount < 0)
+			return ""
+		val sb: StringBuilder = StringBuilder()
+		var millis = millisAmount
+
+		if (millis / (3600 * 1000) >= 1) {
+			val hours: Long = millisAmount / (3600 * 1000)
+			sb.append("$hours:")
+			millis -= (hours * 3600 * 1000)
+		}
+		if (millis / (60 * 1000) >= 1) {
+			val minutes = millis / (60 * 1000)
+			if (sb.isNotEmpty() && minutes < 10) {
+				sb.append(0)
+			}
+			sb.append("$minutes:")
+			millis -= (minutes * 60 * 1000)
+		} else if (sb.isNotEmpty()) {
+			sb.append("00:")
+		}
+
+		if (millis / 1000 >= 1) {
+			val seconds = millis / 1000
+			if (sb.isNotEmpty() && seconds < 10) {
+				sb.append(0)
+			}
+			sb.append(seconds)
+			millis -= (seconds * 1000)
+		} else if (sb.isNotEmpty()) {
+			sb.append("00")
+		}
+
+		if (includeSubSeconds) {
+			sb.append('.')
+			if (millis < 100) {
+				sb.append(0)
+				if (millis < 10) {
+					sb.append(0)
+				}
+			}
+			sb.append("$millis")
+		}
+		return sb.toString()
+	}
 }

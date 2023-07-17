@@ -15,8 +15,11 @@ object SlayerTrackerUtil {
     var averageXPPerHour: Int = 0
     var currentSlayerType: String = ""
     private var lastKillTime = 0L
+    var sessionTime: Long = 0L
+    var failedRecentSlayerFlag = false
 
     val slayerQuestStartRegex = "» Slay (\\d{1,3}(?:,\\d{3})*) Combat XP worth of (\\w+).".toRegex()
+    val slayerQuestFailRegex = "SLAYER QUEST FAILED!".toRegex()
     @SubscribeEvent
     fun onSlayerTypeChange(event: SlayerTypeChangeEvent) {
         // reset relevant tracking features
@@ -26,6 +29,9 @@ object SlayerTrackerUtil {
         averageXPPerHour = 0
         sessionStartTime = System.currentTimeMillis()
         lastKillTime = sessionStartTime
+        sessionTime = 0L
+        currentSlayerType = ""
+        failedRecentSlayerFlag = false
     }
 
     @SubscribeEvent(receiveCanceled = true, priority = EventPriority.LOW)
@@ -34,6 +40,11 @@ object SlayerTrackerUtil {
             return
         }
         val unformatted = Utils.stripColorCodes(event.message.unformattedText).trim()
+        if (unformatted matches slayerQuestFailRegex) {
+            failedRecentSlayerFlag = true
+            return
+        }
+
         if (unformatted matches slayerQuestStartRegex) {
             val type = slayerQuestStartRegex.find(unformatted)?.groupValues?.get(2)
             if (type == null) {
@@ -46,6 +57,11 @@ object SlayerTrackerUtil {
                 return
             }
 
+            if (failedRecentSlayerFlag) {
+                failedRecentSlayerFlag = false
+                return
+            }
+
             sessionXP += DulkirConfig.slayerXP
             val totalBosses = sessionXP/DulkirConfig.slayerXP
 
@@ -54,5 +70,10 @@ object SlayerTrackerUtil {
             averageBossesPerHour = 3600 / averageSpawnKillTime
             averageXPPerHour = (averageBossesPerHour * 500).toInt()
         }
+    }
+
+    fun updateSessionTime() {
+        if (currentSlayerType != "")
+        sessionTime = System.currentTimeMillis() - sessionStartTime
     }
 }
