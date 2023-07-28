@@ -753,6 +753,14 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     )
     var cancelReequip = false
 
+    @Switch(
+        name = "Show re-equip animation when changing slots",
+        description = "Will overwrite \"Turn off re-equip animation\" when switching the slot.",
+        category = "Animations",
+        subcategory = "Fixes"
+    )
+    var showReEquipAnimationWhenChangingSlots = true
+
     @HUD(
         name = "Wither Key Display",
         category = "HUD",
@@ -877,5 +885,6 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         addDependency("secretSoundVolume", "secretClickSounds")
         addDependency("demoSecretVolume", "secretClickSounds")
         addDependency("archerBoxEverywhere", "archerBox")
+        addDependency("showReEquipAnimationWhenChangingSlots", "cancelReequip")
     }
 }
