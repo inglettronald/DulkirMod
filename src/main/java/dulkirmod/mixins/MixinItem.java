@@ -16,8 +16,12 @@ public class MixinItem {
 
     @Inject(method = "shouldCauseReequipAnimation", at = @At("HEAD"), cancellable = true, remap = false)
     public void overrideReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged, CallbackInfoReturnable<Boolean> ci) {
-        if (DulkirMod.Companion.getConfig().getCancelReequip())
+        if (DulkirMod.Companion.getConfig().getCancelReequip()) {
+            if (slotChanged && DulkirMod.Companion.getConfig().getShowReEquipAnimationWhenChangingSlots()) {
+                return;
+            }
             ci.setReturnValue(false);
+        }
     }
 
     @Inject(method = "showDurabilityBar(Lnet/minecraft/item/ItemStack;)Z", at = @At("HEAD"),
