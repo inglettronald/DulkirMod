@@ -48,7 +48,7 @@ object Croesus {
 
 				val tagList: NBTTagList = stack.getSubCompound("display", false)?.getTagList("Lore", 8) ?: continue
 				for (j in 0 until tagList.tagCount()) {
-					if (tagList.getStringTagAt(j) == "§aChests have been opened!") boolArray[i - 9] = true
+					if (tagList.getStringTagAt(j) == "§aNo more Chests to open!") boolArray[i - 9] = true
 				}
 			}
 		}
