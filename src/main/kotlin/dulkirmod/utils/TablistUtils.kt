@@ -3,18 +3,13 @@ package dulkirmod.utils
 import com.google.common.collect.ComparisonChain
 import com.google.common.collect.Ordering
 import dulkirmod.DulkirMod.Companion.mc
-import dulkirmod.config.DulkirConfig
 import net.minecraft.client.network.NetworkPlayerInfo
-import net.minecraft.world.WorldSettings
 import net.minecraft.world.WorldSettings.GameType
 
 // STOLEN FROM SKYTILS mmm yes
 object TabListUtils {
-    val NetworkPlayerInfo.text: String
-        get() = mc.ingameGUI.tabList.getPlayerName(this)
 
     private val visitorPattern = "Visitors: \\((.+)\\)".toRegex()
-    private val nextVisitorPattern = "Next Visitor: (.+)".toRegex()
     private val areaPattern = "Area: (.+)".toRegex()
 
     var area: String = ""
@@ -25,8 +20,6 @@ object TabListUtils {
     var timeTillNextVisitor: String = ""
     var numVisitors: Int = 0
     var archerName: String = ""
-
-    var tabEntries = emptyList<Pair<NetworkPlayerInfo, String>>()
 
     private val playerInfoOrdering = object : Ordering<NetworkPlayerInfo>() {
         override fun compare(info1: NetworkPlayerInfo?, info2: NetworkPlayerInfo?): Int {
@@ -78,14 +71,20 @@ object TabListUtils {
                 }
 
                 trimmed.startsWith("Milestone") -> gardenMilestone = trimmed
-                trimmed.contains(nextVisitorPattern) -> {
-                    timeTillNextVisitor = nextVisitorPattern.find(trimmed)!!.groupValues[1]
-                    maxVisitors = timeTillNextVisitor == "Queue Full!"
-                }
 
                 trimmed.contains(visitorPattern) -> {
-                    numVisitors = visitorPattern.find(trimmed)!!.groupValues[1].toInt()
+                    timeTillNextVisitor = visitorPattern.find(trimmed)!!.groupValues[1]
+                    maxVisitors = timeTillNextVisitor == "Queue Full!"
                     numVisitorsFlag = true
+
+                    // figure out how many visitors
+                    var index = scoreboardList.indexOf(line) + 1
+                    var visitors = 0
+                    while (scoreboardList.get(index) != "") {
+                        visitors++
+                        index++
+                    }
+                    numVisitors = visitors
                 }
 
                 line.contains("(Archer") -> {

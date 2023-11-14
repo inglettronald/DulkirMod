@@ -52,7 +52,6 @@ class DulkirMod {
         cch.registerCommand(EnchantRuneCommand())
         cch.registerCommand(FairyCommand())
         cch.registerCommand(SettingsCommand())
-        cch.registerCommand(JoinDungeonCommand())
         cch.registerCommand(LeapNameCommand())
         cch.registerCommand(HurtCamCommand())
         cch.registerCommand(FarmingControlSchemeCommand())
@@ -134,7 +133,7 @@ class DulkirMod {
             TextUtils.toggledMessage("No Selfie Camera", DulkirConfig.noReverse3rdPerson)
         }
         if (keyBinds[2].isPressed) {
-            FarmingControlSchemeCommand.toggleControls();
+            FarmingControlSchemeCommand.toggleControls()
         }
         if (keyBinds[3].isPressed) {
             TextUtils.sendMessage("/${DulkirConfig.dynamicCommandString}")

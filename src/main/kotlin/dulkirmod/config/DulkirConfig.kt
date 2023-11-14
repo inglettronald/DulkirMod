@@ -175,14 +175,6 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
     var hideHeartParticles = false
 
     @Switch(
-        name = "Starred Mob Boxes",
-        description = "Self Explanatory, NOT esp",
-        category = "Dungeons",
-        subcategory = "Dungeons"
-    )
-    var starredBoxes = false
-
-    @Switch(
         name = "Throttle Notifier",
         description = "Im pretty sure this is mostly patched? Idk I'm leaving it in",
         category = "Dungeons",
@@ -511,7 +503,7 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.RECORDS, 1f)
         DulkirMod.mc.thePlayer.playSound(
             "note.pling",
-            1f * DulkirConfig.secretSoundVolume,
+            1f * secretSoundVolume,
             1f
         )
         DulkirMod.mc.gameSettings.setSoundLevel(SoundCategory.MASTER, prevMaster)
@@ -539,10 +531,10 @@ object DulkirConfig : Config(Mod("DulkirMod", ModType.SKYBLOCK), "dulkirmod-conf
         description = "Not case-sensitive",
         category = "Bridge",
         subcategory = "Bridge",
-        placeholder = "Bweefing",
+        placeholder = "Ealman11",
         secure = false
     )
-    var botName: String = "Bweefing"
+    var botName: String = "Ealman11"
 
     @Dropdown(
         name = "Bridge Chatter Name Color",

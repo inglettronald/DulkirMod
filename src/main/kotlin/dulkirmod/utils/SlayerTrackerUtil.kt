@@ -68,7 +68,7 @@ object SlayerTrackerUtil {
             averageSpawnKillTime = ((averageSpawnKillTime * (totalBosses - 1) + (System.currentTimeMillis() - lastKillTime) / 1000)) / totalBosses
             lastKillTime = System.currentTimeMillis()
             averageBossesPerHour = 3600 / averageSpawnKillTime
-            averageXPPerHour = (averageBossesPerHour * 500).toInt()
+            averageXPPerHour = (averageBossesPerHour * DulkirConfig.slayerXP).toInt()
         }
     }
 
