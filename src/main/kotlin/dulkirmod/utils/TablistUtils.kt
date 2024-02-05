@@ -80,7 +80,7 @@ object TabListUtils {
                     // figure out how many visitors
                     var index = scoreboardList.indexOf(line) + 1
                     var visitors = 0
-                    while (scoreboardList.get(index) != "") {
+                    while (index < scoreboardList.size && scoreboardList.get(index) != "" && visitors < 5) {
                         visitors++
                         index++
                     }
