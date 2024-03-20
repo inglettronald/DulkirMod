@@ -41,9 +41,9 @@ object GardenVisitorAlert {
             lastAlert = System.currentTimeMillis().toInt()
             val color = Utils.getColorString(DulkirConfig.bestiaryNotifColor)
             TitleUtils.drawStringForTime("${color}Max Visitors", 5000)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .3f)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .6f)
-            DulkirMod.mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .9f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .3f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .6f)
+            mc.thePlayer.playSound("note.pling", 1f * DulkirConfig.bestiaryNotifVol, .9f)
         }
     }
 

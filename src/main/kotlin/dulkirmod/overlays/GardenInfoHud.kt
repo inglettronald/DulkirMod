@@ -9,19 +9,19 @@ class GardenInfoHud : TextHud(false) {
     override fun getLines(lines: MutableList<String>?, example: Boolean) {
         if (!Utils.isInSkyblock()) return
         if (TabListUtils.area != "Garden") return
-        var i = 0
-        if (DulkirConfig.gardenMilestoneDisplay) {
-            lines?.add(i, TabListUtils.gardenMilestone)
-            ++i
+        if (DulkirConfig.gardenMilestoneDisplay && TabListUtils.gardenMilestone != "") {
+            lines?.add(TabListUtils.gardenMilestone)
         }
         if (DulkirConfig.visitorInfo) {
-            lines?.add(i, "Visitors: ${TabListUtils.numVisitors} - ${TabListUtils.timeTillNextVisitor}")
-            ++i
+            if (TabListUtils.numVisitors == -1) {
+                lines?.add("No Visitor info")
+            } else {
+                lines?.add("Visitors: ${TabListUtils.numVisitors} - ${TabListUtils.timeTillNextVisitor}")
+            }
         }
         if (DulkirConfig.composterAlert) {
             if (TabListUtils.emptyComposter) {
-                lines?.add(i, "Empty Composter!")
-                ++i
+                lines?.add("Empty Composter!")
             }
         }
     }

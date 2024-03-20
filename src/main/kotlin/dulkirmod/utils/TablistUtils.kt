@@ -9,7 +9,8 @@ import net.minecraft.world.WorldSettings.GameType
 // STOLEN FROM SKYTILS mmm yes
 object TabListUtils {
 
-    private val visitorPattern = "Visitors: \\((.+)\\)".toRegex()
+    private val visitorPattern = "Visitors: \\((\\d)\\)".toRegex()
+    private val nextVisitorPattern = "^Next Visitor: (.+)$".toRegex()
     private val areaPattern = "Area: (.+)".toRegex()
 
     var area: String = ""
@@ -18,7 +19,7 @@ object TabListUtils {
     var emptyComposter: Boolean = false
     var gardenMilestone: String = ""
     var timeTillNextVisitor: String = ""
-    var numVisitors: Int = 0
+    var numVisitors: Int = -1
     var archerName: String = ""
 
     private val playerInfoOrdering = object : Ordering<NetworkPlayerInfo>() {
@@ -70,21 +71,21 @@ object TabListUtils {
                     emptyComposter = trimmed.split(": ")[1] == "INACTIVE"
                 }
 
-                trimmed.startsWith("Milestone") -> gardenMilestone = trimmed
+                trimmed == "Crop Milestones:" -> {
+                    val index = scoreboardList.indexOf(line) + 1
+                    if (index < scoreboardList.size) {
+                        gardenMilestone = scoreboardList[index].trim()
+                    }
+                }
 
                 trimmed.contains(visitorPattern) -> {
-                    timeTillNextVisitor = visitorPattern.find(trimmed)!!.groupValues[1]
-                    maxVisitors = timeTillNextVisitor == "Queue Full!"
-                    numVisitorsFlag = true
+                    numVisitors = Integer.parseInt(visitorPattern.find(trimmed)!!.groups[1]!!.value)
+                    numVisitorsFlag = true;
+                }
 
-                    // figure out how many visitors
-                    var index = scoreboardList.indexOf(line) + 1
-                    var visitors = 0
-                    while (index < scoreboardList.size && scoreboardList.get(index) != "" && visitors < 5) {
-                        visitors++
-                        index++
-                    }
-                    numVisitors = visitors
+                trimmed.contains(nextVisitorPattern) -> {
+                    timeTillNextVisitor = nextVisitorPattern.find(trimmed)!!.groups[1]!!.value
+                    maxVisitors = timeTillNextVisitor == "Queue Full!"
                 }
 
                 line.contains("(Archer") -> {
@@ -103,7 +104,7 @@ object TabListUtils {
             maxVisitors = false
         }
         if (!numVisitorsFlag) {
-            numVisitors = 0
+            numVisitors = -1
         }
     }
 
