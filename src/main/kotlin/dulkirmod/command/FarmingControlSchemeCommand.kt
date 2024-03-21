@@ -31,7 +31,7 @@ class FarmingControlSchemeCommand : ClientCommandBase("farmcontrols") {
 
                 KeyBinding.setKeyBindState(jumpKey.keyCode, false)
                 jumpKey.keyCode = -100 // -100 = Left click key code
-                minecraft.gameSettings.mouseSensitivity = 0.0f
+                minecraft.gameSettings.mouseSensitivity = -1f/3f
             } else {
                 KeyBinding.setKeyBindState(breakingKey.keyCode, false)
                 breakingKey.keyCode = -100 // -100 = Left click key code
