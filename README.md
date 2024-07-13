@@ -13,6 +13,8 @@ as I have.
 
 Settings Command: /dulkir
 
+DulkirMod 1.21 can be found [here](https://github.com/inglettronald/DulkirMod-Fabric).
+
 ## Features: - MOST ARE OFF BY DEFAULT
 
 ### General Quality of life
