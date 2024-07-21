@@ -58,6 +58,7 @@ repositories {
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://repo.essential.gg/repository/maven-public/")
+    maven("https://repo.nea.moe/releases")
     maven("https://repo.polyfrost.cc/releases")
 }
 
@@ -85,6 +86,9 @@ dependencies {
     compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.2.0-alpha+") // Should not be included in jar
     // include should be replaced with a configuration that includes this in the jar
     shadowImpl("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-beta+") // Should be included in jar
+
+    // Auto updating library
+    shadowImpl("moe.nea:libautoupdate:1.1.0")
 }
 
 // Configures our shadow/shade configuration, so we can
@@ -129,12 +133,13 @@ tasks.shadowJar {
     configurations = listOf(shadowImpl)
     doLast {
         configurations.forEach {
-            println("Config: ${it.files}")
+            println("Copying into JAR: ${it.files}")
         }
     }
 
     // If you want to include other dependencies and shadow them, you can relocate them in here
     fun relocate(name: String) = relocate(name, "com.dulkirmod.deps.$name")
+    relocate("moe.nea.libautoupdate")
 }
 
 tasks.withType<Jar> { duplicatesStrategy = DuplicatesStrategy.EXCLUDE }
