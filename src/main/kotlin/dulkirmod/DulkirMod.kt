@@ -152,7 +152,7 @@ class DulkirMod {
         val scope = CoroutineScope(EmptyCoroutineContext)
 
         val keyBinds = arrayOf(
-            KeyBinding("Open Settings", Keyboard.KEY_RSHIFT, "Dulkir Mod"),
+            KeyBinding("Open Settings", Keyboard.KEY_RCONTROL, "Dulkir Mod"),
             KeyBinding("Toggle Selfie Setting", Keyboard.KEY_NONE, "Dulkir Mod"),
             KeyBinding("Toggle Farming Controls", Keyboard.KEY_NONE, "Dulkir Mod"),
             KeyBinding("Dynamic Key", Keyboard.KEY_NONE, "Dulkir Mod")
